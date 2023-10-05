@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: monospace;
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    border: 1px solid white;
+    text-align: center;
+    padding: 30px;
+    width: 300px;
+    height: 500px;
+    border-radius: 5px;
+    background-color: black;
+    filter: drop-shadow(0px 0px 5px gray);
+}
+
+#pfp {
+    border-radius: 50%;
+    transition: 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+#pfp:hover {
+    filter: drop-shadow(0px 0px 5px rgb(66, 66, 66));
+    transform: scale(1.05) rotate(10deg);
+}
+
+.muted {
+    color: gray;
+    padding: 2px;
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+}
+
+.socials a {
+    text-decoration: none;
+    color: white;
+    margin: 7px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.socials a:hover {
+    transform: scale(1.05);
+}
+
+#ig:hover {
+    background-color: #d62976;
+}
+
+#spotify:hover {
+    background-color:  #1db954;
+}
+
+#discord:hover {
+    background-color: #7289d9;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    margin: 20px;
+    background-color: gray;
+}
+
+#quote {
+    font-size: 12px;
+    margin: 5px;
+}
+
+#spotify {
+    transition: 0.3s ease-in-out;
+}
+
+#spotify:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0px 0px 2px #1db954);
+}
