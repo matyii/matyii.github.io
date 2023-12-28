@@ -1,35 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>itsmatyii</title>
-    <link rel="stylesheet" href="style.css">
+    <title>itsmatyii - Kristóf Mátyás</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="card">
-            <img src="pfp.gif" width="120px" id="pfp">
-            <h1>Kristof Matyas</h1>
-            <div class="muted">
-                <p>also known as <span style="color: white;">itsmatyii</span></p>
-                <p><span id="age"></span> year old middle school student</p>
-                <p>⌨️ - HTML, CSS, JS</p>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-body my-3">
+            <a class="navbar-brand d-lg-none mx-auto" href="index.html">
+                <img src="pfp.jpg" class="rounded-circle" width="40px">
+            </a>
+            <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="work.html" class="nav-link">Work</a></li>
+                </ul>
             </div>
-
-            <div class="socials">
-                <a id="ig" href="https://www.instagram.com/itsmatyii/" target="_blank">instagram</a>
-                <a id="spotify" href="https://open.spotify.com/user/v3c40u36xrry1wcai2kvo9zxp" target="_blank">spotify</a>
-                <a id="discord" onclick="copyToClipboard()" href="#">discord</a>
+        </nav>    
+        <div class="container vh-100 d-flex justify-content-center align-items-center">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img src="pfp.jpg" class="rounded-circle mx-5 my-3" width="150px">
+                    <h3 class="card-title">Kristóf Mátyás</h3>
+                    <p class="text-muted"><span id="age"></span> year old student, studying networking and coding.</p>
+                    <a href="https://open.spotify.com/track/4gh0ZnHzaTMT1sDga7Ek0N?si=e03700fc5dcb4bc1" data-bs-toggle="tooltip" data-bs-title="sdp interlude - Travis Scott" target="_blank"><img src="spotify.svg" class="rounded shadow-lg" width="200px"></a>
+                </div>
+                <div class="container mb-3 justify-content-center d-flex">
+                    <div class="btn-group">
+                        <a href="https://github.com/matyii" target="_blank" class="btn btn-outline-primary">github</a>
+                        <a href="mailto: kmatyas2004@gmail.com" class="btn btn-outline-primary">email</a>
+                        <a href="#" data-bs-toggle="tooltip" data-bs-title="matyii" class="btn btn-outline-primary">discord</a>
+                    </div>
+                </div>
             </div>
-            <hr id="footer">
-            <a href="https://open.spotify.com/track/5gSZoRy42TxBxyAdHs9wXO?si=db25e39eefae48f0" target="_blank"><img src="spotify_code.jpeg" height="50px" id="spotify"></a>
-            <p class="muted" id="quote"></p>
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="age.js"></script>
-<script src="discord.js"></script>
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-<script src="quote.js"></script>
+<script src="tooltip.js"></script>
 </html>

@@ -1,10 +1,12 @@
-var birthdate = "2004-11-26";
-var birthDateObj = new Date(birthdate);
-var currentDate = new Date();
-var age = currentDate.getFullYear() - birthDateObj.getFullYear();
+const birthdate = new Date("2004-11-26");
+const currentDate = new Date();
+let age = currentDate.getFullYear() - birthdate.getFullYear();
 
-if (currentDate.getMonth() < birthDateObj.getMonth() || (currentDate.getMonth() === birthDateObj.getMonth() && currentDate.getDate() < birthDateObj.getDate())) {
-        age--;
+if (
+  currentDate.getMonth() < birthdate.getMonth() ||
+  (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())
+) {
+  age--;
 }
 
 document.getElementById("age").innerText = age;
