@@ -1,0 +1,23 @@
+.floating {
+    animation: floating 3s infinite;
+}
+
+.popup {
+    transition: 0.3s ease-in-out;
+}
+
+.popup:hover {
+    transform: scale(1.03);
+}
+
+@keyframes floating {
+    0% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -10px;
+    }
+    100% {
+        translate: 0 0;
+    }
+}
