@@ -22,21 +22,20 @@
                 <a class="navbar-brand" href="index.html">
                     <img src="assets/img/memojis/3.png" width="40px">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav text-center nav-underline">
                         <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
-                        <li class="nav-item"><a href="tools.html" class="nav-link">Tools</a></li>
                         <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="container">
-            <div class="row row-gap-3 mb-5">
+            <div class="row row-gap-3 mb-3">
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body text-center">
@@ -44,11 +43,7 @@
                                 <img src="assets/img/memojis/1.png" class="w-100 img-fluid px-5 py-3" style="max-width: 300px;">
                             </div>
                             <h1 class="card-title">Kristóf Mátyás</h1>
-                            <div class="container">
-                                <span class="badge rounded-pill text-bg-secondary">HTML&CSS</span>
-                                <span class="badge rounded-pill text-bg-secondary">Bootstrap</span>
-                                <span class="badge rounded-pill text-bg-secondary">JavaScript</span>
-                            </div>
+                            <p class="card-subtitle text-muted">Student @ Spojená škola, Gyulu Szabóa 21</p>
                         </div>
                     </div>
                 </div>
@@ -57,14 +52,62 @@
                         <div class="card-body py-3">
                             <p class="font-monospace">itsmatyii / about me</p>
                             <hr>
-                            <p>Hey there! 👋 I'm Kristóf Mátyás, a 19-year-old student navigating the exciting world of middle school with a passion for learning and exploring new horizons.</p>
-                            <p>I'm all about crafting amazing networks, whether it's setting up from scratch or giving existing setups a fantastic upgrade! 🌐 From homes to businesses, I thrive on creating seamless digital connections that are simple to set up and rock-solid reliable. Whether it's for streaming, gaming, or scaling infrastructures, I love making networks that just work flawlessly. When not crafting networks, I dive into coding with HTML, CSS, Node.js, and Bootstrap.</p>
+                            <p>Hello! 👋 I'm Kristóf Mátyás, a 19-year-old student navigating the exciting world of middle school with a passion for continuous learning and exploring new frontiers.</p>
+                            <p>I thrive in the realm of crafting exceptional networks, whether it involves setting them up from scratch or giving existing setups a fantastic upgrade! 🌐 From homes to businesses, I specialize in creating seamless digital connections that are both simple to set up and rock-solid reliable. My focus is on crafting networks that work flawlessly, whether it's for streaming, gaming, or scaling infrastructures. In addition to networking, I delve into coding with HTML, CSS, Node.js, and Bootstrap.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-gap-3 mb-3">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body py-3">
+                            <p class="font-monospace">itsmatyii / contact</p>
                             <hr>
-                            <p class="lead">Contact</p>
-                            <div class="list-group list-group-flush">
-                                <a href="mailto: kmatyas2004@gmail.com" class="list-group-item list-group-item-action">Email</a>
-                                <a href="https://fiverr.com/matyii" target="_blank" class="list-group-item list-group-item-action">Fiverr</a>
-                                <a href="#" class="list-group-item list-group-item-action">Discord: <span class="fw-bold">matyii</span></a>
+                            <div class="container d-flex flex-column gap-3">
+                                <a href="mailto: kmatyas2004@gmail.com" class="btn btn-primary">Email</a>
+                                <a href="https://fiverr.com/matyii" target="_blank" class="btn btn-success">Fiverr</a>
+                                <a href="https://github.com/matyii" target="_blank" class="btn btn-secondary">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body py-3">
+                            <p class="font-monospace">itsmatyii / games</p>
+                            <hr>
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-gap-3">
+                                <div class="col">
+                                    <div class="card" id="gamecard1">
+                                        <div class="card-body popup graytransition">
+                                            <img src="assets/img/games/ets2.jpg" class="img-fluid rounded popup" id="gameimage">
+                                            <div style="--bs-bg-opacity: .4;" class="card-img-overlay d-flex align-items-center text-center justify-content-center overlay-content opacity-0 bg-dark">
+                                                <h5 class="px-3">Euro Truck Simulator 2</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card" id="gamecard2">
+                                        <div class="card-body popup graytransition">
+                                            <img src="assets/img/games/gta4.png" class="img-fluid rounded popup" id="gameimage">
+                                            <div style="--bs-bg-opacity: .4;" class="card-img-overlay d-flex align-items-center text-center justify-content-center overlay-content opacity-0 bg-dark">
+                                                <h5 class="px-3">Grand Theft Auto IV</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card" id="gamecard3">
+                                        <div class="card-body popup graytransition">
+                                            <img src="assets/img/games/stardew.png" class="img-fluid rounded popup" id="gameimage">
+                                            <div style="--bs-bg-opacity: .4;" class="card-img-overlay d-flex align-items-center text-center justify-content-center overlay-content opacity-0 bg-dark">
+                                                <h5 class="px-3">Stardew Valley</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -76,4 +119,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/age.js"></script>
 <script src="assets/js/tooltip.js"></script>
+<script src="assets/js/gamecards.js"></script>
 </html>

@@ -6,8 +6,23 @@
     transition: 0.3s ease-in-out;
 }
 
+.graytransition {
+    transition: 0.3s ease-in-out;
+    filter: grayscale(100%) blur(1px);
+}
+
+.graytransition:hover {
+    filter: grayscale(0%);
+}
+
 .popup:hover {
     transform: scale(1.03);
+}
+
+.overlay-content {
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    user-select: none;
 }
 
 @keyframes floating {
