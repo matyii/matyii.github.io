@@ -2,29 +2,6 @@
     animation: floating 3s infinite;
 }
 
-.popup {
-    transition: 0.3s ease-in-out;
-}
-
-.graytransition {
-    transition: 0.3s ease-in-out;
-    filter: grayscale(100%) blur(1px);
-}
-
-.graytransition:hover {
-    filter: grayscale(0%);
-}
-
-.popup:hover {
-    transform: scale(1.03);
-}
-
-.overlay-content {
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-    user-select: none;
-}
-
 @keyframes floating {
     0% {
         translate: 0 0;
@@ -35,4 +12,14 @@
     100% {
         translate: 0 0;
     }
+}
+
+.footer {
+    transition: 0.3s ease-in-out;
+    font-size: 12px;
+}
+
+.footer:hover {
+    color: rgb(255, 255, 255)!important;
+    cursor: pointer;
 }
