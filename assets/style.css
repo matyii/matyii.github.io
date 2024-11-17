@@ -23,3 +23,11 @@
     color: rgb(255, 255, 255)!important;
     cursor: pointer;
 }
+
+.imgzoom {
+    transition: 0.3s ease-in-out;
+}
+
+.imgzoom:hover {
+    transform: scale(1.03);
+}

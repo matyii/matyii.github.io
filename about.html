@@ -53,8 +53,11 @@
                             <p class="font-monospace">root@itsmatyii.fun:~/about</p>
                             <hr>
                             <div class="container">
-                                <p>Hey there! 👋 I'm Kristóf Mátyás, a 19-year-old who just graduated and loves diving into new adventures.</p>
-                                <p>I specialize in setting up and optimizing networks, whether starting fresh or improving existing ones. 🌐 From homes to businesses, I ensure seamless performance for streaming, gaming, or any other needs. I also enjoy coding with HTML, CSS, and Bootstrap. Outside of tech, I'm passionate about cars, particularly my Peugeot 407. As a freelancer on Fiverr, I'm always eager to learn new things and take on new challenges!</p>
+                                <p>Hi there. My name is Kristóf Mátyás, I'm 19 years old, I currently work as an IT technician, but I love doing anything tech related in my free time.</p>
+                                <p>I mostly specialize in networking, but I'm open for any type of challenge.</p>
+                                <p>I love working with UniFi products, mainly because of their ecosystem and very easy-to-use interface.</p>
+                                <p>When I'm not in front of my setup coding or tinkering with tech, I spend my free time outside cruising in my car listening to music or working on my car.</p>
+                                <p>For business enquiries, feel free to contact me through <a href="mailto:business@itsmatyii.fun">e-mail</a>.</p>
                             </div>
                         </div>
                     </div>
@@ -66,10 +69,10 @@
                         <div class="card-body d-flex flex-column py-3">
                             <p class="font-monospace m-0">root@itsmatyii.fun:~/contact</p>
                             <hr>
-                            <div class="container d-flex flex-column flex-grow gap-3 flex-grow-1">
-                                <a href="mailto:business@itsmatyii.fun" class="btn btn-outline-light flex-fill d-flex justify-content-center align-items-center">Email</a>
-                                <a href="https://drive.google.com/uc?export=download&id=13mxNQNYFK58ij-xAsoIM29VKAdrXUcyL" target="_blank" class="btn btn-outline-light flex-fill d-flex justify-content-center align-items-center">Download my CV</a>
-                                <a href="https://github.com/matyii" target="_blank" class="btn btn-outline-light flex-fill d-flex justify-content-center align-items-center">GitHub</a>
+                            <div class="container d-flex flex-column flex-grow gap-3 flex-grow-1 justify-content-center">
+                                <a href="mailto:business@itsmatyii.fun" class="btn btn-outline-light">Business enquiries</a>
+                                <a href="https://drive.google.com/uc?export=download&id=13mxNQNYFK58ij-xAsoIM29VKAdrXUcyL" target="_blank" class="btn btn-outline-light">Download my CV</a>
+                                <a href="https://github.com/matyii" target="_blank" class="btn btn-outline-light">GitHub</a>
                             </div>
                         </div>
                     </div>
@@ -77,30 +80,87 @@
                 <div class="col-lg-8">
                     <div class="card bg-black shadow">
                         <div class="card-body d-flex flex-column py-3">
-                            <p class="font-monospace m-0">root@itsmatyii.fun:~/reviews</p>
+                            <p class="font-monospace m-0">root@itsmatyii.fun:~/skills</p>
                             <hr>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <div class="card bg-black">
-                                        <h6 class="card-header">Lóránt Szilágyi | 5 ⭐</h6>
-                                        <div class="card-body">
-                                            <p class="card-text">He consistently provided prompt and efficient assistance with network and server issues. Would recommend his services!</p>
+                            <div class="container">
+                                <div class="accordion" id="skillsAccordion">
+                                    <div class="card bg-black mb-2">
+                                        <div class="card-header" id="headingGeneralIT">
+                                            <h5 class="mb-0">
+                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneralIT" aria-expanded="false" aria-controls="collapseGeneralIT">
+                                                    General and IT Skills
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseGeneralIT" class="collapse" aria-labelledby="headingGeneralIT" data-bs-parent="#skillsAccordion">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li>Calm problem-solving skills</li>
+                                                    <li>Microsoft Office - Intermediate</li>
+                                                    <li>Windows and Linux Administration - Intermediate</li>
+                                                    <li>Basic networking knowledge and acquaintance with the UniFi ecosystem</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card bg-black">
-                                        <h6 class="card-header">Maxim Köpke | 5 ⭐</h6>
-                                        <div class="card-body">
-                                            <p class="card-text">I recommend Matyi’s services. He saved me money and set up my VPS server perfectly, so I didn’t have to purchase an overpriced game server.</p>
+                                    <div class="card bg-black mb-2">
+                                        <div class="card-header" id="headingLanguages">
+                                            <h5 class="mb-0">
+                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLanguages" aria-expanded="false" aria-controls="collapseLanguages">
+                                                    Languages
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseLanguages" class="collapse" aria-labelledby="headingLanguages" data-bs-parent="#skillsAccordion">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li>Hungarian - Native</li>
+                                                    <li>English - B2</li>
+                                                    <li>Slovak - Intermediate</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="card bg-black mb-2">
+                                        <div class="card-header" id="headingCertificates">
+                                            <h5 class="mb-0">
+                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCertificates" aria-expanded="false" aria-controls="collapseCertificates">
+                                                    Certificates
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseCertificates" class="collapse" aria-labelledby="headingCertificates" data-bs-parent="#skillsAccordion">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li>ECDL - module M2, M3, M4, M6 and M7</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card bg-black mb-2">
+                                        <div class="card-header" id="headingCodingGear">
+                                            <h5 class="mb-0">
+                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCodingGear" aria-expanded="false" aria-controls="collapseCodingGear">
+                                                    My Coding Gear
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseCodingGear" class="collapse" aria-labelledby="headingCodingGear" data-bs-parent="#skillsAccordion">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li>Lenovo Ideapad Flex 5 (Ryzen 3 4300U, 8GB DDR4, 256GB NVME)</li>
+                                                    <li>Dark Project One 87 Fuji (Pre-lubed G3ms Sapphire switches)</li>
+                                                    <li>Logitech G305 Recoil</li>
+                                                    <li>Windows 11 Home (24H2)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
