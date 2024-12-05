@@ -16,6 +16,7 @@
 
 .footer {
     transition: 0.3s ease-in-out;
+    animation: fadein 3s;
     font-size: 12px;
 }
 
@@ -30,4 +31,24 @@
 
 .imgzoom:hover {
     transform: scale(1.03);
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+.fade-in {
+    animation: fadein 3s;
+}
+
+#content {
+    transition: opacity 0.3s ease;
+}
+#content.hidden {
+    opacity: 0;
 }

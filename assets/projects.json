@@ -1,0 +1,69 @@
+[
+    {
+        "title": "hypixel.lol",
+        "description": "ShareX image uploader service, with Discord user integration!",
+        "image": "https://raw.githubusercontent.com/matyii/hypixel.lol/main/hypixel.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/hypixel.lol"}
+        ]
+    },
+    {
+        "title": "cleangoogle.lol",
+        "description": "A minimalistic version of Google.",
+        "image": "https://raw.githubusercontent.com/matyii/cleangoogle.lol/master/banner.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/cleangoogle.lol"},
+            {"label": "Live Demo", "url": "https://matyii.github.io/cleangoogle.lol/"}
+        ]
+    },
+    {
+        "title": "shortify!",
+        "description": "An easy-to-use URL shortener service.",
+        "image": "https://raw.githubusercontent.com/matyii/shortify/main/shortify.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/shortify"}
+        ]
+    },
+    {
+        "title": "spotnow",
+        "description": "User profile page with Spotify integration.",
+        "image": "https://raw.githubusercontent.com/matyii/spotnow/master/spotnow.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/spotnow"}
+        ]
+    },
+    {
+        "title": "SnapScrape",
+        "description": "Get your saved chat from Snapchat.",
+        "image": "https://raw.githubusercontent.com/matyii/snapscrape/main/brand.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/snapscrape"}
+        ]
+    },
+    {
+        "title": "Molnár Cukrászda",
+        "description": "Molnár Cukrászda is a fictitious online bakery, a culmination project showcasing pastries and cakes in a digital space.",
+        "image": "https://raw.githubusercontent.com/matyii/molnarcukraszda.hu/main/brand.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu/"},
+            {"label": "Live Demo", "url": "https://matyii.github.io/molnarcukraszda.hu/"}
+        ]
+    },
+    {
+        "title": "Molnár Cukrászda v2",
+        "description": "This is a rewritten version of Molnár Cukrászda, including complete PHP and SQL.",
+        "image": "https://raw.githubusercontent.com/matyii/molnarcukraszda.hu-v2/main/brand.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu-v2"}
+        ]
+    },
+    {
+        "title": "emojis.gg",
+        "description": "Effortless Emoji Copying Made Simple.",
+        "image": "https://raw.githubusercontent.com/matyii/emojis.gg/main/banner.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/emojis.gg"},
+            {"label": "Live Demo", "url": "https://matyii.github.io/emojis.gg/"}
+        ]
+    }
+]
