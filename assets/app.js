@@ -7,6 +7,7 @@ $(document).ready(function() {
         document.documentElement.setAttribute('data-theme', selectedTheme);
         localStorage.setItem('theme', selectedTheme); 
     });
+
     const path = window.location.pathname;
     $('.tabs a').each(function() {
         if ($(this).attr('href') === path) {
@@ -15,4 +16,7 @@ $(document).ready(function() {
             $(this).removeClass('tab-active');
         }
     });
+
+    const currentYear = new Date().getFullYear();
+    $('#currentYear').text(currentYear);
 });
