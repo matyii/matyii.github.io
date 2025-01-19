@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>about | itsmatyii - Kristóf Mátyás</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.1/daisyui.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="assets/img/memojis/2.png" type="image/jpg">
     <link rel="stylesheet" href="assets/style.css">
 
@@ -15,164 +16,147 @@
     <meta property="og:description" content="itsmatyii - Portfolio" />
     <meta name="theme-color" content="#1c1c1c">
 </head>
-<body class="bg-black font-monospace">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark my-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img src="assets/img/memojis/5.png" width="40px">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav text-center nav-underline">
-                        <li class="nav-item"><a href="/" class="nav-link">home</a></li>
-                        <li class="nav-item"><a href="/projects" class="nav-link">projects</a></li>
-                        <li class="nav-item"><a href="/about" class="nav-link active">about</a></li>
-                    </ul>
+<body>
+    <div class="container mx-auto px-5 font-mono">
+        <nav class="navbar bg-base-100 shadow-lg rounded-lg px-3 my-3">
+            <div class="navbar-start">
+              <a class="btn btn-ghost text-xl" href="/">
+                <img src="assets/img/memojis/5.png" width="40px">
+              </a>
+              <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                  <i class="bi bi-list"></i>
+                </div>
+                <ul
+                  tabindex="0"
+                  class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                  <li><a href="/">home</a></li>
+                  <li><a href="/projects">projects</a></li>
+                  <li><a href="/about">about</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+              <div role="tablist" class="tabs tabs-box">
+                <a role="tab" class="tab" href="/">home</a>
+                <a role="tab" class="tab" href="/projects">projects</a>
+                <a role="tab" class="tab tab-active" href="/about">about</a>
+              </div>
+            </div>
+            <div class="navbar-end">
+              <label class="swap swap-rotate">
+                <input type="checkbox" class="theme-controller"/>
+                <svg
+                  class="swap-off h-7 w-7 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                </svg>
+                <svg
+                  class="swap-on h-7 w-7 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+                </svg>
+              </label>
+            </div>
+          </nav>
+
+          <div class="container fade-in my-10 mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 justify-center max-w-screen-xl mx-auto">
+        <div class="card bg-base-300 shadow-lg p-4">
+            <div class="card-body">
+                <p class="my-5 underline underline-offset-8">root@itsmatyii.fun:~/me</p>
+                <img src="assets/img/memojis/1.png" class="w-full max-w-[200px] mx-auto rounded-lg floating">
+                <h3 class="card-title mt-4">Kristóf Mátyás</h3>
+                <p class="card-subtitle text-muted">20 years old. 🪐</p>
+                <div class="flex flex-col gap-3">
+                    <a href="mailto:business@itsmatyii.fun" class="btn btn-ghost">Business enquiries</a>
+                    <a href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" class="btn btn-ghost">Open my CV</a>
+                    <a href="https://github.com/matyii" target="_blank" class="btn btn-ghost">GitHub</a>
+                    <a href="https://fiverr.com/matyii/" target="_blank" class="btn btn-ghost">Fiverr</a>
                 </div>
             </div>
-        </nav>
-        <div class="container fade-in">
-            <div class="row row-gap-3 mb-3">
-                <div class="col-lg-4 d-flex align-items-stretch">
-                    <div class="card bg-black shadow flex-grow-1">
-                        <div class="card-body">
-                            <p class="font-monospace">root@itsmatyii.fun:~/me</p>
-                            <hr>
-                            <div class="card-img-top">
-                            </div>
-                            <div class="text-center">
-                                <img src="assets/img/memojis/1.png" class="w-100 img-fluid px-5 py-3 floating" style="max-width: 300px;">
-                                <h3 class="card-title">Kristóf Mátyás</h3>
-                                <p class="card-subtitle text-muted">20 years old. 🪐</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 d-flex align-items-stretch">
-                    <div class="card bg-black shadow">
-                        <div class="card-body py-3">
-                            <p class="font-monospace">root@itsmatyii.fun:~/about</p>
-                            <hr>
-                            <div class="container">
-                                <p>Hi there! My name is Kristóf Mátyás, and I’m a 20-year-old IT technician with a passion for all things tech.</p>
-                                <p>I specialize in system administration and networking, though I'm always open to new challenges. I’ve worked on projects with FiveM, GitLab, UniFi, and more, and I’ve really enjoyed learning and collaborating on them.</p>
-                                <p>My Fiverr profile is now live. I am pleased to offer a range of professional services tailored to meet your needs. Visit my page to learn more and place your orders.</p>
-                                <p>When I’m not coding or tinkering with tech, you’ll find me outside cruising in my car, listening to music, or working on it.</p>
-                                <p>For business enquiries, don’t hesitate to contact me via <a href="mailto:business@itsmatyii.fun">e-mail</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+
+        <div class="card bg-base-300 shadow-lg p-4">
+            <div class="card-body">
+                <p class="my-5 underline underline-offset-8">root@itsmatyii.fun:~/about</p>
+                <p>Hi there! My name is Kristóf Mátyás, and I’m a 20-year-old IT technician with a passion for all things tech.</p>
+                <p>I specialize in system administration and networking, though I'm always open to new challenges. I’ve worked on projects with FiveM, GitLab, UniFi, and more, and I’ve really enjoyed learning and collaborating on them.</p>
+                <p>My Fiverr profile is now live. I am pleased to offer a range of professional services tailored to meet your needs. Visit my page to learn more and place your orders.</p>
+                <p>When I’m not coding or tinkering with tech, you’ll find me outside cruising in my car, listening to music, or working on it.</p>
+                <p>For business enquiries, don’t hesitate to contact me via <a href="mailto:business@itsmatyii.fun" class="text-info underline underline-offset-2">e-mail</a>.</p>
             </div>
-            <div class="row row-gap-3 mb-3">
-                <div class="col-lg-4 d-flex align-items-stretch">
-                    <div class="card bg-black shadow flex-grow-1">
-                        <div class="card-body d-flex flex-column py-3">
-                            <p class="font-monospace m-0">root@itsmatyii.fun:~/contact</p>
-                            <hr>
-                            <div class="container d-flex flex-column flex-grow gap-3 flex-grow-1 justify-content-center">
-                                <a href="mailto:business@itsmatyii.fun" class="btn btn-outline-light">Business enquiries</a>
-                                <a href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" class="btn btn-outline-light">Open my CV</a>
-                                <a href="https://github.com/matyii" target="_blank" class="btn btn-outline-light">GitHub</a>
-                                <a href="https://fiverr.com/matyii/" target="_blank" class="btn btn-outline-light">Fiverr</a>
-                            </div>
-                        </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 justify-center max-w-screen-xl mx-auto mt-6">
+        <div class="card bg-base-300 shadow-lg p-4 col-span-2">
+            <div class="card-body">
+                <p class="my-5 underline underline-offset-8">root@itsmatyii.fun:~/skills</p>
+
+                <div class="collapse bg-base-100 border border-base-300">
+                    <input type="checkbox" name="skillsAccordion"/>
+                    <div class="collapse-title font-semibold">General and IT Skills</div>
+                    <div class="collapse-content text-sm">
+                        <ul class="list-disc pl-6">
+                            <li>Calm problem-solving skills</li>
+                            <li>Microsoft Office - Intermediate</li>
+                            <li>Windows and Linux Administration - Intermediate</li>
+                            <li>Basic networking knowledge and acquaintance with the UniFi ecosystem</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="card bg-black shadow">
-                        <div class="card-body d-flex flex-column py-3">
-                            <p class="font-monospace m-0">root@itsmatyii.fun:~/skills</p>
-                            <hr>
-                            <div class="container">
-                                <div class="accordion" id="skillsAccordion">
-                                    <div class="card bg-black mb-2">
-                                        <div class="card-header" id="headingGeneralIT">
-                                            <h5 class="mb-0">
-                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneralIT" aria-expanded="false" aria-controls="collapseGeneralIT">
-                                                    General and IT Skills
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseGeneralIT" class="collapse" aria-labelledby="headingGeneralIT" data-bs-parent="#skillsAccordion">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li>Calm problem-solving skills</li>
-                                                    <li>Microsoft Office - Intermediate</li>
-                                                    <li>Windows and Linux Administration - Intermediate</li>
-                                                    <li>Basic networking knowledge and acquaintance with the UniFi ecosystem</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card bg-black mb-2">
-                                        <div class="card-header" id="headingLanguages">
-                                            <h5 class="mb-0">
-                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLanguages" aria-expanded="false" aria-controls="collapseLanguages">
-                                                    Languages
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseLanguages" class="collapse" aria-labelledby="headingLanguages" data-bs-parent="#skillsAccordion">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li>Hungarian - Native</li>
-                                                    <li>English - B2</li>
-                                                    <li>Slovak - Intermediate</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card bg-black mb-2">
-                                        <div class="card-header" id="headingCertificates">
-                                            <h5 class="mb-0">
-                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCertificates" aria-expanded="false" aria-controls="collapseCertificates">
-                                                    Certificates
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseCertificates" class="collapse" aria-labelledby="headingCertificates" data-bs-parent="#skillsAccordion">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li>ECDL - module M2, M3, M4, M6 and M7 [<a href="https://drive.google.com/file/d/1SObqxvhzIn_WlqRR7yRoK5FmCUUi450k/view" target="_blank">show</a>]</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card bg-black mb-2">
-                                        <div class="card-header" id="headingCodingGear">
-                                            <h5 class="mb-0">
-                                                <button class="btn text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCodingGear" aria-expanded="false" aria-controls="collapseCodingGear">
-                                                    My Coding Gear
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseCodingGear" class="collapse" aria-labelledby="headingCodingGear" data-bs-parent="#skillsAccordion">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li>Lenovo Ideapad Flex 5 (Ryzen 3 4300U, 8GB DDR4, 256GB NVME)</li>
-                                                    <li>Dark Project One 87 Fuji (Pre-lubed G3ms Sapphire switches)</li>
-                                                    <li>Logitech G305 Recoil</li>
-                                                    <li>Windows 11 Home (24H2)</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                        </div>
+
+                <div class="collapse bg-base-100 border border-base-300">
+                    <input type="checkbox" name="skillsAccordion" />
+                    <div class="collapse-title font-semibold">Languages</div>
+                    <div class="collapse-content text-sm">
+                        <ul class="list-disc pl-6">
+                            <li>Hungarian - Native</li>
+                            <li>English - B2</li>
+                            <li>Slovak - Intermediate</li>
+                        </ul>
                     </div>
                 </div>
+
+                <div class="collapse bg-base-100 border border-base-300">
+                    <input type="checkbox" name="skillsAccordion" />
+                    <div class="collapse-title font-semibold">Certificates</div>
+                    <div class="collapse-content text-sm">
+                        <ul class="list-disc pl-6">
+                            <li>ECDL - module M2, M3, M4, M6 and M7 [<a href="https://drive.google.com/file/d/1SObqxvhzIn_WlqRR7yRoK5FmCUUi450k/view" target="_blank" class="text-primary">show</a>]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="collapse bg-base-100 border border-base-300">
+                    <input type="checkbox" name="skillsAccordion" />
+                    <div class="collapse-title font-semibold">My Coding Gear</div>
+                    <div class="collapse-content text-sm">
+                        <ul class="list-disc pl-6">
+                            <li>Lenovo Ideapad Flex 5 (Ryzen 3 4300U, 8GB DDR4, 256GB NVME)</li>
+                            <li>Dark Project One 87 Fuji (Pre-lubed G3ms Sapphire switches)</li>
+                            <li>Logitech G305 Recoil</li>
+                            <li>Windows 11 Home (24H2)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="text-muted text-center text-monospace py-2 px-3 footer">
+        </div>
+    </div>
+
+    <footer class="text-muted text-center text-sm font-mono py-4">
         &copy; 2024 itsmatyii
     </footer>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>
+<script src="assets/loadprojects.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="assets/app.js"></script>

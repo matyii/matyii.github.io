@@ -7,25 +7,28 @@ async function loadProjects() {
 
         projects.forEach(project => {
             const projectElement = document.createElement('div');
-            projectElement.classList.add('row', 'align-items-center', 'mb-4');
+            projectElement.classList.add('card', 'bg-base-100', 'image-full', 'w-96', 'shadow-xl', 'mb-4');
             projectElement.innerHTML = `
-                <div class="col-md-3">
-                    <img src="${project.image}" class="img-fluid rounded shadow mb-3 imgzoom">
-                </div>
-                <div class="col-md-6">
-                    <h5 class="fw-bold">${project.title}</h5>
-                    <p class="text-muted">${project.description}</p>
-                </div>
-                <div class="col-md-3 text-md-end">
-                    ${project.links.map(link => `
-                        <a href="${link.url}" target="_blank" class="btn btn-outline-light">${link.label}</a>
-                    `).join('')}
+                <figure>
+                    <img src="${project.image}" alt="${project.title}">
+                </figure>
+                <div class="card-body">
+                    <h2 class="card-title">${project.title}</h2>
+                    <div class="flex flex-wrap gap-2">
+                        ${project.badges.map(badge => `
+                            <span class="badge badge-sm badge-${badge.type}">${badge.label}</span>
+                        `).join('')}
+                    </div>
+                    <p>${project.description}</p>
+                    <div class="card-actions justify-end">
+                        ${project.links.map(link => `
+                            <a href="${link.url}" target="_blank" class="btn btn-ghost">${link.label}</a>
+                        `).join('')}
+                    </div>
                 </div>
             `;
 
             container.appendChild(projectElement);
-            const hr = document.createElement('hr');
-            container.appendChild(hr);
         });
     } catch (error) {
         console.error('Error loading projects:', error);
