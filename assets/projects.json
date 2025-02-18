@@ -1,5 +1,18 @@
 [
     {
+        "title": "screenie",
+        "description": "share your screenshots and videos easily (originally hypixel.lol)",
+        "image": "screenie.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/screeniehost"}
+        ],
+        "badges": [
+            {"label": "NodeJS", "type": "secondary"},
+            {"label": "DaisyUI", "type": "accent"},
+            {"label": "Javascript", "type": "warning"}
+        ]
+    },
+    {
         "title": "hypixel.lol",
         "description": "ShareX image uploader service, with Discord user integration!",
         "image": "hypixel.png",
