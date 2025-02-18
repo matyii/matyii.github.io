@@ -1,5 +1,5 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^/.]+)$ /$1.html [L]
-RewriteRule ^(.*)$ / [L,R=301]
+RewriteRule ^([^/.]+)$ /pages/$1.html [L]
+RewriteRule ^(.*)$ /pages/ [L,R=301]

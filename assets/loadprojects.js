@@ -1,6 +1,6 @@
 async function loadProjects() {
     try {
-        const response = await fetch('assets/projects.json');
+        const response = await fetch('/assets/projects.json');
         const projects = await response.json();
 
         const container = document.querySelector('.projects');
@@ -10,7 +10,7 @@ async function loadProjects() {
             projectElement.classList.add('card', 'bg-base-100', 'image-full', 'w-96', 'shadow-xl', 'mb-4');
             projectElement.innerHTML = `
                 <figure>
-                    <img src="${project.image}" alt="${project.title}">
+                    <img src="/assets/img/projects/${project.image}">
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title">${project.title}</h2>

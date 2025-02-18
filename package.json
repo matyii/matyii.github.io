@@ -1,0 +1,27 @@
+{
+  "name": "website-main",
+  "version": "1.0.0",
+  "description": "my portfolio page",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i assets/style.css -o assets/app.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matyii/matyii.github.io.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "matyii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matyii/matyii.github.io/issues"
+  },
+  "homepage": "https://github.com/matyii/matyii.github.io#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.6",
+    "daisyui": "^5.0.0-beta.8",
+    "tailwindcss": "^4.0.6"
+  }
+}

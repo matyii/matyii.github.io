@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme') || (userPrefersDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', savedTheme);
     $('.theme-controller').prop('checked', savedTheme === 'dark');
     $('.theme-controller').change(function() {
