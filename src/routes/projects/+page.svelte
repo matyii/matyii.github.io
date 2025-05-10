@@ -74,11 +74,11 @@
           </div>
         </Card.Content>
 
-        <Card.Footer class="mt-auto p-0">
+        <Card.Footer class="mt-auto p-5">
           {#each project.links as link}
             <Button
               variant="outline"
-              class="w-full rounded-none"
+              class="w-full"
               onclick={() => window.open(link.url, "_blank")}
             >
               <ExternalLink />
