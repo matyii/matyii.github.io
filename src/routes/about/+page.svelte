@@ -46,24 +46,11 @@
 
     <Card.Content class="flex flex-col gap-3">
       <Button href="mailto:business@itsmatyii.fun" variant="default">Business enquiries</Button>
-      
-      <!-- CV Modal -->
-      <Dialog.Root>
-        <Dialog.Trigger>
-          <Button variant="default" class="w-full">Open my CV</Button>
-        </Dialog.Trigger>
-        <Dialog.Content>
-          <Dialog.Header>
-            <Dialog.Title>My CV</Dialog.Title>
-          </Dialog.Header>
-          <iframe
-            src="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/preview"
-            class="w-full h-[500px]"
-            allow="autoplay"
-            title="Kristóf Mátyás's CV"
-          ></iframe>
-        </Dialog.Content>
-      </Dialog.Root>
+
+      <!-- CV Link -->
+      <Button href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" variant="default">
+        Open my CV
+      </Button>
 
       <Button href="https://github.com/matyii" target="_blank" variant="default">GitHub</Button>
     </Card.Content>
@@ -121,22 +108,12 @@
             <ul class="list-disc pl-6 text-sm">
               <li>
                 ECDL - module M2, M3, M4, M6 and M7
-                <Dialog.Root>
-                  <Dialog.Trigger>
-                    <span class="text-blue-400 cursor-pointer hover:underline">[show]</span>
-                  </Dialog.Trigger>
-                  <Dialog.Content class="w-[800px] h-[600px] max-w-full max-h-full">
-                    <Dialog.Header>
-                      <Dialog.Title>My Certificate</Dialog.Title>
-                    </Dialog.Header>
-                    <iframe
-                      src="https://drive.google.com/file/d/1SObqxvhzIn_WlqRR7yRoK5FmCUUi450k/preview"
-                      class="w-full h-full"
-                      allow="autoplay"
-                      title="Kristóf Mátyás's Certificate"
-                    ></iframe>
-                  </Dialog.Content>
-                </Dialog.Root>
+                <a
+                  href="https://drive.google.com/file/d/1SObqxvhzIn_WlqRR7yRoK5FmCUUi450k/view"
+                  target="_blank"
+                  class="text-blue-400 hover:underline"
+                >[show]
+                </a>
               </li>
             </ul>
           </Accordion.Content>

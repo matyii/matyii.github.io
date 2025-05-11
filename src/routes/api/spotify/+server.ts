@@ -8,7 +8,6 @@ const REFRESH_TOKEN = env.SPOTIFY_REFRESH_TOKEN;
 let accessToken: string | null = null;
 let tokenExpiry: number | null = null;
 
-// Function to refresh the access token
 async function refreshAccessToken() {
     const response = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -29,22 +28,19 @@ async function refreshAccessToken() {
     }
 
     accessToken = data.access_token;
-    tokenExpiry = Date.now() + data.expires_in * 1000; // Calculate expiry time
+    tokenExpiry = Date.now() + data.expires_in * 1000;
 }
 
-// Function to ensure the access token is valid
 async function ensureAccessToken() {
     if (!accessToken || (tokenExpiry && Date.now() >= tokenExpiry)) {
         await refreshAccessToken();
     }
 }
 
-// Handle the API request
 export async function GET() {
     try {
         await ensureAccessToken();
 
-        // Fetch currently playing track
         const nowPlayingResponse = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
             headers: {
                 Authorization: `Bearer ${accessToken}`
@@ -61,7 +57,6 @@ export async function GET() {
             return json({ error }, { status: nowPlayingResponse.status });
         }
 
-        // Fetch device list
         const devicesResponse = await fetch('https://api.spotify.com/v1/me/player/devices', {
             headers: {
                 Authorization: `Bearer ${accessToken}`
@@ -76,7 +71,6 @@ export async function GET() {
             return json({ error }, { status: devicesResponse.status });
         }
 
-        // Combine both responses
         return json({ nowPlaying, devices });
     } catch (error) {
         return json({ error: error.message }, { status: 500 });

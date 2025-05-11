@@ -14,15 +14,13 @@
     </Avatar.Root>
   </div>
 
-  <!-- Desktop Navigation -->
   <div class="hidden md:flex space-x-4">
     <Button variant="ghost" href="/">Home</Button>
-    <Button variant="ghost" href="/projects">My projects</Button>
+    <Button variant="ghost" href="/projects">My projects (wip)</Button>
     <Button variant="ghost" href="/about">About me</Button>
     <ThemeToggler />
   </div>
 
-  <!-- Mobile Navigation -->
   <div class="flex md:hidden space-x-4">
     <Button variant="ghost" size="icon" href="/" aria-label="Home">
       <Home class="w-5 h-5" />
