@@ -73,6 +73,6 @@ export async function GET() {
 
         return json({ nowPlaying, devices });
     } catch (error) {
-        return json({ error: error.message }, { status: 500 });
+        return json({ error: error instanceof Error ? error.message : 'An unknown error occurred' }, { status: 500 });
     }
 }
