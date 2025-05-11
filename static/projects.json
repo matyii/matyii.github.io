@@ -1,0 +1,117 @@
+[
+    {
+        "title": "screenie",
+        "description": "share your screenshots and videos easily (originally hypixel.lol)",
+        "image": "screenie.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/screeniehost"}
+        ],
+        "badges": [
+            {"label": "NodeJS"},
+            {"label": "DaisyUI"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "hypixel.lol",
+        "description": "ShareX image uploader service, with Discord user integration!",
+        "image": "hypixel.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/hypixel.lol"}
+        ],
+        "badges": [
+            {"label": "NodeJS"},
+            {"label": "Bootstrap"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "cleangoogle.lol",
+        "description": "A minimalistic version of Google.",
+        "image": "cleangoogle.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/cleangoogle.lol"}
+        ],
+        "badges": [
+            {"label": "HTML & CSS"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "shortify!",
+        "description": "An easy-to-use URL shortener service.",
+        "image": "shortify.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/shortify"}
+        ],
+        "badges": [
+            {"label": "NodeJS"},
+            {"label": "Bootstrap"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "spotnow",
+        "description": "User profile page with Spotify integration.",
+        "image": "spotnow.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/spotnow"}
+        ],
+        "badges": [
+            {"label": "NodeJS"},
+            {"label": "HTML & CSS"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "SnapScrape",
+        "description": "Get your saved chat from Snapchat.",
+        "image": "snapscrape.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/snapscrape"}
+        ],
+        "badges": [
+            {"label": "NodeJS"},
+            {"label": "Bootstrap"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "Molnár Cukrászda",
+        "description": "Molnár Cukrászda is a fictitious online bakery, a culmination project showcasing pastries and cakes in a digital space.",
+        "image": "molnarcukraszdav1.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu/"}
+        ],
+        "badges": [
+            {"label": "Bootstrap"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "Molnár Cukrászda v2",
+        "description": "This is a rewritten version of Molnár Cukrászda, including complete PHP and SQL.",
+        "image": "molnarcukraszdav2.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu-v2"}
+        ],
+        "badges": [
+            {"label": "Bootstrap"},
+            {"label": "PHP"},
+            {"label": "SQL"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
+        "title": "emojis.gg",
+        "description": "Effortless Emoji Copying Made Simple.",
+        "image": "emojisgg.png",
+        "links": [
+            {"label": "Open", "url": "https://github.com/matyii/emojis.gg"}
+        ],
+        "badges": [
+            {"label": "Bootstrap"},
+            {"label": "Javascript"}
+        ]
+    }
+]
