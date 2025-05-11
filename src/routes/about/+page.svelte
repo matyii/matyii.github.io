@@ -4,9 +4,18 @@
     import Navbar from "$lib/components/custom/Navbar.svelte";
     import Button from "$lib/components/ui/button/button.svelte";
     import * as Accordion from "$lib/components/ui/accordion/index.js";
+    import * as Dialog from "$lib/components/ui/dialog/index.js"; // Import Dialog component
     import { onMount } from "svelte";
 
-    let nowPlaying = null;
+    interface NowPlaying {
+        item: {
+            name: string;
+            artists: { name: string }[];
+            album: { images: { url: string }[] };
+        };
+    }
+
+    let nowPlaying: NowPlaying | null = null;
 
     onMount(async () => {
         try {
@@ -37,7 +46,25 @@
 
     <Card.Content class="flex flex-col gap-3">
       <Button href="mailto:business@itsmatyii.fun" variant="default">Business enquiries</Button>
-      <Button href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" variant="default">Open my CV</Button>
+      
+      <!-- CV Modal -->
+      <Dialog.Root>
+        <Dialog.Trigger>
+          <Button variant="default" class="w-full">Open my CV</Button>
+        </Dialog.Trigger>
+        <Dialog.Content>
+          <Dialog.Header>
+            <Dialog.Title>My CV</Dialog.Title>
+          </Dialog.Header>
+          <iframe
+            src="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/preview"
+            class="w-full h-[500px]"
+            allow="autoplay"
+            title="Kristóf Mátyás's CV"
+          ></iframe>
+        </Dialog.Content>
+      </Dialog.Root>
+
       <Button href="https://github.com/matyii" target="_blank" variant="default">GitHub</Button>
     </Card.Content>
   </Card.Root>
@@ -94,38 +121,27 @@
             <ul class="list-disc pl-6 text-sm">
               <li>
                 ECDL - module M2, M3, M4, M6 and M7
-                [<a href="https://drive.google.com/file/d/1SObqxvhzIn_WlqRR7yRoK5FmCUUi450k/view" target="_blank" class="text-blue-400">show</a>]
+                <Dialog.Root>
+                  <Dialog.Trigger>
+                    <span class="text-blue-400 cursor-pointer hover:underline">[show]</span>
+                  </Dialog.Trigger>
+                  <Dialog.Content class="w-[800px] h-[600px] max-w-full max-h-full">
+                    <Dialog.Header>
+                      <Dialog.Title>My Certificate</Dialog.Title>
+                    </Dialog.Header>
+                    <iframe
+                      src="https://drive.google.com/file/d/1SObqxvhzIn_WlqRR7yRoK5FmCUUi450k/preview"
+                      class="w-full h-full"
+                      allow="autoplay"
+                      title="Kristóf Mátyás's Certificate"
+                    ></iframe>
+                  </Dialog.Content>
+                </Dialog.Root>
               </li>
             </ul>
           </Accordion.Content>
         </Accordion.Item>
       </Accordion.Root>
-    </Card.Content>
-  </Card.Root>
-</div>
-
-<!-- Spotify Now Playing Card -->
-<div class="flex items-center justify-center min-h-screen">
-  <Card.Root class="w-full max-w-sm">
-    <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
-      <Avatar.Root>
-        <Avatar.Image src="https://github.com/matyii.png" alt="@matyii" />
-        <Avatar.Fallback>MK</Avatar.Fallback>
-      </Avatar.Root>
-      <Card.Title>Kristóf Mátyás</Card.Title>
-      <Card.Description>20 years old. 🪐</Card.Description>
-    </Card.Header>
-
-    <Card.Content class="flex flex-col items-center gap-2">
-      {#if nowPlaying}
-        <div class="text-center">
-          <p class="font-semibold">Now Playing:</p>
-          <p>{nowPlaying.item.name} by {nowPlaying.item.artists[0].name}</p>
-          <img src={nowPlaying.item.album.images[0].url} alt="Album Art" class="w-16 h-16 rounded" />
-        </div>
-      {:else}
-        <p>Not playing anything right now.</p>
-      {/if}
     </Card.Content>
   </Card.Root>
 </div>
