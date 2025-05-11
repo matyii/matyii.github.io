@@ -30,6 +30,7 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.509.0",
+		"buffer": "^6.0.3",
 		"mode-watcher": "0.5.1"
 	}
 }
