@@ -32,6 +32,8 @@
     let activeDevice: Device | null = null;
     let progress = 0; // Progress percentage
     let interval: NodeJS.Timeout;
+    let progressMs = 0; // Track progress in ms
+    let progressInterval: NodeJS.Timeout;
 
     // Map device types to icons
     const deviceIcons = {
@@ -48,9 +50,10 @@
                 const data = await response.json();
                 nowPlaying = data.nowPlaying;
 
-                // Calculate progress percentage
+                // Calculate progress percentage and ms
                 if (nowPlaying?.progress_ms && nowPlaying?.item?.duration_ms) {
-                    progress = (nowPlaying.progress_ms / nowPlaying.item.duration_ms) * 100;
+                    progressMs = nowPlaying.progress_ms;
+                    progress = (progressMs / nowPlaying.item.duration_ms) * 100;
                 }
 
                 devices = data.devices.devices; // Access the devices array
@@ -61,15 +64,34 @@
         }
     }
 
+    function startProgressCounter() {
+        // Clear any previous interval
+        if (progressInterval) clearInterval(progressInterval);
+
+        // Only start if we have valid data
+        if (nowPlaying?.progress_ms && nowPlaying?.item?.duration_ms) {
+            progressInterval = setInterval(() => {
+                progressMs += 1000;
+                if (progressMs > nowPlaying.item.duration_ms) {
+                    progressMs = nowPlaying.item.duration_ms;
+                }
+                progress = (progressMs / nowPlaying.item.duration_ms) * 100;
+            }, 1000);
+        }
+    }
+
     onMount(() => {
-        // Fetch data immediately and then periodically
-        fetchNowPlaying();
-        interval = setInterval(fetchNowPlaying, 5000); // Refresh every 2 seconds
+        fetchNowPlaying().then(startProgressCounter);
+        interval = setInterval(async () => {
+            await fetchNowPlaying();
+            startProgressCounter();
+        }, 5000);
     });
 
     onDestroy(() => {
-        // Clear the interval when the component is destroyed
+        // Clear the intervals when the component is destroyed
         clearInterval(interval);
+        if (progressInterval) clearInterval(progressInterval);
     });
 </script>
 
@@ -146,8 +168,12 @@
           <div class="w-full mt-2">
             <Progress value={progress} class="h-1" />
             <div class="flex justify-between text-xs text-muted-foreground mt-1">
-              <span>{Math.floor((nowPlaying.progress_ms || 0) / 60000)}:{String(Math.floor(((nowPlaying.progress_ms || 0) % 60000) / 1000)).padStart(2, '0')}</span>
-              <span>{Math.floor(nowPlaying.item.duration_ms / 60000)}:{String(Math.floor((nowPlaying.item.duration_ms % 60000) / 1000)).padStart(2, '0')}</span>
+              <span>
+                {Math.floor((progressMs || 0) / 60000)}:{String(Math.floor(((progressMs || 0) % 60000) / 1000)).padStart(2, '0')}
+              </span>
+              <span>
+                {Math.floor(nowPlaying.item.duration_ms / 60000)}:{String(Math.floor((nowPlaying.item.duration_ms % 60000) / 1000)).padStart(2, '0')}
+              </span>
             </div>
           </div>
         </div>
