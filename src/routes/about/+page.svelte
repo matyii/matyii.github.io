@@ -4,8 +4,9 @@
     import Navbar from "$lib/components/custom/Navbar.svelte";
     import Button from "$lib/components/ui/button/button.svelte";
     import * as Accordion from "$lib/components/ui/accordion/index.js";
-    import * as Dialog from "$lib/components/ui/dialog/index.js"; // Import Dialog component
     import { onMount } from "svelte";
+    import { pageTitle } from "$lib/stores/title";
+    pageTitle.set("About me")
 
     interface NowPlaying {
         item: {

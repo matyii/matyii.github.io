@@ -6,6 +6,8 @@
     import { Progress } from "$lib/components/ui/progress/index.js";
     import { onMount, onDestroy } from 'svelte';
 
+    import { pageTitle } from "$lib/stores/title";
+    pageTitle.set("")
     import { LaptopIcon, SmartphoneIcon, SpeakerIcon, Gamepad2Icon, Github, Mail, Music } from "@lucide/svelte";
 
     interface NowPlaying {
@@ -72,10 +74,12 @@
         if (nowPlaying?.progress_ms && nowPlaying?.item?.duration_ms) {
             progressInterval = setInterval(() => {
                 progressMs += 1000;
-                if (progressMs > nowPlaying.item.duration_ms) {
+                if (nowPlaying && nowPlaying.item && progressMs > nowPlaying.item.duration_ms) {
                     progressMs = nowPlaying.item.duration_ms;
                 }
-                progress = (progressMs / nowPlaying.item.duration_ms) * 100;
+                if (nowPlaying && nowPlaying.item) {
+                    progress = (progressMs / nowPlaying.item.duration_ms) * 100;
+                }
             }, 1000);
         }
     }
@@ -129,14 +133,14 @@
         <img
           src={nowPlaying.item.album.images[0].url}
           alt="Album Art"
-          class="w-32 h-full object-cover rounded shadow-md hover:scale-105 transition-all"
+          class="w-32 h-full object-cover rounded shadow-md hover:scale-105 transition-all cursor-pointer"
         />
 
         <!-- Device Info and Progress Bar -->
         <div class="flex flex-col gap-2 w-full">
           <!-- Track Name with Link -->
           <p class="font-bold">
-            <a href={nowPlaying.item.external_urls.spotify} target="_blank" class="text-primary hover:underline">
+            <a href={nowPlaying.item.external_urls.spotify} target="_blank" class="text-primary hover:underline underline-offset-4">
               {nowPlaying.item.name}
             </a>
           </p>
@@ -144,12 +148,12 @@
           <!-- Artist(s) and Album with Links -->
           <p class="text-muted-foreground text-sm">
             {#each nowPlaying.item.artists as artist, i}
-              <a href={artist.external_urls.spotify} target="_blank" class="hover:underline">
+              <a href={artist.external_urls.spotify} target="_blank" class="hover:underline underline-offset-4">
                 {artist.name}
               </a>{i < nowPlaying.item.artists.length - 1 ? ', ' : ''}
             {/each}
             •
-            <a href={nowPlaying.item.album.external_urls.spotify} target="_blank" class="hover:underline">
+            <a href={nowPlaying.item.album.external_urls.spotify} target="_blank" class="hover:underline underline-offset-4">
               {nowPlaying.item.album.name}
             </a>
           </p>

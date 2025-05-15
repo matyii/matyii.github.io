@@ -16,8 +16,8 @@
 
   <div class="hidden md:flex space-x-4">
     <Button variant="ghost" href="/">Home</Button>
-    <Button variant="ghost" href="/projects">My projects (wip)</Button>
-    <Button variant="ghost" href="/about">About me</Button>
+    <Button variant="ghost" href="/projects">My projects</Button>
+    <Button variant="ghost" href="/about">About me (wip)</Button>
     <ThemeToggler />
   </div>
 

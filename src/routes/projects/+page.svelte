@@ -8,6 +8,9 @@
   import ExternalLink from "@lucide/svelte/icons/external-link";
   import Github from "@lucide/svelte/icons/github";
 
+  import { pageTitle } from "$lib/stores/title";
+  pageTitle.set("My projects")
+
   interface Project {
     title: string;
     description: string;

@@ -9,16 +9,31 @@
   import { Separator } from "$lib/components/ui/separator/index.js";
   import { Badge } from "$lib/components/ui/badge/index.js";
 
+  import { pageTitle } from "$lib/stores/title";
 
-  let projectData: any = null;
+  type Project = {
+    url: string;
+    title: string;
+    description: string;
+    extended_description?: string;
+    images: string[];
+    badges: { label: string }[];
+    links?: { url: string; label?: string }[];
+    [key: string]: any;
+  };
+
+  let projectData: Project | null = null;
   let isLoading = true;
 
   onMount(async () => {
     const { project } = get(page).params;
     const res = await fetch('/projects.json');
-    const projects = await res.json();
-    projectData = projects.find((p) => p.url === project);
+    const projects: Project[] = await res.json();
+    projectData = projects.find((p: Project) => p.url === project) || null;
     isLoading = false;
+    if (projectData) {
+      pageTitle.set(projectData.title);
+    }
   });
 </script>
 

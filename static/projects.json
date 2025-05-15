@@ -50,7 +50,7 @@
         "title": "shortify!",
         "url": "shortify",
         "description": "An easy-to-use URL shortener service.",
-        "extended_description": "Lorem impsum dolor sit amet",
+        "extended_description": "A simple NodeJS app which generates a random hash, and assigns it to the original URL.",
         "image": "shortify.png",
         "images": ["shortify.png"],
         "links": [
@@ -66,9 +66,9 @@
         "title": "spotnow",
         "url": "spotnow",
         "description": "User profile page with Spotify integration.",
-        "extended_description": "",
+        "extended_description": "A simple NodeJS app, which gets the currently playing song from the Spotify API, and renders it in a express view.",
         "image": "spotnow.png",
-        "images": ["spotnow.png"],
+        "images": ["spotnow.png", "np.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/spotnow"}
         ],
@@ -82,7 +82,7 @@
         "title": "SnapScrape",
         "url": "snapscrape",
         "description": "Get your saved chat from Snapchat.",
-        "extended_description": "",
+        "extended_description": "A simple NodeJS app, which convert the JSON export from Snapchat to a chat like view.",
         "image": "snapscrape.png",
         "images": ["snapscrape.png"],
         "links": [
@@ -98,7 +98,7 @@
         "title": "Molnár Cukrászda",
         "url": "molnarcukraszda",
         "description": "Molnár Cukrászda is a fictitious online bakery, a culmination project showcasing pastries and cakes in a digital space.",
-        "extended_description": "",
+        "extended_description": "This is one my 'school' a long time ago, based on Bootstrap, front-end only.",
         "image": "molnarcukraszdav1.png",
         "images": ["molnarcukraszdav1.png"],
         "links": [
@@ -113,7 +113,7 @@
         "title": "Molnár Cukrászda v2",
         "url": "molnarcukraszdav2",
         "description": "This is a rewritten version of Molnár Cukrászda, including complete PHP and SQL.",
-        "extended_description": "",
+        "extended_description": "This version of the 'project' has DB annd PHP implementation",
         "image": "molnarcukraszdav2.png",
         "images": ["molnarcukraszdav2.png"],
         "links": [
@@ -130,7 +130,7 @@
         "title": "emojis.gg",
         "url": "emojis",
         "description": "Effortless Emoji Copying Made Simple.",
-        "extended_description": "",
+        "extended_description": "A simple webpage displaying all the emojis existing, and option to copy it with one click/touch.",
         "image": "emojisgg.png",
         "images": ["emojisgg.png"],
         "links": [
