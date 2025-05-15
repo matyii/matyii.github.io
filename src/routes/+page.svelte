@@ -146,11 +146,20 @@
       </Card.Header>
       <Card.Content class="flex gap-4">
         <!-- Album Cover -->
-        <img
-          src={nowPlaying.item.album.images[0].url}
-          alt="Album Art"
-          class="w-32 h-full object-cover rounded shadow-md hover:scale-105 transition-all cursor-pointer"
-        />
+        <a
+          href={nowPlaying.item.album.images[0].url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open album art in full size"
+        >
+          <div class="w-32 aspect-square overflow-hidden rounded shadow-md hover:scale-105 transition-all cursor-pointer bg-neutral-800 flex items-center justify-center">
+            <img
+              src={nowPlaying.item.album.images[1].url}
+              alt="Album Art"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </a>
 
         <!-- Device Info and Progress Bar -->
         <div class="flex flex-col gap-2 w-full">
