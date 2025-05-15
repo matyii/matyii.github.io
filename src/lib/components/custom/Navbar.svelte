@@ -9,7 +9,7 @@
 <nav class="flex items-center justify-between p-2 m-6">
   <div class="flex items-center space-x-4">
     <Avatar.Root class="size-10">
-        <Avatar.Image src="https://github.com/matyii.png" alt="@matyii" />
+        <Avatar.Image src="/favicon.png" alt="@matyii" />
         <Avatar.Fallback>MK</Avatar.Fallback>
     </Avatar.Root>
   </div>
