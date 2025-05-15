@@ -186,7 +186,11 @@
 
           <!-- Progress Bar -->
           <div class="w-full mt-2">
-            <Progress value={progress} class="h-1" />
+            <Progress
+              value={progress}
+              class="h-1"
+              aria-label="Song progress"
+            />
             <div class="flex justify-between text-xs text-muted-foreground mt-1">
               <span>
                 {Math.floor((progressMs || 0) / 60000)}:{String(Math.floor(((progressMs || 0) % 60000) / 1000)).padStart(2, '0')}
