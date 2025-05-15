@@ -6,6 +6,10 @@
   import { Skeleton } from "$lib/components/ui/skeleton/index.js";
   import { onMount } from "svelte";
   import ExternalLink from "@lucide/svelte/icons/external-link";
+  import Github from "@lucide/svelte/icons/github";
+
+  import { pageTitle } from "$lib/stores/title";
+  pageTitle.set("My projects")
 
   interface Project {
     title: string;
@@ -13,6 +17,7 @@
     image: string;
     links: { label: string; url: string }[];
     badges: { label: string }[];
+    url: string;
   }
 
   let projects: Project[] = [];
@@ -56,7 +61,7 @@
       <Card.Root class="shadow-md rounded-lg flex flex-col h-full">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4">
           <img
-            src={`/img/projects/${project.image}`}
+            src={`/img/projects/${project.url}/${project.image}`}
             alt={project.title}
             class="w-full h-48 object-cover rounded-lg shadow-lg"
           />
@@ -74,15 +79,23 @@
           </div>
         </Card.Content>
 
-        <Card.Footer class="mt-auto p-5">
+        <Card.Footer class="mt-auto p-5 flex sm:flex-row flex-col gap-2">
+          <Button
+            variant="outline"
+            class="w-full"
+            href={`/projects/${project.url}`}
+          >
+            <ExternalLink />
+            Open
+          </Button>
           {#each project.links as link}
             <Button
               variant="outline"
               class="w-full"
               onclick={() => window.open(link.url, "_blank")}
             >
-              <ExternalLink />
-              {link.label}
+              <Github />
+              GitHub Repository
             </Button>
           {/each}
         </Card.Footer>

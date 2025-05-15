@@ -1,8 +1,11 @@
 [
     {
         "title": "screenie",
+        "url": "screenie",
         "description": "share your screenshots and videos easily (originally hypixel.lol)",
+        "extended_description": "A ShareX screenshot uploader, with support for domain management, user management, Spotify now playing, public profiles and so much more! It is based on Sveltekit and AppWrite.",
         "image": "screenie.png",
+        "images": ["screenie.png","admindashboard.png","archivemanagement.png","profilecustomization.png","publicprofile.png", "userdashboard.png", "usermanagement.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/screeniehost"}
         ],
@@ -14,8 +17,11 @@
     },
     {
         "title": "hypixel.lol",
+        "url": "hypixel",
         "description": "ShareX image uploader service, with Discord user integration!",
+        "extended_description": "This is the 'legacy' version of screenie. It it based on NodeJS, Bootstrap.",
         "image": "hypixel.png",
+        "images": ["hypixel.png", "domains.png", "user.png", "webhook.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/hypixel.lol"}
         ],
@@ -27,8 +33,11 @@
     },
     {
         "title": "cleangoogle.lol",
+        "url": "cleangoogle",
         "description": "A minimalistic version of Google.",
+        "extended_description": "This is just a webpage, which 'redirects' you to google using the search query generated from your search. It features light/dark mode, current time, quotes on each load, and weather API.",
         "image": "cleangoogle.png",
+        "images": ["cleangoogle.png", "settings.png", "widgets.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/cleangoogle.lol"}
         ],
@@ -39,8 +48,11 @@
     },
     {
         "title": "shortify!",
+        "url": "shortify",
         "description": "An easy-to-use URL shortener service.",
+        "extended_description": "A simple NodeJS app which generates a random hash, and assigns it to the original URL.",
         "image": "shortify.png",
+        "images": ["shortify.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/shortify"}
         ],
@@ -52,8 +64,11 @@
     },
     {
         "title": "spotnow",
+        "url": "spotnow",
         "description": "User profile page with Spotify integration.",
+        "extended_description": "A simple NodeJS app, which gets the currently playing song from the Spotify API, and renders it in a express view.",
         "image": "spotnow.png",
+        "images": ["spotnow.png", "np.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/spotnow"}
         ],
@@ -65,8 +80,11 @@
     },
     {
         "title": "SnapScrape",
+        "url": "snapscrape",
         "description": "Get your saved chat from Snapchat.",
+        "extended_description": "A simple NodeJS app, which convert the JSON export from Snapchat to a chat like view.",
         "image": "snapscrape.png",
+        "images": ["snapscrape.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/snapscrape"}
         ],
@@ -78,8 +96,11 @@
     },
     {
         "title": "Molnár Cukrászda",
+        "url": "molnarcukraszda",
         "description": "Molnár Cukrászda is a fictitious online bakery, a culmination project showcasing pastries and cakes in a digital space.",
+        "extended_description": "This is one my 'school' a long time ago, based on Bootstrap, front-end only.",
         "image": "molnarcukraszdav1.png",
+        "images": ["molnarcukraszdav1.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu/"}
         ],
@@ -90,8 +111,11 @@
     },
     {
         "title": "Molnár Cukrászda v2",
+        "url": "molnarcukraszdav2",
         "description": "This is a rewritten version of Molnár Cukrászda, including complete PHP and SQL.",
+        "extended_description": "This version of the 'project' has DB annd PHP implementation",
         "image": "molnarcukraszdav2.png",
+        "images": ["molnarcukraszdav2.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu-v2"}
         ],
@@ -104,8 +128,11 @@
     },
     {
         "title": "emojis.gg",
+        "url": "emojis",
         "description": "Effortless Emoji Copying Made Simple.",
+        "extended_description": "A simple webpage displaying all the emojis existing, and option to copy it with one click/touch.",
         "image": "emojisgg.png",
+        "images": ["emojisgg.png"],
         "links": [
             {"label": "Open", "url": "https://github.com/matyii/emojis.gg"}
         ],
