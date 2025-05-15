@@ -106,7 +106,7 @@
   <Card.Root class="w-full max-w-sm shadow-md">
     <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
       <Avatar.Root>
-        <Avatar.Image src="https://github.com/matyii.png" alt="@matyii" />
+        <Avatar.Image src="/favicon.jpg" alt="@matyii" />
         <Avatar.Fallback>MK</Avatar.Fallback>
       </Avatar.Root>
       <Card.Title>itsmatyii 🪐</Card.Title>
@@ -115,8 +115,24 @@
     </Card.Header>
 
     <Card.Content class="flex justify-center gap-2">
-      <Button variant="outline" size="icon" href="https://github.com/matyii" target="_blank"><Github /></Button>
-      <Button variant="outline" size="icon" href="mailto:business@itsmatyii.fun" target="_blank"><Mail /></Button>
+      <Button
+        variant="outline"
+        size="icon"
+        href="https://github.com/matyii"
+        target="_blank"
+        aria-label="GitHub profile"
+      >
+        <Github />
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        href="mailto:business@itsmatyii.fun"
+        target="_blank"
+        aria-label="Send email to business@itsmatyii.fun"
+      >
+        <Mail />
+      </Button>
     </Card.Content>
   </Card.Root>
 
