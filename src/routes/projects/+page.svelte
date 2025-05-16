@@ -36,7 +36,7 @@
   {#if isLoading}
     <!-- Skeleton Loader -->
     {#each Array(6) as _}
-      <Card.Root class="shadow-md rounded-lg flex flex-col h-full">
+      <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03]">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4">
           <Skeleton class="w-full h-48 rounded-lg" />
           <Skeleton class="h-[20px] w-[150px] rounded-full" />
@@ -58,7 +58,7 @@
   {:else}
     <!-- Render Projects -->
     {#each projects as project}
-      <Card.Root class="shadow-md rounded-lg flex flex-col h-full">
+      <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] cursor-pointer">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4">
           <img
             src={`/img/projects/${project.url}/${project.image}`}

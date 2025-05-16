@@ -8,7 +8,7 @@
   import * as Carousel from "$lib/components/ui/carousel/index.js";
   import { Separator } from "$lib/components/ui/separator/index.js";
   import { Badge } from "$lib/components/ui/badge/index.js";
-
+  import Github from "@lucide/svelte/icons/github";
   import { pageTitle } from "$lib/stores/title";
 
   type Project = {
@@ -44,7 +44,7 @@
     <span>Loading...</span>
   </div>
 {:else if projectData}
-  <div class="flex flex-col lg:flex-row justify-center items-center min-h-[60vh] gap-16 p-4">
+  <div class="flex flex-col justify-center items-center min-h-[60vh] mt-6 p-4">
     <!-- Carousel Section -->
     <div class="w-full max-w-xl flex-1">
       <Carousel.Root>
@@ -69,14 +69,14 @@
     </div>
     <Separator orientation="vertical" class='mx-3'/>
     <!-- Info Section -->
-    <div class="flex-1 flex flex-col justify-center items-start w-full max-w-xl">
+    <div class="flex-1 flex flex-col justify-center items-start w-full max-w-xl text-center">
       <Card.Root class="w-full bg-transparent shadow-none">
-        <Card.Header class="space-y-4 text-left">
-          <Card.Title class="text-3xl">{projectData.title}</Card.Title>
+        <Card.Header class="space-y-4">
+          <Card.Title class="text-4xl">{projectData.title}</Card.Title>
           <Card.Description class="text-lg text-muted-foreground">
             {projectData.description}
           </Card.Description>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 justify-center">
             {#each projectData.badges as badge}
               <Badge variant="secondary">{badge.label}</Badge>
             {/each}
@@ -89,10 +89,12 @@
           {#if projectData.links && projectData.links.length > 0}
             <Button
               variant="outline"
-              class="w-full text-lg py-4"
+              class="w-full text-md py-4"
               href={projectData.links[0].url}
               target="_blank"
-            > Open Repository
+            > 
+            <Github />
+            Open Repository
               <!-- {projectData.links[0].label} -->
             </Button>
           {/if}
