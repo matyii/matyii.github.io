@@ -4,11 +4,12 @@
     import Navbar from "$lib/components/custom/Navbar.svelte";
     import Button from "$lib/components/ui/button/button.svelte";
     import { Progress } from "$lib/components/ui/progress/index.js";
+    import { Separator } from "$lib/components/ui/separator/index.js";
     import { onMount, onDestroy } from 'svelte';
 
     import { pageTitle } from "$lib/stores/title";
     pageTitle.set("")
-    import { LaptopIcon, SmartphoneIcon, SpeakerIcon, Gamepad2Icon, Github, Mail, Music } from "@lucide/svelte";
+    import { LaptopIcon, SmartphoneIcon, SpeakerIcon, Gamepad2Icon, Github, Mail, Music, CloudAlert, Inbox, ShoppingCart } from "@lucide/svelte";
 
     interface NowPlaying {
         item?: {
@@ -105,11 +106,11 @@
   <!-- Original Card -->
   <Card.Root class="w-full max-w-sm shadow-md">
     <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
-      <Avatar.Root>
-        <Avatar.Image src="/favicon.jpg" alt="@matyii" />
+      <Avatar.Root class="my-3 hover:scale-110 transition-all size-24">
+        <Avatar.Image src="/img/me.webp" alt="@matyii" />
         <Avatar.Fallback>MK</Avatar.Fallback>
       </Avatar.Root>
-      <Card.Title>itsmatyii 🪐</Card.Title>
+      <Card.Title>Kristóf Mátyás | itsmatyii 🪐</Card.Title>
       <Card.Description>20 year old IT technician, hobby coder</Card.Description>
       <Card.Description>server administration/management, coding</Card.Description>
     </Card.Header>
@@ -133,6 +134,34 @@
       >
         <Mail />
       </Button>
+
+      <Separator orientation="vertical" class="mx-1" />
+
+      <Button
+        variant="outline"
+        size="icon"
+        href="https://matyas.services"
+        target="_blank"
+        aria-label="Check status of services"
+      >
+        <ShoppingCart />
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        href="https://status.itsmatyii.dev"
+        target="_blank"
+        aria-label="Check status of services"
+      >
+        <CloudAlert />
+      </Button>
+      <!-- <Button
+        variant="outline"
+        size="icon"
+        aria-label="Webmail"
+      >
+        <Inbox />
+      </Button> -->
     </Card.Content>
   </Card.Root>
 
