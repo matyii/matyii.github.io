@@ -33,12 +33,12 @@
 <Navbar />
 
 <!-- Flexbox for all three cards in one line -->
-<div class="flex flex-wrap lg:flex-nowrap gap-6 justify-center max-w-screen-xl mx-auto m-5">
+<div class="flex flex-wrap lg:flex-nowrap gap-6 justify-center max-w-screen-xl mx-auto mt-5">
   <!-- First Card -->
   <Card.Root class="bg-base-300 shadow-lg p-4 flex-1 min-w-[300px] max-w-[400px]">
     <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
       <Avatar.Root class="size-32 m-5">
-        <Avatar.Image src="/img/me.webp" alt="@matyii" />
+        <Avatar.Image src="/favicon.jpg" alt="@matyii" />
         <Avatar.Fallback>MK</Avatar.Fallback>
       </Avatar.Root>
       <Card.Title>Kristóf Mátyás</Card.Title>
@@ -46,14 +46,14 @@
     </Card.Header>
 
     <Card.Content class="flex flex-col gap-3">
-      <Button href="mailto:business@itsmatyii.fun" variant="default">Business enquiries</Button>
+      <Button href="mailto:business@itsmatyii.fun" variant="outline">Business enquiries</Button>
 
       <!-- CV Link -->
-      <Button href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" variant="default">
+      <Button href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" variant="outline">
         Open my CV
       </Button>
 
-      <Button href="https://github.com/matyii" target="_blank" variant="default">GitHub</Button>
+      <!-- <Button href="https://github.com/matyii" target="_blank" variant="default">GitHub</Button> -->
     </Card.Content>
   </Card.Root>
 
@@ -66,7 +66,7 @@
       <p>Hi there! My name is Kristóf Mátyás, and I’m a 20-year-old IT technician with a passion for all things tech.</p>
       <p>I specialize in system administration and networking, though I'm always open to new challenges. I’ve worked on projects with FiveM, GitLab, UniFi, and more, and I’ve really enjoyed learning and collaborating on them.</p>
       <p>When I’m not coding or tinkering with tech, you’ll find me outside spending time with my girlfriend or cruising around with her in my car, listening to music.</p>
-      <p>For business enquiries, don’t hesitate to contact me via <a href="mailto:business@itsmatyii.fun" class="text-info underline underline-offset-2">e-mail</a>.</p>
+      <p>For business enquiries, don’t hesitate to contact me via <a href="mailto:business@itsmatyii.fun" class="text-info underline underline-offset-4 transition-all hover:text-blue-400">e-mail.</a></p>
     </Card.Content>
   </Card.Root>
 
