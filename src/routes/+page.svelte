@@ -7,10 +7,10 @@
     import { Separator } from "$lib/components/ui/separator/index.js";
     import { onMount, onDestroy } from 'svelte';
     import * as Tooltip from "$lib/components/ui/tooltip/index.js";
-
     import { pageTitle } from "$lib/stores/title";
     pageTitle.set("")
     import { LaptopIcon, SmartphoneIcon, SpeakerIcon, Gamepad2Icon, Github, Mail, Music, CloudAlert, Inbox, ShoppingCart } from "@lucide/svelte";
+    import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
 
     interface NowPlaying {
         item?: {
@@ -34,12 +34,11 @@
     let nowPlaying: NowPlaying | null = null;
     let devices: Device[] | null = null;
     let activeDevice: Device | null = null;
-    let progress = 0; // Progress percentage
+    let progress = 0; 
     let interval: NodeJS.Timeout;
-    let progressMs = 0; // Track progress in ms
+    let progressMs = 0; 
     let progressInterval: NodeJS.Timeout;
 
-    // Map device types to icons
     const deviceIcons = {
         Computer: LaptopIcon,
         Smartphone: SmartphoneIcon,
@@ -54,14 +53,13 @@
                 const data = await response.json();
                 nowPlaying = data.nowPlaying;
 
-                // Calculate progress percentage and ms
                 if (nowPlaying?.progress_ms && nowPlaying?.item?.duration_ms) {
                     progressMs = nowPlaying.progress_ms;
                     progress = (progressMs / nowPlaying.item.duration_ms) * 100;
                 }
 
-                devices = data.devices.devices; // Access the devices array
-                activeDevice = devices?.find(device => device.is_active) || null; // Find the active device
+                devices = data.devices.devices;
+                activeDevice = devices?.find(device => device.is_active) || null;
             }
         } catch (error) {
             console.error('Error fetching Spotify data:', error);
@@ -69,10 +67,8 @@
     }
 
     function startProgressCounter() {
-        // Clear any previous interval
         if (progressInterval) clearInterval(progressInterval);
 
-        // Only start if we have valid data
         if (nowPlaying?.progress_ms && nowPlaying?.item?.duration_ms) {
             progressInterval = setInterval(() => {
                 progressMs += 1000;
@@ -95,7 +91,6 @@
     });
 
     onDestroy(() => {
-        // Clear the intervals when the component is destroyed
         clearInterval(interval);
         if (progressInterval) clearInterval(progressInterval);
     });
@@ -103,104 +98,123 @@
 
 <Navbar />
 
-<div class="flex flex-col gap-4 justify-center items-center min-h-screen">
-  <!-- Original Card -->
-  <Card.Root class="w-full max-w-sm shadow-md">
-    <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
-      <Avatar.Root class="my-3 hover:scale-110 transition-all size-24">
-        <Avatar.Image src="/favicon.jpg" alt="@matyii" />
-        <Avatar.Fallback>MK</Avatar.Fallback>
-      </Avatar.Root>
-      <Card.Title>Kristóf Mátyás | itsmatyii 🪐</Card.Title>
-      <Card.Description>20 year old IT technician, hobby coder</Card.Description>
-      <Card.Description>server administration/management, coding</Card.Description>
-    </Card.Header>
+<div class="flex flex-col items-center justify-center min-h-screen gap-4">
+  <div class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-5">
+    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto">
+      <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
+        <Avatar.Root class="my-3 hover:scale-110 transition-all size-24">
+          <Avatar.Image src="/favicon.jpg" alt="@matyii" />
+          <Avatar.Fallback>MK</Avatar.Fallback>
+        </Avatar.Root>
+        <Card.Title>itsmatyii 🪐 | Kristóf Mátyás</Card.Title>
+        <Card.Description>20 year old IT technician, hobby coder</Card.Description>
+        <Card.Description>server administration/management, coding</Card.Description>
+      </Card.Header>
+      <Card.Content class="flex justify-center gap-2">
+        <Tooltip.Provider>
+          <Tooltip.Root>
+            <Tooltip.Trigger>
+              <Button
+                variant="outline"
+                size="icon"
+                href="https://github.com/matyii"
+                target="_blank"
+                aria-label="GitHub profile"
+              >
+                <Github />
+              </Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content>
+              <span>My GitHub</span>
+            </Tooltip.Content>
+          </Tooltip.Root>
 
-    <Card.Content class="flex justify-center gap-2">
-      <Tooltip.Provider>
-        <Tooltip.Root>
-          <Tooltip.Trigger>
-            <Button
-              variant="outline"
-              size="icon"
-              href="https://github.com/matyii"
-              target="_blank"
-              aria-label="GitHub profile"
-            >
-              <Github />
-            </Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content>
-            <span>My GitHub</span>
-          </Tooltip.Content>
-        </Tooltip.Root>
+          <Tooltip.Root>
+            <Tooltip.Trigger>
+              <Button
+                variant="outline"
+                size="icon"
+                href="mailto:business@itsmatyii.fun"
+                target="_blank"
+                aria-label="Send email to business@itsmatyii.fun"
+              >
+                <Mail />
+              </Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content>
+              <span>Email me</span>
+            </Tooltip.Content>
+          </Tooltip.Root>
 
-        <Tooltip.Root>
-          <Tooltip.Trigger>
-            <Button
-              variant="outline"
-              size="icon"
-              href="mailto:business@itsmatyii.fun"
-              target="_blank"
-              aria-label="Send email to business@itsmatyii.fun"
-            >
-              <Mail />
-            </Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content>
-            <span>Email me</span>
-          </Tooltip.Content>
-        </Tooltip.Root>
+          <Separator orientation="vertical" class="mx-1" />
 
-        <Separator orientation="vertical" class="mx-1" />
+          <Tooltip.Root>
+            <Tooltip.Trigger>
+              <Button
+                variant="outline"
+                size="icon"
+                href="https://status.itsmatyii.dev"
+                target="_blank"
+                aria-label="Check status of services"
+              >
+                <CloudAlert />
+              </Button>
+            </Tooltip.Trigger>
+            <Tooltip.Content>
+              <span>Services status</span>
+            </Tooltip.Content>
+          </Tooltip.Root>
+        </Tooltip.Provider>
+      </Card.Content>
+    </Card.Root>
 
-        <Tooltip.Root>
-          <Tooltip.Trigger>
-            <Button
-              variant="outline"
-              size="icon"
-              href="https://matyas.services"
-              target="_blank"
-              aria-label="Check status of services"
-            >
-              <ShoppingCart />
-            </Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content>
-            <span>Order my services</span>
-          </Tooltip.Content>
-        </Tooltip.Root>
+    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto">
+      <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
+        <Card.Title>itsmatyii network</Card.Title>
+        <Card.Description>services, tools, and websites i manage</Card.Description>
+      </Card.Header>
+      <Card.Content class="flex-1 flex flex-col gap-4 justify-between">
+        <ScrollArea class="flex flex-col w-full max-h-56 p-1">
+          <div class="flex gap-3 flex-col">
+            <a
+            href="https://matyas.services"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-4 p-4 rounded-lg shadow cursor-pointer w-full transition-all border border-border hover:shadow-lg hover:bg-muted"
+            aria-label="Network Status"
+          >
+            <img src="https://matyas.services/favicon.png" alt="Status" class="w-12 h-12 object-cover rounded-md" />
+            <div class="flex flex-col items-start">
+              <span class="font-semibold text-lg">matyas.services</span>
+              <span class="text-muted-foreground text-sm">offering server management, web development (soon)</span>
+            </div>
+          </a>
+          <a
+            href="https://screenie.host"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-4 p-4 rounded-lg shadow cursor-pointer w-full transition-all border border-border hover:shadow-lg hover:bg-muted"
+            aria-label="screenie.host"
+          >
+            <img src="https://screenie.host/logo.png" alt="Services" class="h-10 object-cover rounded-md" />
+            <div class="flex flex-col items-start">
+              <span class="font-semibold text-lg">screenie.host</span>
+              <span class="text-muted-foreground text-sm">screenshot and file uploading service (wip)</span>
+            </div>
+          </a>
+          </div>
+        </ScrollArea>
+      </Card.Content>
+    </Card.Root>
+  </div>
 
-        <Tooltip.Root>
-          <Tooltip.Trigger>
-            <Button
-              variant="outline"
-              size="icon"
-              href="https://status.itsmatyii.dev"
-              target="_blank"
-              aria-label="Check status of services"
-            >
-              <CloudAlert />
-            </Button>
-          </Tooltip.Trigger>
-          <Tooltip.Content>
-            <span>Services status</span>
-          </Tooltip.Content>
-        </Tooltip.Root>
-      </Tooltip.Provider>
-    </Card.Content>
-  </Card.Root>
-
-  <!-- Now Playing Card -->
   {#if nowPlaying && nowPlaying.item}
     <Card.Root class="w-full max-w-sm relative shadow-md">
-      <!-- Music Icon -->
       <Music class="absolute top-5 right-5 w-6 h-6 text-muted-foreground" />
       <Card.Header class="text-muted-foreground font-extralight">
         <p>i'm currently listening to...</p>
       </Card.Header>
       <Card.Content class="flex gap-4">
-        <!-- Album Cover -->
         <a
           href={nowPlaying.item.album.images[0].url}
           target="_blank"
@@ -215,17 +229,13 @@
             />
           </div>
         </a>
-
-        <!-- Device Info and Progress Bar -->
         <div class="flex flex-col gap-2 w-full">
-          <!-- Track Name with Link -->
           <p class="font-bold">
             <a href={nowPlaying.item.external_urls.spotify} target="_blank" class="text-primary hover:underline underline-offset-4">
               {nowPlaying.item.name}
             </a>
           </p>
 
-          <!-- Artist(s) and Album with Links -->
           <p class="text-muted-foreground text-sm">
             {#each nowPlaying.item.artists as artist, i}
               <a href={artist.external_urls.spotify} target="_blank" class="hover:underline underline-offset-4">
@@ -238,7 +248,6 @@
             </a>
           </p>
 
-          <!-- Active Device Name with Icon -->
           {#if activeDevice}
             <p class="text-muted-foreground text-xs flex items-center gap-2">
               {#if deviceIcons[activeDevice.type as keyof typeof deviceIcons]}
@@ -248,7 +257,6 @@
             </p>
           {/if}
 
-          <!-- Progress Bar -->
           <div class="w-full mt-2">
             <Progress
               value={progress}
