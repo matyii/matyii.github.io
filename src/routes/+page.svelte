@@ -6,6 +6,7 @@
     import { Progress } from "$lib/components/ui/progress/index.js";
     import { Separator } from "$lib/components/ui/separator/index.js";
     import { onMount, onDestroy } from 'svelte';
+    import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 
     import { pageTitle } from "$lib/stores/title";
     pageTitle.set("")
@@ -107,7 +108,7 @@
   <Card.Root class="w-full max-w-sm shadow-md">
     <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
       <Avatar.Root class="my-3 hover:scale-110 transition-all size-24">
-        <Avatar.Image src="/img/me.webp" alt="@matyii" />
+        <Avatar.Image src="/favicon.jpg" alt="@matyii" />
         <Avatar.Fallback>MK</Avatar.Fallback>
       </Avatar.Root>
       <Card.Title>Kristóf Mátyás | itsmatyii 🪐</Card.Title>
@@ -116,52 +117,77 @@
     </Card.Header>
 
     <Card.Content class="flex justify-center gap-2">
-      <Button
-        variant="outline"
-        size="icon"
-        href="https://github.com/matyii"
-        target="_blank"
-        aria-label="GitHub profile"
-      >
-        <Github />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        href="mailto:business@itsmatyii.fun"
-        target="_blank"
-        aria-label="Send email to business@itsmatyii.fun"
-      >
-        <Mail />
-      </Button>
+      <Tooltip.Provider>
+        <Tooltip.Root>
+          <Tooltip.Trigger>
+            <Button
+              variant="outline"
+              size="icon"
+              href="https://github.com/matyii"
+              target="_blank"
+              aria-label="GitHub profile"
+            >
+              <Github />
+            </Button>
+          </Tooltip.Trigger>
+          <Tooltip.Content>
+            <span>My GitHub</span>
+          </Tooltip.Content>
+        </Tooltip.Root>
 
-      <Separator orientation="vertical" class="mx-1" />
+        <Tooltip.Root>
+          <Tooltip.Trigger>
+            <Button
+              variant="outline"
+              size="icon"
+              href="mailto:business@itsmatyii.fun"
+              target="_blank"
+              aria-label="Send email to business@itsmatyii.fun"
+            >
+              <Mail />
+            </Button>
+          </Tooltip.Trigger>
+          <Tooltip.Content>
+            <span>Email me</span>
+          </Tooltip.Content>
+        </Tooltip.Root>
 
-      <Button
-        variant="outline"
-        size="icon"
-        href="https://matyas.services"
-        target="_blank"
-        aria-label="Check status of services"
-      >
-        <ShoppingCart />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        href="https://status.itsmatyii.dev"
-        target="_blank"
-        aria-label="Check status of services"
-      >
-        <CloudAlert />
-      </Button>
-      <!-- <Button
-        variant="outline"
-        size="icon"
-        aria-label="Webmail"
-      >
-        <Inbox />
-      </Button> -->
+        <Separator orientation="vertical" class="mx-1" />
+
+        <Tooltip.Root>
+          <Tooltip.Trigger>
+            <Button
+              variant="outline"
+              size="icon"
+              href="https://matyas.services"
+              target="_blank"
+              aria-label="Check status of services"
+            >
+              <ShoppingCart />
+            </Button>
+          </Tooltip.Trigger>
+          <Tooltip.Content>
+            <span>Order my services</span>
+          </Tooltip.Content>
+        </Tooltip.Root>
+
+        <Tooltip.Root>
+          <Tooltip.Trigger>
+            <Button
+              variant="outline"
+              size="icon"
+              href="https://status.itsmatyii.dev"
+              target="_blank"
+              aria-label="Check status of services"
+            >
+              <CloudAlert />
+            </Button>
+          </Tooltip.Trigger>
+          <Tooltip.Content>
+            <span>Services status</span>
+          </Tooltip.Content>
+        </Tooltip.Root>
+      </Tooltip.Provider>
     </Card.Content>
   </Card.Root>
 

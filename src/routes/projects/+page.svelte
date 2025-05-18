@@ -32,11 +32,11 @@
 
 <Navbar />
 
-<div class="grid grid-cols-1 gap-8 p-8 md:grid-cols-2 lg:grid-cols-3 text-center">
+<div class="grid grid-cols-1 gap-6 px-4 md:px-12 lg:px-32 py-8 md:grid-cols-2 lg:grid-cols-3 text-center">
   {#if isLoading}
     <!-- Skeleton Loader -->
     {#each Array(6) as _}
-      <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03]">
+      <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] w-full max-w-md mx-auto">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4">
           <Skeleton class="w-full h-48 rounded-lg" />
           <Skeleton class="h-[20px] w-[150px] rounded-full" />
@@ -56,9 +56,9 @@
       </Card.Root>
     {/each}
   {:else}
-    <!-- Render Projects -->
+    <!-- Render Projects -->  
     {#each projects as project}
-      <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] cursor-pointer">
+      <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] w-full max-w-md mx-auto">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4">
           <img
             src={`/img/projects/${project.url}/${project.image}`}
@@ -79,10 +79,10 @@
           </div>
         </Card.Content>
 
-        <Card.Footer class="mt-auto p-5 flex sm:flex-row flex-col gap-2">
+        <Card.Footer class="mt-auto p-5 flex flex-wrap gap-2">
           <Button
             variant="outline"
-            class="w-full"
+            class="flex-1 min-w-[140px]"
             href={`/projects/${project.url}`}
           >
             <ExternalLink />
@@ -91,7 +91,7 @@
           {#each project.links as link}
             <Button
               variant="outline"
-              class="w-full"
+              class="flex-1 min-w-[140px]"
               onclick={() => window.open(link.url, "_blank")}
             >
               <Github />
