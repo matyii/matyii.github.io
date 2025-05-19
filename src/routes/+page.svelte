@@ -101,7 +101,7 @@
 <div class="flex flex-col items-center justify-center min-h-screen gap-4">
   <div class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-5">
     <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto">
-      <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
+      <Card.Header class="flex flex-col items-center justify-center space-y-4 text-center">
         <Avatar.Root class="my-3 hover:scale-110 transition-all size-24">
           <Avatar.Image src="/favicon.jpg" alt="@matyii" />
           <Avatar.Fallback>MK</Avatar.Fallback>
@@ -115,7 +115,7 @@
           <Tooltip.Root>
             <Tooltip.Trigger>
               <Button
-                variant="outline"
+                variant="default"
                 size="icon"
                 href="https://github.com/matyii"
                 target="_blank"
@@ -132,7 +132,7 @@
           <Tooltip.Root>
             <Tooltip.Trigger>
               <Button
-                variant="outline"
+                variant="default"
                 size="icon"
                 href="mailto:business@itsmatyii.fun"
                 target="_blank"
@@ -151,7 +151,7 @@
           <Tooltip.Root>
             <Tooltip.Trigger>
               <Button
-                variant="outline"
+                variant="default"
                 size="icon"
                 href="https://status.itsmatyii.dev"
                 target="_blank"
@@ -209,7 +209,7 @@
   </div>
 
   {#if nowPlaying && nowPlaying.item}
-    <Card.Root class="w-full max-w-sm relative shadow-md">
+    <Card.Root class="w-full max-w-sm relative shadow-md mb-5">
       <Music class="absolute top-5 right-5 w-6 h-6 text-muted-foreground" />
       <Card.Header class="text-muted-foreground font-extralight">
         <p>i'm currently listening to...</p>
