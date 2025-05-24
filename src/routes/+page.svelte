@@ -99,8 +99,8 @@
 <Navbar />
 
 <div class="flex flex-col items-center justify-center min-h-screen gap-4">
-  <div class="flex flex-col lg:flex-row gap-4 justify-center items-center mt-5">
-    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto">
+  <div class="flex flex-col lg:flex-row gap-4 justify-center items-stretch mt-5 h-[350px]">
+    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto h-full">
       <Card.Header class="flex flex-col items-center justify-center space-y-4 text-center">
         <Avatar.Root class="my-3 hover:scale-110 transition-all size-24">
           <Avatar.Image src="/favicon.jpg" alt="@matyii" />
@@ -168,7 +168,7 @@
       </Card.Content>
     </Card.Root>
 
-    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto">
+    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto h-full">
       <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
         <Card.Title>itsmatyii network</Card.Title>
         <Card.Description>services, tools, and websites i manage</Card.Description>
@@ -196,7 +196,7 @@
             class="flex items-center gap-4 p-4 rounded-lg shadow cursor-pointer w-full transition-all border border-border hover:shadow-lg hover:bg-muted"
             aria-label="screenie.host"
           >
-            <img src="https://screenie.host/logo.png" alt="Services" class="h-10 object-cover rounded-md" />
+            <img src="screenie.png" alt="Services" class="h-10 object-cover rounded-md" />
             <div class="flex flex-col items-start">
               <span class="font-semibold text-lg">screenie.host</span>
               <span class="text-muted-foreground text-sm">screenshot and file uploading service (wip)</span>
@@ -209,7 +209,7 @@
   </div>
 
   {#if nowPlaying && nowPlaying.item}
-    <Card.Root class="w-full max-w-sm relative shadow-md mb-5">
+    <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full">
       <Music class="absolute top-5 right-5 w-6 h-6 text-muted-foreground" />
       <Card.Header class="text-muted-foreground font-extralight">
         <p>i'm currently listening to...</p>
