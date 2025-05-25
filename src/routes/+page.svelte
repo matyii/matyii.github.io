@@ -209,8 +209,8 @@
   </div>
 
   {#if nowPlaying && nowPlaying.item}
-    <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full">
-      <Music class="absolute top-5 right-5 w-6 h-6 text-muted-foreground" />
+    <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full relative">
+      <Music class="w-6 h-6 text-muted-foreground absolute top-5 right-6" />
       <Card.Header class="text-muted-foreground font-extralight">
         <p>i'm currently listening to...</p>
       </Card.Header>

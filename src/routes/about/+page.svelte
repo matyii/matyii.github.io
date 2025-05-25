@@ -32,10 +32,10 @@
 
 <Navbar />
 
-<div class="flex flex-col justify-center items-center min-h-screen">
+<div class="flex flex-col justify-center items-center min-h-screen px-4">
   <div class="flex flex-wrap lg:flex-nowrap gap-8 justify-center max-w-screen-xl mx-auto mt-5">
     <!-- First Card -->
-    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[380px] max-w-[540px]">
+    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
         <Avatar.Root class="size-32 m-5">
           <Avatar.Image src="/favicon.jpg" alt="@matyii" />
@@ -44,21 +44,16 @@
         <Card.Title>Kristóf Mátyás</Card.Title>
         <Card.Description>20 years old. 🪐</Card.Description>
       </Card.Header>
-
       <Card.Content class="flex flex-col gap-3">
         <Button href="mailto:business@itsmatyii.fun" variant="default">Business enquiries</Button>
-
-        <!-- CV Link -->
         <Button href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" variant="default">
           Open my CV
         </Button>
-
-        <!-- <Button href="https://github.com/matyii" target="_blank" variant="default">GitHub</Button> -->
       </Card.Content>
     </Card.Root>
 
     <!-- Second Card -->
-    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[380px] max-w-[540px]">
+    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="text-center">
         <Card.Title>About Me</Card.Title>
       </Card.Header>
@@ -71,7 +66,7 @@
     </Card.Root>
 
     <!-- Third Card -->
-    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[380px] max-w-[540px]">
+    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="text-center">
         <Card.Title>Skills and Certifications</Card.Title>
       </Card.Header>
@@ -116,6 +111,17 @@
                   >[show]
                   </a>
                 </li>
+              </ul>
+            </Accordion.Content>
+          </Accordion.Item>
+
+          <!-- Coding Setup -->
+          <Accordion.Item value="coding-setup">
+            <Accordion.Trigger class="font-semibold">Coding Setup</Accordion.Trigger>
+            <Accordion.Content>
+              <ul class="list-disc pl-6 text-sm">
+                <li>MacBook Air M1 (8GB RAM, 256SSD)</li>
+                <li>Xiaomi A27i (27", 100hz, 1080p)</li>
               </ul>
             </Accordion.Content>
           </Accordion.Item>
