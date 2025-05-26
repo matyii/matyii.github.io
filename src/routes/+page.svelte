@@ -98,9 +98,10 @@
 
 <Navbar />
 
-<div class="flex flex-col items-center justify-center min-h-screen gap-4">
-  <div class="flex flex-col lg:flex-row gap-4 justify-center items-stretch mt-5 h-[350px]">
-    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto h-full">
+<div class="flex flex-col items-center justify-center min-h-screen gap-4 w-full px-2 my-5">
+  <!-- Row for the first two cards -->
+  <div class="w-full flex flex-col lg:flex-row gap-4 justify-center items-center lg:items-stretch">
+    <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full">
       <Card.Header class="flex flex-col items-center justify-center space-y-4 text-center">
         <Avatar.Root class="my-3 hover:scale-110 transition-all size-24">
           <Avatar.Image src="/favicon.jpg" alt="@matyii" />
@@ -168,7 +169,7 @@
       </Card.Content>
     </Card.Root>
 
-    <Card.Root class="max-w-sm shadow-md flex flex-col mx-auto h-full">
+    <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full">
       <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
         <Card.Title>itsmatyii network</Card.Title>
         <Card.Description>services, tools, and websites i manage</Card.Description>
@@ -208,72 +209,75 @@
     </Card.Root>
   </div>
 
+  <!-- Spotify card below, full width on mobile, centered on desktop -->
   {#if nowPlaying && nowPlaying.item}
-    <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full relative">
-      <Music class="w-6 h-6 text-muted-foreground absolute top-5 right-6" />
-      <Card.Header class="text-muted-foreground font-extralight">
-        <p>i'm currently listening to...</p>
-      </Card.Header>
-      <Card.Content class="flex gap-4">
-        <a
-          href={nowPlaying.item.album.images[0].url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open album art in full size"
-        >
-          <div class="w-32 aspect-square overflow-hidden rounded shadow-md hover:scale-105 transition-all cursor-pointer bg-neutral-800 flex items-center justify-center">
-            <img
-              src={nowPlaying.item.album.images[1].url}
-              alt="Album Art"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </a>
-        <div class="flex flex-col gap-2 w-full">
-          <p class="font-bold">
-            <a href={nowPlaying.item.external_urls.spotify} target="_blank" class="text-primary hover:underline underline-offset-4">
-              {nowPlaying.item.name}
-            </a>
-          </p>
-
-          <p class="text-muted-foreground text-sm">
-            {#each nowPlaying.item.artists as artist, i}
-              <a href={artist.external_urls.spotify} target="_blank" class="hover:underline underline-offset-4">
-                {artist.name}
-              </a>{i < nowPlaying.item.artists.length - 1 ? ', ' : ''}
-            {/each}
-            •
-            <a href={nowPlaying.item.album.external_urls.spotify} target="_blank" class="hover:underline underline-offset-4">
-              {nowPlaying.item.album.name}
-            </a>
-          </p>
-
-          {#if activeDevice}
-            <p class="text-muted-foreground text-xs flex items-center gap-2">
-              {#if deviceIcons[activeDevice.type as keyof typeof deviceIcons]}
-                <svelte:component this={deviceIcons[activeDevice.type as keyof typeof deviceIcons]} class="w-4 h-4" />
-              {/if}
-              {activeDevice.name}
+    <div class="w-full flex justify-center">
+      <Card.Root class="max-w-sm w-full shadow-md flex flex-col h-full relative mt-4">
+        <Music class="w-6 h-6 text-muted-foreground absolute top-5 right-6" />
+        <Card.Header class="text-muted-foreground font-extralight">
+          <p>i'm currently listening to...</p>
+        </Card.Header>
+        <Card.Content class="flex gap-4">
+          <a
+            href={nowPlaying.item.album.images[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open album art in full size"
+          >
+            <div class="w-32 aspect-square overflow-hidden rounded shadow-md hover:scale-105 transition-all cursor-pointer bg-neutral-800 flex items-center justify-center">
+              <img
+                src={nowPlaying.item.album.images[1].url}
+                alt="Album Art"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </a>
+          <div class="flex flex-col gap-2 w-full">
+            <p class="font-bold">
+              <a href={nowPlaying.item.external_urls.spotify} target="_blank" class="text-primary hover:underline underline-offset-4">
+                {nowPlaying.item.name}
+              </a>
             </p>
-          {/if}
 
-          <div class="w-full mt-2">
-            <Progress
-              value={progress}
-              class="h-1"
-              aria-label="Song progress"
-            />
-            <div class="flex justify-between text-xs text-muted-foreground mt-1">
-              <span>
-                {Math.floor((progressMs || 0) / 60000)}:{String(Math.floor(((progressMs || 0) % 60000) / 1000)).padStart(2, '0')}
-              </span>
-              <span>
-                {Math.floor(nowPlaying.item.duration_ms / 60000)}:{String(Math.floor((nowPlaying.item.duration_ms % 60000) / 1000)).padStart(2, '0')}
-              </span>
+            <p class="text-muted-foreground text-sm">
+              {#each nowPlaying.item.artists as artist, i}
+                <a href={artist.external_urls.spotify} target="_blank" class="hover:underline underline-offset-4">
+                  {artist.name}
+                </a>{i < nowPlaying.item.artists.length - 1 ? ', ' : ''}
+              {/each}
+              •
+              <a href={nowPlaying.item.album.external_urls.spotify} target="_blank" class="hover:underline underline-offset-4">
+                {nowPlaying.item.album.name}
+              </a>
+            </p>
+
+            {#if activeDevice}
+              <p class="text-muted-foreground text-xs flex items-center gap-2">
+                {#if deviceIcons[activeDevice.type as keyof typeof deviceIcons]}
+                  <svelte:component this={deviceIcons[activeDevice.type as keyof typeof deviceIcons]} class="w-4 h-4" />
+                {/if}
+                {activeDevice.name}
+              </p>
+            {/if}
+
+            <div class="w-full mt-2">
+              <Progress
+                value={progress}
+                class="h-1"
+                aria-label="Song progress"
+              />
+              <div class="flex justify-between text-xs text-muted-foreground mt-1">
+                <span>
+                  {Math.floor((progressMs || 0) / 60000)}:{String(Math.floor(((progressMs || 0) % 60000) / 1000)).padStart(2, '0')}
+                </span>
+                <span>
+                  {Math.floor(nowPlaying.item.duration_ms / 60000)}:{String(Math.floor((nowPlaying.item.duration_ms % 60000) / 1000)).padStart(2, '0')}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </Card.Content>
-    </Card.Root>
+        </Card.Content>
+      </Card.Root>
+    </div>
   {/if}
 </div>
