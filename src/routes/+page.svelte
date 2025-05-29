@@ -135,9 +135,9 @@
               <Button
                 variant="default"
                 size="icon"
-                href="mailto:business@itsmatyii.fun"
+                href="mailto:matyas@matyas.services"
                 target="_blank"
-                aria-label="Send email to business@itsmatyii.fun"
+                aria-label="Send email to matyas@matyas.services"
               >
                 <Mail />
               </Button>

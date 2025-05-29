@@ -45,7 +45,7 @@
         <Card.Description>20 years old. 🪐</Card.Description>
       </Card.Header>
       <Card.Content class="flex flex-col gap-3">
-        <Button href="mailto:business@itsmatyii.fun" variant="default">Business enquiries</Button>
+        <Button href="mailto:matyas@matyas.services" variant="default">Business enquiries</Button>
         <Button href="https://drive.google.com/file/d/1edMNHy80zorF55jnZJ3igLv9XpTS5Mm1/view" target="_blank" variant="default">
           Open my CV
         </Button>
@@ -61,7 +61,7 @@
         <p>Hi there! My name is Kristóf Mátyás, and I’m a 20-year-old IT technician with a passion for all things tech.</p>
         <p>I specialize in system administration and networking, though I'm always open to new challenges. I’ve worked on projects with FiveM, GitLab, UniFi, and more, and I’ve really enjoyed learning and collaborating on them.</p>
         <p>When I’m not coding or tinkering with tech, you’ll find me outside spending time with my girlfriend or cruising around with her in my car, listening to music.</p>
-        <p>For business enquiries, don’t hesitate to contact me via <a href="mailto:business@itsmatyii.fun" class="text-info underline underline-offset-4 transition-all hover:text-blue-400">e-mail.</a></p>
+        <p>For business enquiries, don’t hesitate to contact me via <a href="mailto:matyas@matyas.services" class="text-info underline underline-offset-4 transition-all hover:text-blue-400">e-mail.</a></p>
       </Card.Content>
     </Card.Root>
 
