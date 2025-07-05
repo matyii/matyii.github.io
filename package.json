@@ -31,8 +31,10 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.510.0",
+		"@types/colorthief": "^2.6.0",
 		"@types/node": "^22.15.17",
 		"buffer": "^6.0.3",
+		"colorthief": "^2.6.0",
 		"mode-watcher": "0.5.1"
 	}
 }

@@ -40,7 +40,7 @@
 <Navbar />
 
 {#if isLoading}
-  <div class="flex justify-center items-center min-h-[40vh]">
+  <div class="flex justify-center items-center min-h-[40vh] animate-pulse">
     <span>Loading...</span>
   </div>
 {:else if projectData}
@@ -70,10 +70,10 @@
     <Separator orientation="vertical" class='mx-3'/>
     <!-- Info Section -->
     <div class="flex-1 flex flex-col justify-center items-start w-full max-w-xl text-center">
-      <Card.Root class="w-full bg-transparent shadow-none">
+      <Card.Root class="w-full bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white shadow-md">
         <Card.Header class="space-y-4">
-          <Card.Title class="text-4xl">{projectData.title}</Card.Title>
-          <Card.Description class="text-lg text-muted-foreground">
+          <Card.Title class="text-4xl text-neutral-100">{projectData.title}</Card.Title>
+          <Card.Description class="text-lg text-neutral-200">
             {projectData.description}
           </Card.Description>
           <div class="flex flex-wrap gap-2 justify-center">
@@ -82,7 +82,7 @@
             {/each}
           </div>
         </Card.Header>
-        <Card.Content>
+        <Card.Content class="text-neutral-100">
           {projectData.extended_description}
         </Card.Content>
         <Card.Content class="w-full mt-1">

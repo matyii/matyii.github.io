@@ -32,17 +32,16 @@
 
 <Navbar />
 
-<div class="flex flex-col justify-center items-center min-h-screen px-4">
+<div class="flex flex-col justify-center items-center min-h-screen px-4 mb-5">
   <div class="flex flex-wrap lg:flex-nowrap gap-8 justify-center max-w-screen-xl mx-auto mt-5">
-    <!-- First Card -->
-    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
+    <Card.Root class="bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
         <Avatar.Root class="size-32 m-5">
-          <Avatar.Image src="/favicon.jpg" alt="@matyii" />
+          <Avatar.Image src="/favicon.jpeg" alt="@matyii" />
           <Avatar.Fallback>MK</Avatar.Fallback>
         </Avatar.Root>
         <Card.Title>Kristóf Mátyás</Card.Title>
-        <Card.Description>20 years old. 🪐</Card.Description>
+        <Card.Description class="text-neutral-200">20 years old. 🪐</Card.Description>
       </Card.Header>
       <Card.Content class="flex flex-col gap-3">
         <Button href="mailto:matyas@matyas.services" variant="default">Business enquiries</Button>
@@ -52,8 +51,7 @@
       </Card.Content>
     </Card.Root>
 
-    <!-- Second Card -->
-    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
+    <Card.Root class="bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="text-center">
         <Card.Title>About Me</Card.Title>
       </Card.Header>
@@ -65,14 +63,12 @@
       </Card.Content>
     </Card.Root>
 
-    <!-- Third Card -->
-    <Card.Root class="bg-base-300 shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
+    <Card.Root class="bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="text-center">
         <Card.Title>Skills and Certifications</Card.Title>
       </Card.Header>
       <Card.Content class="space-y-4">
         <Accordion.Root type="single">
-          <!-- General and IT Skills -->
           <Accordion.Item value="general-skills">
             <Accordion.Trigger class="font-semibold">General and IT Skills</Accordion.Trigger>
             <Accordion.Content>
@@ -85,7 +81,6 @@
             </Accordion.Content>
           </Accordion.Item>
 
-          <!-- Languages -->
           <Accordion.Item value="languages">
             <Accordion.Trigger class="font-semibold">Languages</Accordion.Trigger>
             <Accordion.Content>
@@ -97,7 +92,6 @@
             </Accordion.Content>
           </Accordion.Item>
 
-          <!-- Certificates -->
           <Accordion.Item value="certificates">
             <Accordion.Trigger class="font-semibold">Certificates</Accordion.Trigger>
             <Accordion.Content>
@@ -115,7 +109,6 @@
             </Accordion.Content>
           </Accordion.Item>
 
-          <!-- Coding Setup -->
           <Accordion.Item value="coding-setup">
             <Accordion.Trigger class="font-semibold">Coding Setup</Accordion.Trigger>
             <Accordion.Content>
