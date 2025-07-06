@@ -26,15 +26,14 @@
   onMount(async () => {
     const response = await fetch("/projects.json");
     projects = await response.json();
-    isLoading = false; // Set loading to false once data is fetched
+    isLoading = false;
   });
 </script>
 
 <Navbar />
 
-<div class="grid grid-cols-1 gap-6 px-4 md:px-12 lg:px-32 py-8 md:grid-cols-2 lg:grid-cols-3 text-center">
+<div class="flex flex-wrap justify-center gap-4 px-4 md:px-12 lg:px-32 py-8 text-center">
   {#if isLoading}
-    <!-- Skeleton Loader -->
     {#each Array(6) as _}
       <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] w-full max-w-md mx-auto">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4">
@@ -58,20 +57,23 @@
   {:else}
     <!-- Render Projects -->  
     {#each projects as project}
-      <Card.Root class="shadow-md rounded-lg flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] w-full max-w-md mx-auto">
-        <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4">
-          <img
-            src={`/img/projects/${project.url}/${project.image}`}
-            alt={project.title}
-            class="w-full h-48 object-cover rounded-lg shadow-lg"
-          />
-          <Card.Title class="text-lg font-bold">{project.title}</Card.Title>
-          <Card.Description class="text-sm text-muted-foreground">
+      <Card.Root class="shadow-lg rounded-xl flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] w-[340px] bg-white/10 backdrop-blur-2xl border border-white/20 text-white mx-2 my-2">
+        <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4 pb-2">
+          <div class="w-full aspect-video rounded-lg overflow-hidden bg-neutral-900 flex items-center justify-center mb-1">
+            <img
+              src={`/img/projects/${project.url}/${project.image}`}
+              alt={project.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <Card.Title class="text-xl font-bold tracking-tight mb-0">{project.title}</Card.Title>
+          <Card.Description class="text-sm text-neutral-200 min-h-[2.2rem] flex items-center justify-center">
             {project.description}
           </Card.Description>
         </Card.Header>
 
-        <Card.Content class="p-4 flex-grow">
+        <Card.Content class="px-4 pb-4">
           <div class="flex flex-wrap gap-2 justify-center">
             {#each project.badges as badge}
               <Badge variant="secondary">{badge.label}</Badge>
@@ -79,23 +81,23 @@
           </div>
         </Card.Content>
 
-        <Card.Footer class="mt-auto p-5 flex flex-wrap gap-2">
+        <Card.Footer class="mt-auto px-4 flex flex-wrap gap-2">
           <Button
             variant="outline"
-            class="flex-1 min-w-[140px]"
+            class="flex-1 min-w-[120px]"
             href={`/projects/${project.url}`}
           >
-            <ExternalLink />
+            <ExternalLink class="w-4 h-4 mr-1" />
             Open
           </Button>
           {#each project.links as link}
             <Button
               variant="outline"
-              class="flex-1 min-w-[140px]"
+              class="flex-1 min-w-[120px]"
               onclick={() => window.open(link.url, "_blank")}
             >
-              <Github />
-              GitHub Repository
+              <Github class="w-4 h-4 mr-1" />
+              GitHub
             </Button>
           {/each}
         </Card.Footer>

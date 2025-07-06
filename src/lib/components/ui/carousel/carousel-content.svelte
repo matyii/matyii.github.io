@@ -15,7 +15,7 @@
 	const emblaCtx = getEmblaContext("<Carousel.Content/>");
 </script>
 
-<!-- svelte-ignore event_directive_deprecated -->
+
 <div
 	class="overflow-hidden"
 	use:emblaCarouselSvelte={{
