@@ -45,7 +45,7 @@
   </div>
 {:else if projectData}
   <div class="flex flex-col justify-center items-center min-h-[60vh] mt-6 p-4">
-    <!-- Carousel Section -->
+    
     <div class="w-full max-w-xl flex-1">
       <Carousel.Root>
         <Carousel.Content>
@@ -68,7 +68,7 @@
       </Carousel.Root>
     </div>
     <Separator orientation="vertical" class='mx-3'/>
-    <!-- Info Section -->
+    
     <div class="flex-1 flex flex-col justify-center items-start w-full max-w-xl text-center">
       <Card.Root class="w-full bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white shadow-md">
         <Card.Header class="space-y-4">
@@ -95,7 +95,7 @@
             > 
             <Github />
             Open Repository
-              <!-- {projectData.links[0].label} -->
+              
             </Button>
           {/if}
         </Card.Content>

@@ -37,7 +37,7 @@
     <Card.Root class="bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
         <Avatar.Root class="size-32 m-5">
-          <Avatar.Image src="/favicon.jpeg" alt="@matyii" />
+          <Avatar.Image src="/pfp.png" alt="@matyii" />
           <Avatar.Fallback>MK</Avatar.Fallback>
         </Avatar.Root>
         <Card.Title>Kristóf Mátyás</Card.Title>

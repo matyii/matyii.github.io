@@ -27,8 +27,8 @@
   <div class="w-full flex flex-col lg:flex-row gap-4 justify-center items-center lg:items-stretch">
     <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white">
       <Card.Header class="flex flex-col items-center justify-center space-y-4 text-center">
-        <Avatar.Root class="my-3 hover:scale-110 transition-all size-28 border-4 border-white/40">
-          <Avatar.Image src="/favicon.jpeg" alt="@matyii" />
+        <Avatar.Root class="my-3 hover:scale-110 transition-all size-28 border-4 border-white/40 hover:border-indigo-300/80">
+          <Avatar.Image src="/pfp.png" alt="@matyii" />
           <Avatar.Fallback>MK</Avatar.Fallback>
         </Avatar.Root>
         <Card.Title>itsmatyii 🪐 | Kristóf Mátyás</Card.Title>

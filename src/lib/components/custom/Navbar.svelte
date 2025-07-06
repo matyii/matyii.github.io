@@ -7,7 +7,7 @@
 <nav class="flex items-center justify-between px-2 sm:px-6 md:px-10 py-2 md:py-3 my-6 mx-auto max-w-3xl 2xl:max-w-4xl bg-white/10 backdrop-blur-2xl border border-white/30 rounded-2xl shadow-2xl transition-all duration-300">
   <a href="/" aria-label="Go to main page" class="flex items-center gap-1 sm:gap-3 group rounded-xl transition-all duration-200">
     <Avatar.Root class="size-10 rounded-full border-2 border-white/40 shadow-xl transition-transform duration-200 group-hover:scale-105 group-active:scale-95 group-hover:border-indigo-300/80 group-focus:border-indigo-400/80">
-      <Avatar.Image src="/favicon.jpeg" alt="@matyii" class="rounded-full" />
+      <Avatar.Image src="/pfp.png" alt="@matyii" class="rounded-full" />
       <Avatar.Fallback>MK</Avatar.Fallback>
     </Avatar.Root>
     <span class="hidden sm:inline font-bold text-lg tracking-tight text-white drop-shadow">Kristóf Mátyás</span>

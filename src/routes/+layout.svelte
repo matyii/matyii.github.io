@@ -8,7 +8,7 @@
 
     const { nowPlaying } = spotify;
 
-    // --- Crossfade logic ---
+    
     import { tick } from 'svelte';
     import { writable } from 'svelte/store';
 
@@ -32,7 +32,7 @@
         const img = $nowPlaying?.item?.album?.images?.[0]?.url ?? null;
         if (img !== currentImage) {
             if (currentImage && !img) {
-                // Fading from image to gradient
+                
                 previousImage = currentImage;
                 showPrev.set(true);
                 fadingToGradient.set(true);
@@ -48,7 +48,7 @@
                     previousImage = null;
                 }, 1800);
             } else if (currentImage && img) {
-                // Fading from image to image
+                
                 previousImage = currentImage;
                 showPrev.set(true);
                 fadingToGradient.set(false);
@@ -70,7 +70,7 @@
     const staticTitle = "itsmatyii | Kristóf Mátyás";
     $: fullTitle = $pageTitle ? `${$pageTitle} - ${staticTitle}` : staticTitle;
 
-    // Start/stop Spotify polling globally
+    
     onMount(() => {
         spotify.start();
     });
@@ -85,7 +85,7 @@
 
 <ModeWatcher />
 
-<!-- Dynamic background for all pages with smooth transition -->
+
 <style>
   .background-transition-wrapper {
     position: fixed;
