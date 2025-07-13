@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Navbar from "$lib/components/custom/Navbar.svelte";
+  
   import * as Card from "$lib/components/ui/card/index.js";
   import Button from "$lib/components/ui/button/button.svelte";
   import { Badge } from "$lib/components/ui/badge/index.js";
@@ -30,7 +30,7 @@
   });
 </script>
 
-<Navbar />
+
 
 <div class="flex flex-wrap justify-center gap-4 px-4 md:px-12 lg:px-32 py-8 text-center">
   {#if isLoading}
@@ -55,7 +55,7 @@
       </Card.Root>
     {/each}
   {:else}
-    <!-- Render Projects -->  
+    
     {#each projects as project}
       <Card.Root class="shadow-lg rounded-xl flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] w-[340px] bg-white/10 backdrop-blur-2xl border border-white/20 text-white mx-2 my-2">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4 pb-2">
@@ -76,14 +76,14 @@
         <Card.Content class="px-4 pb-4">
           <div class="flex flex-wrap gap-2 justify-center">
             {#each project.badges as badge}
-              <Badge variant="secondary">{badge.label}</Badge>
+              <Badge variant="outline">{badge.label}</Badge>
             {/each}
           </div>
         </Card.Content>
 
         <Card.Footer class="mt-auto px-4 flex flex-wrap gap-2">
           <Button
-            variant="outline"
+            variant="ghost"
             class="flex-1 min-w-[120px]"
             href={`/projects/${project.url}`}
           >
@@ -92,7 +92,7 @@
           </Button>
           {#each project.links as link}
             <Button
-              variant="outline"
+              variant="ghost"
               class="flex-1 min-w-[120px]"
               onclick={() => window.open(link.url, "_blank")}
             >

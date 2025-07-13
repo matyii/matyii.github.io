@@ -1,7 +1,7 @@
 <script lang="ts">
     import * as Avatar from "$lib/components/ui/avatar/index.js";
     import * as Card from "$lib/components/ui/card/index.js";
-    import Navbar from "$lib/components/custom/Navbar.svelte";
+    
     import Button from "$lib/components/ui/button/button.svelte";
     import { Progress } from "$lib/components/ui/progress/index.js";
     import { Separator } from "$lib/components/ui/separator/index.js";
@@ -21,7 +21,7 @@
     };
 </script>
 
-<Navbar />
+
 
 <div class="relative flex flex-col items-center justify-center min-h-screen gap-4 w-full px-2 my-5">
   <div class="w-full flex flex-col lg:flex-row gap-4 justify-center items-center lg:items-stretch">
@@ -31,7 +31,7 @@
           <Avatar.Image src="/pfp.png" alt="@matyii" />
           <Avatar.Fallback>MK</Avatar.Fallback>
         </Avatar.Root>
-        <Card.Title>itsmatyii 🪐 | Kristóf Mátyás</Card.Title>
+        <Card.Title>Kristóf Mátyás</Card.Title>
         <Card.Description class="text-neutral-300">20 year old IT technician, hobby coder</Card.Description>
         <Card.Description class="text-neutral-300">server administration/management, coding</Card.Description>
       </Card.Header>
