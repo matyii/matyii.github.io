@@ -1,0 +1,37 @@
+[
+  {
+    "type": "Laptop",
+    "device": "MacBook Air M1",
+    "specs": "8GB RAM, 256GB SSD"
+  },
+  {
+    "type": "Monitor",
+    "device": "Xiaomi A27i",
+    "specs": "27\", 100Hz, 1080p"
+  },
+  {
+    "type": "CPU",
+    "device": "Intel Core i3-4170",
+    "specs": "3.70GHz, 2 cores, 4 threads"
+  },
+  {
+    "type": "GPU",
+    "device": "NVIDIA GeForce GTX 1050 Ti",
+    "specs": "4GB GDDR5"
+  },
+  {
+    "type": "RAM",
+    "device": "Kingston DDR3",
+    "specs": "16GB (2x8GB), 1600MHz"
+  },
+  {
+    "type": "OS",
+    "device": "Windows 11",
+    "specs": "24H2 (26100)"
+  },
+  {
+    "type": "IDE",
+    "device": "Visual Studio Code",
+    "specs": "Catppuccin theme, Prettier"
+  }
+]

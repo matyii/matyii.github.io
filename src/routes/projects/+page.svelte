@@ -1,5 +1,4 @@
 <script lang="ts">
-  
   import * as Card from "$lib/components/ui/card/index.js";
   import Button from "$lib/components/ui/button/button.svelte";
   import { Badge } from "$lib/components/ui/badge/index.js";
@@ -24,7 +23,7 @@
   let isLoading = true;
 
   onMount(async () => {
-    const response = await fetch("/projects.json");
+    const response = await fetch("/data/projects.json");
     projects = await response.json();
     isLoading = false;
   });
