@@ -1,7 +1,7 @@
 <script lang="ts">
     import * as Avatar from "$lib/components/ui/avatar/index.js";
     import * as Card from "$lib/components/ui/card/index.js";
-    import Navbar from "$lib/components/custom/Navbar.svelte";
+    
     import Button from "$lib/components/ui/button/button.svelte";
     import * as Accordion from "$lib/components/ui/accordion/index.js";
     import { onMount } from "svelte";
@@ -30,13 +30,13 @@
     });
 </script>
 
-<Navbar />
+
 
 <div class="flex flex-col justify-center items-center min-h-screen px-4 mb-5">
   <div class="flex flex-wrap lg:flex-nowrap gap-8 justify-center max-w-screen-xl mx-auto mt-5">
     <Card.Root class="bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white shadow-lg p-6 flex-1 min-w-[260px] max-w-[540px] w-full sm:w-auto">
       <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
-        <Avatar.Root class="size-32 m-5">
+        <Avatar.Root class="m-5 hover:scale-110 transition-all size-40 border-4 border-white/40 hover:border-indigo-300/80">
           <Avatar.Image src="/pfp.png" alt="@matyii" />
           <Avatar.Fallback>MK</Avatar.Fallback>
         </Avatar.Root>

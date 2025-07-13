@@ -5,11 +5,9 @@
     import { onMount, onDestroy } from 'svelte';
     import { spotify } from "$lib/stores/spotify";
     import { crossfade } from 'svelte/transition';
+    import Navbar from "$lib/components/custom/Navbar.svelte";
 
     const { nowPlaying } = spotify;
-
-    
-    import { tick } from 'svelte';
     import { writable } from 'svelte/store';
 
     let currentImage: string | null = null;
@@ -17,6 +15,39 @@
     let showPrev = writable(false);
     let prevImgEl: HTMLDivElement | null = null;
     let fadingToGradient = writable(false);
+
+    let parallaxEl: HTMLDivElement | null = null;
+    let parallaxActive = false;
+    let parallaxX = 0;
+    let parallaxY = 0;
+    const maxOffsetX = 32; // px
+    const maxOffsetY = 16; // px
+
+    import { tick } from 'svelte';
+    function handleParallax(e: MouseEvent) {
+        if (typeof window === 'undefined') return;
+        if (!parallaxActive) return;
+        const { innerWidth, innerHeight } = window;
+        const x = (e.clientX / innerWidth - 0.5) * 2;
+        const y = (e.clientY / innerHeight - 0.5) * 2;
+        parallaxX = -x * maxOffsetX;
+        parallaxY = -y * maxOffsetY;
+    }
+
+    function enableParallax() {
+        if (typeof window === 'undefined') return;
+        if (!parallaxActive) {
+            parallaxActive = true;
+            window.addEventListener('mousemove', handleParallax);
+        }
+    }
+    function disableParallax() {
+        if (typeof window === 'undefined') return;
+        parallaxActive = false;
+        parallaxX = 0;
+        parallaxY = 0;
+        window.removeEventListener('mousemove', handleParallax);
+    }
 
     const [send, receive] = crossfade({
     duration: 1800,
@@ -32,7 +63,6 @@
         const img = $nowPlaying?.item?.album?.images?.[0]?.url ?? null;
         if (img !== currentImage) {
             if (currentImage && !img) {
-                
                 previousImage = currentImage;
                 showPrev.set(true);
                 fadingToGradient.set(true);
@@ -48,7 +78,6 @@
                     previousImage = null;
                 }, 1800);
             } else if (currentImage && img) {
-                
                 previousImage = currentImage;
                 showPrev.set(true);
                 fadingToGradient.set(false);
@@ -65,6 +94,7 @@
             }
             currentImage = img;
         }
+        enableParallax();
     }
 
     const staticTitle = "itsmatyii | Kristóf Mátyás";
@@ -83,7 +113,9 @@
     <title>{fullTitle}</title>
 </svelte:head>
 
+
 <ModeWatcher />
+<Navbar />
 
 
 <style>
@@ -116,6 +148,7 @@
   }
 </style>
 <div class="background-transition-wrapper">
+  
   {#if previousImage && $showPrev}
     <div
       class="background-transition-img bg-previous"
@@ -141,15 +174,11 @@
       ></div>
     {/if}
   {/if}
-  {#if currentImage}
+    {#if currentImage}
     <div
       class="background-transition-img bg-current"
-      style="
-        background: url('{currentImage}') center center / cover no-repeat;
-        filter: blur(80px) brightness(0.6);
-        opacity: 0.85;
-        z-index: -12;
-      "
+      bind:this={parallaxEl}
+      style={`background: url(${currentImage}) center center / cover no-repeat; filter: blur(80px) brightness(0.6); opacity: 0.85; z-index: -12; will-change: transform, opacity; outline: 2px solid #f00; transform: translate3d(${parallaxX}px, ${parallaxY}px, 0);`}
       aria-hidden="true"
       in:send={{ key: currentImage }}
     ></div>

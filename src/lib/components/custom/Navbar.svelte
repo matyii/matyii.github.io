@@ -8,9 +8,9 @@
   <a href="/" aria-label="Go to main page" class="flex items-center gap-1 sm:gap-3 group rounded-xl transition-all duration-200">
     <Avatar.Root class="size-10 rounded-full border-2 border-white/40 shadow-xl transition-transform duration-200 group-hover:scale-105 group-active:scale-95 group-hover:border-indigo-300/80 group-focus:border-indigo-400/80">
       <Avatar.Image src="/pfp.png" alt="@matyii" class="rounded-full" />
-      <Avatar.Fallback>MK</Avatar.Fallback>
+      <Avatar.Fallback class="text-xs">MK</Avatar.Fallback>
     </Avatar.Root>
-    <span class="hidden sm:inline font-bold text-lg tracking-tight text-white drop-shadow">Kristóf Mátyás</span>
+    <span class="hidden sm:inline font-bold text-lg tracking-tight text-white drop-shadow">itsmatyii <span class="floating-planet">🪐</span></span>
   </a>
 
   <div class="flex gap-1 md:gap-4 items-center">

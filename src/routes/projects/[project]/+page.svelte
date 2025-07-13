@@ -4,7 +4,7 @@
   import { get } from 'svelte/store';
   import * as Card from "$lib/components/ui/card/index.js";
   import Button from "$lib/components/ui/button/button.svelte";
-  import Navbar from "$lib/components/custom/Navbar.svelte";
+  
   import * as Carousel from "$lib/components/ui/carousel/index.js";
   import { Separator } from "$lib/components/ui/separator/index.js";
   import { Badge } from "$lib/components/ui/badge/index.js";
@@ -37,7 +37,7 @@
   });
 </script>
 
-<Navbar />
+
 
 {#if isLoading}
   <div class="flex justify-center items-center min-h-[40vh] animate-pulse">
