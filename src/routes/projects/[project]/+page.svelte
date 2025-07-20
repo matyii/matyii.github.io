@@ -27,7 +27,7 @@
 
   onMount(async () => {
     const { project } = get(page).params;
-    const res = await fetch('/projects.json');
+    const res = await fetch('/data/projects.json');
     const projects: Project[] = await res.json();
     projectData = projects.find((p: Project) => p.url === project) || null;
     isLoading = false;
