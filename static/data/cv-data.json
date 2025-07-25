@@ -1,0 +1,57 @@
+{
+  "name": "Kristóf Mátyás",
+  "birth": "Slovak · 26.11.2004",
+  "avatar": "/img/pfps/me.jpeg",
+  "categories": [
+    {
+      "title": "Education",
+      "items": [
+        "2020–2024: Spojená škola Gyulu Szabóa 21, 929 01 Dunajská Streda",
+        "Program: Information and Network Technologies (2561 M)",
+        "Graduation: May 2024",
+        "Thesis: Webshop in PHP, MySQL",
+        "Certifications: ECDL"
+      ]
+    },
+    {
+      "title": "Languages",
+      "items": [
+        { "label": "Slovak", "level": "B1" },
+        { "label": "Hungarian", "level": "Native" },
+        { "label": "English", "level": "B2" }
+      ]
+    },
+    {
+      "title": "Technical Skills",
+      "items": [
+        { "label": "Sysadmin", "value": "Linux (Adv), virtualization, automation, scripting, troubleshooting" },
+        { "label": "Server Management", "value": "Maintenance, regular checks, user management, updates, backups, troubleshooting" },
+        { "label": "Network", "value": "TCP/IP, VLAN, LAN/WAN, DHCP, DNS, UniFi, PiHole" },
+        { "label": "Backup & Storage", "value": "RAID, NAS, TrueNAS, rsync, cloud sync" },
+        { "label": "Hosting & Web Services", "value": "Email servers, web hosting, web apps, website deployment" }
+      ]
+    },
+    {
+      "title": "Software / Web Development",
+      "items": [
+        { "label": "Deployment", "value": "Coolify" },
+        { "label": "Framework", "value": "SvelteKit" },
+        { "label": "Version Control", "value": "GitHub" },
+        { "label": "Languages", "value": "JavaScript, TypeScript" }
+      ]
+    },
+    {
+      "title": "Certificates",
+      "items": [
+        { "label": "ECDL", "value": "module M2, M3, M4, M6 and M7" }
+      ]
+    },
+    {
+      "title": "Other",
+      "items": [
+        { "label": "Criminal Record", "value": "None" },
+        { "label": "Driving License", "value": "AM, B" }
+      ]
+    }
+  ]
+}
