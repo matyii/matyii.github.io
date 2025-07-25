@@ -1,3 +1,4 @@
+
 import { writable } from 'svelte/store';
 
 export interface NowPlaying {
@@ -31,15 +32,14 @@ function createSpotifyStore() {
     async function fetchNowPlaying() {
         try {
             const response = await fetch('/api/spotify');
-            if (response.ok) {
-                const data = await response.json();
-                nowPlaying.set(data.nowPlaying);
-                devices.set(data.devices.devices);
-                activeDevice.set(data.devices.devices?.find((d: Device) => d.is_active) || null);
-                if (data.nowPlaying?.progress_ms && data.nowPlaying?.item?.duration_ms) {
-                    progressMs.set(data.nowPlaying.progress_ms);
-                    progress.set((data.nowPlaying.progress_ms / data.nowPlaying.item.duration_ms) * 100);
-                }
+            if (!response.ok) throw new Error('Failed to fetch Spotify data');
+            const data = await response.json();
+            nowPlaying.set(data.nowPlaying);
+            devices.set(data.devices.devices);
+            activeDevice.set(data.devices.devices?.find((d: Device) => d.is_active) || null);
+            if (data.nowPlaying?.progress_ms && data.nowPlaying?.item?.duration_ms) {
+                progressMs.set(data.nowPlaying.progress_ms);
+                progress.set((data.nowPlaying.progress_ms / data.nowPlaying.item.duration_ms) * 100);
             }
         } catch (error) {
             console.error('Error fetching Spotify data:', error);

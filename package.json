@@ -33,6 +33,8 @@
 		"@lucide/svelte": "^0.510.0",
 		"@types/node": "^22.15.17",
 		"buffer": "^6.0.3",
-		"mode-watcher": "0.5.1"
+		"jspdf": "^3.0.1",
+		"mode-watcher": "0.5.1",
+		"pdf-lib": "^1.17.1"
 	}
 }
