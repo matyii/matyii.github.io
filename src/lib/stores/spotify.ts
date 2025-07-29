@@ -46,11 +46,14 @@ function createSpotifyStore() {
         }
     }
 
-    function startProgressCounter(currentNowPlaying: NowPlaying | null) {
-        if (progressInterval) clearInterval(progressInterval);
-        if (currentNowPlaying?.progress_ms && currentNowPlaying?.item?.duration_ms) {
-            let ms = currentNowPlaying.progress_ms;
-            progressInterval = setInterval(() => {
+function startProgressCounter(currentNowPlaying: NowPlaying | null) {
+    if (progressInterval) clearInterval(progressInterval);
+    if (currentNowPlaying?.progress_ms && currentNowPlaying?.item?.duration_ms) {
+        let ms = currentNowPlaying.progress_ms;
+        let isPlaying = (currentNowPlaying as any).is_playing ?? true;
+        progressInterval = setInterval(() => {
+            isPlaying = (currentNowPlaying as any).is_playing ?? true;
+            if (isPlaying) {
                 ms += 1000;
                 if (currentNowPlaying.item && ms > currentNowPlaying.item.duration_ms) {
                     ms = currentNowPlaying.item.duration_ms;
@@ -59,9 +62,10 @@ function createSpotifyStore() {
                     progress.set((ms / currentNowPlaying.item.duration_ms) * 100);
                 }
                 progressMs.set(ms);
-            }, 1000);
-        }
+            }
+        }, 1000);
     }
+}
 
     function start() {
         fetchNowPlaying().then(() => {
