@@ -137,7 +137,7 @@
             class="flex items-center gap-4 p-4 rounded-xl shadow cursor-pointer w-full transition-all border border-white/30 bg-white/10 backdrop-blur-xl hover:shadow-lg hover:bg-white/20"
             aria-label="Network Status"
           >
-            <img src="https://matyas.services/favicon.svg" alt="Status" class="w-12 h-12 object-cover rounded-md" />
+            <img src="https://matyas.services/mascots/main.png" alt="matyas.services" class="w-12 h-12 object-cover rounded-md" />
             <div class="flex flex-col items-start">
               <span class="font-semibold text-lg">matyas.services</span>
               <span class="text-neutral-700 dark:text-neutral-300 text-sm">offering server management, web development, IT services</span>
