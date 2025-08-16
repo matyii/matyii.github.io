@@ -114,7 +114,7 @@
 </svelte:head>
 
 
-<ModeWatcher />
+<ModeWatcher defaultMode="dark" />
 <Navbar />
 
 
