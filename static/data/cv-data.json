@@ -13,6 +13,18 @@
         "Certifications: ECDL"
       ]
     },
+      {
+        "title": "Job Experience",
+        "items": [
+          {
+            "company": "VERMONT Services Slovakia",
+            "position": "IT Technician",
+            "from": "2024",
+            "technologies": "MSSQL, Microsoft Windows, Office, General IT troubleshooting",
+            "current": true
+          }
+        ]
+      },
     {
       "title": "Languages",
       "items": [

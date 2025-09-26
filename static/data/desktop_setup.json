@@ -1,18 +1,13 @@
 [
   {
     "type": "Laptop",
-    "device": "MacBook Air M1",
-    "specs": "8GB RAM, 256GB SSD"
-  },
-  {
-    "type": "Monitor",
-    "device": "Xiaomi A27i",
-    "specs": "27\", 100Hz, 1080p"
+    "device": "MacBook M1 Air",
+    "specs": "256GB, 8GB RAM"
   },
   {
     "type": "CPU",
-    "device": "Intel Core i3-4170",
-    "specs": "3.70GHz, 2 cores, 4 threads"
+    "device": "AMD Ryzen 5 5500",
+    "specs": "6 cores, 12 threads"
   },
   {
     "type": "GPU",
@@ -21,13 +16,28 @@
   },
   {
     "type": "RAM",
-    "device": "Kingston DDR3",
-    "specs": "16GB (2x8GB), 1600MHz"
+    "device": "G.SKILL 16GB",
+    "specs": "DDR4 3200MHz CL16"
   },
   {
-    "type": "OS",
+    "type": "Disk",
+    "device": "WD_BLACK SN7100",
+    "specs": "1 TB"
+  },
+  {
+    "type": "Monitor",
+    "device": "Xiaomi A27i",
+    "specs": "27', 100Hz, 1080p"
+  },
+  {
+    "type": "Main OS",
     "device": "Windows 11",
-    "specs": "24H2 (26100)"
+    "specs": "Build 24H2 (26100)"
+  },
+  {
+    "type": "Secondary OS",
+    "device": "Arch Linux",
+    "specs": "KDE Plasma DE"
   },
   {
     "type": "IDE",
