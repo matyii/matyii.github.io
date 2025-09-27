@@ -189,8 +189,23 @@
           }
         }}
       >
-        <div class="relative flex items-center justify-center w-full">
-          <img src={modalImg} alt="Full size" class="w-[75vw] h-[75vh] object-contain shadow-2xl" in:fade={{ duration: 120 }} out:fade={{ duration: 120 }} />
+        <div class="relative flex items-center justify-center w-full" role="presentation" aria-label="Modal image container">
+          <button
+            type="button"
+            class="focus:outline-none p-0 m-0 bg-transparent border-none"
+            aria-label="Close modal"
+            tabindex="0"
+            on:click|stopPropagation
+            on:keydown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            }}
+            style="display: flex;"
+          >
+            <img src={modalImg} alt="Full size" class="w-[75vw] h-[75vh] object-contain shadow-2xl" in:fade={{ duration: 120 }} out:fade={{ duration: 120 }} />
+          </button>
         </div>
         {#if projectData}
           <div class="mt-4 flex items-center gap-4 text-lg font-bold text-white justify-center">

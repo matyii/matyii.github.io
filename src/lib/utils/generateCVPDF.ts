@@ -47,8 +47,11 @@ export function generateCVPDF(cvData: any) {
           let jobText = `${item.position} @ ${item.company}`;
           let dateText = `${item.from} – ${item.current ? 'Present' : item.to || ''}`;
           let techText = item.technologies ? `${item.technologies}` : '';
-          lines = [jobText, dateText];
-          if (techText) lines.push(techText);
+          const jobLines = doc.splitTextToSize(jobText, textWidth);
+          const dateLines = doc.splitTextToSize(dateText, textWidth);
+          let techLines: string[] = [];
+          if (techText) techLines = doc.splitTextToSize(techText, textWidth);
+          lines = [...jobLines, ...dateLines, ...techLines];
         } else {
           lines = doc.splitTextToSize(JSON.stringify(item), textWidth);
         }
@@ -84,8 +87,11 @@ export function generateCVPDF(cvData: any) {
           let jobText = `${item.position} @ ${item.company}`;
           let dateText = `${item.from} – ${item.current ? 'Present' : item.to || ''}`;
           let techText = item.technologies ? `${item.technologies}` : '';
-          lines = [jobText, dateText];
-          if (techText) lines.push(techText);
+          const jobLines = doc.splitTextToSize(jobText, textWidth);
+          const dateLines = doc.splitTextToSize(dateText, textWidth);
+          let techLines: string[] = [];
+          if (techText) techLines = doc.splitTextToSize(techText, textWidth);
+          lines = [...jobLines, ...dateLines, ...techLines];
         } else {
           lines = doc.splitTextToSize(JSON.stringify(item), textWidth);
         }
