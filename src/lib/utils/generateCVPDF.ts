@@ -29,44 +29,80 @@ export function generateCVPDF(cvData: any) {
   const leftMargin = 40;
   const rightMargin = 40;
   const textWidth = pageWidth - leftMargin - rightMargin;
-  for (const category of cvData.categories) {
-    y += 48; 
-    
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(17);
-    doc.text(category.title, leftMargin, y - 8);
-    
-    const titleWidth = doc.getTextWidth(category.title);
-    doc.setDrawColor(60, 40, 80);
-    doc.setLineWidth(1.2);
-    doc.line(leftMargin, y - 5, leftMargin + titleWidth, y - 5);
-    
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(12);
-    let first = true;
-    for (const item of category.items) {
-      y += first ? 14 : 18;
-      first = false;
-      let text = '';
-      if (typeof item === 'string') {
-        text = item;
-      } else if (item.label && item.level) {
-        text = `${item.label}: ${item.level}`;
-      } else if (item.label && item.value) {
-        text = `${item.label}: ${item.value}`;
-      } else {
-        text = JSON.stringify(item);
-      }
-      doc.setTextColor('#444');
+    for (const category of cvData.categories) {
       
-      const lines = doc.splitTextToSize(text, textWidth);
-      for (const line of lines) {
-        doc.text(line, leftMargin + 10, y);
-        if (line !== lines[lines.length - 1]) y += 16;
+      let categoryHeight = 48 + 8; 
+      let first = true;
+      for (const item of category.items) {
+        categoryHeight += first ? 14 : 18;
+        first = false;
+        let lines: string[] = [];
+        if (typeof item === 'string') {
+          lines = doc.splitTextToSize(item, textWidth);
+        } else if (item.label && item.level) {
+          lines = doc.splitTextToSize(`${item.label}: ${item.level}`, textWidth);
+        } else if (item.label && item.value) {
+          lines = doc.splitTextToSize(`${item.label}: ${item.value}`, textWidth);
+        } else if (category.title === 'Job Experience' && item.company && item.position) {
+          let jobText = `${item.position} @ ${item.company}`;
+          let dateText = `${item.from} – ${item.current ? 'Present' : item.to || ''}`;
+          let techText = item.technologies ? `${item.technologies}` : '';
+          const jobLines = doc.splitTextToSize(jobText, textWidth);
+          const dateLines = doc.splitTextToSize(dateText, textWidth);
+          let techLines: string[] = [];
+          if (techText) techLines = doc.splitTextToSize(techText, textWidth);
+          lines = [...jobLines, ...dateLines, ...techLines];
+        } else {
+          lines = doc.splitTextToSize(JSON.stringify(item), textWidth);
+        }
+        categoryHeight += lines.length * 16;
       }
+      
+      if (y + categoryHeight > doc.internal.pageSize.getHeight() - 60) {
+        doc.addPage();
+        y = 60;
+      }
+      y += 48;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(17);
+      doc.text(category.title, leftMargin, y - 8);
+      const titleWidth = doc.getTextWidth(category.title);
+      doc.setDrawColor(60, 40, 80);
+      doc.setLineWidth(1.2);
+      doc.line(leftMargin, y - 5, leftMargin + titleWidth, y - 5);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(12);
+      first = true;
+      for (const item of category.items) {
+        y += first ? 14 : 18;
+        first = false;
+        let lines: string[] = [];
+        if (typeof item === 'string') {
+          lines = doc.splitTextToSize(item, textWidth);
+        } else if (item.label && item.level) {
+          lines = doc.splitTextToSize(`${item.label}: ${item.level}`, textWidth);
+        } else if (item.label && item.value) {
+          lines = doc.splitTextToSize(`${item.label}: ${item.value}`, textWidth);
+        } else if (category.title === 'Job Experience' && item.company && item.position) {
+          let jobText = `${item.position} @ ${item.company}`;
+          let dateText = `${item.from} – ${item.current ? 'Present' : item.to || ''}`;
+          let techText = item.technologies ? `${item.technologies}` : '';
+          const jobLines = doc.splitTextToSize(jobText, textWidth);
+          const dateLines = doc.splitTextToSize(dateText, textWidth);
+          let techLines: string[] = [];
+          if (techText) techLines = doc.splitTextToSize(techText, textWidth);
+          lines = [...jobLines, ...dateLines, ...techLines];
+        } else {
+          lines = doc.splitTextToSize(JSON.stringify(item), textWidth);
+        }
+        doc.setTextColor('#444');
+        for (const line of lines) {
+          doc.text(line, leftMargin + 10, y);
+          y += 16;
+        }
+      }
+      doc.setTextColor('#222');
     }
-    doc.setTextColor('#222');
-  }
 
   doc.setFontSize(10);
   doc.setTextColor('#aaa');

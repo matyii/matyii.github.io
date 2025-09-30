@@ -47,15 +47,26 @@
             <div class="font-semibold text-neutral-100 mb-1 text-lg">{category.title}</div>
             <div class="flex flex-col gap-y-1 text-sm text-neutral-300">
               {#each category.items as item}
-                {#if typeof item === 'string'}
-                  <div>{item}</div>
-                {:else if item.label && item.value}
-                  <div><span class="font-medium text-neutral-100">{item.label}:</span> {item.value}</div>
-                {:else if item.label && item.level}
-                  <div><span class="font-medium text-neutral-100">{item.label}:</span> <span class="text-neutral-400">{item.level}</span></div>
-                {:else}
-                  <div>{JSON.stringify(item)}</div>
-                {/if}
+                  {#if typeof item === 'string'}
+                    <div>{item}</div>
+                  {:else if item.label && item.value}
+                    <div><span class="font-medium text-neutral-100">{item.label}:</span> {item.value}</div>
+                  {:else if item.label && item.level}
+                    <div><span class="font-medium text-neutral-100">{item.label}:</span> <span class="text-neutral-400">{item.level}</span></div>
+                  {:else if category.title === 'Job Experience' && item.company && item.position}
+                    <div class="flex flex-col py-2 border-b border-white/10 last:border-none">
+                      <span class="font-medium text-neutral-100">{item.position}</span>
+                      <span class="text-neutral-300">{item.company}</span>
+                      <span class="text-xs text-neutral-400">
+                        {item.from} – {item.current ? 'Present' : item.to}
+                      </span>
+                      {#if item.technologies}
+                        <span class="text-xs text-neutral-400">{item.technologies}</span>
+                      {/if}
+                    </div>
+                  {:else}
+                    <div>{JSON.stringify(item)}</div>
+                  {/if}
               {/each}
             </div>
           </div>
