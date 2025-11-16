@@ -1,5 +1,21 @@
 [
     {
+        "title": "játszótérdoki.hu",
+        "url": "jatszoterdoki",
+        "description": "Portfolio page for a hungarian company specified in renovating, repairing children's playground.",
+        "extended_description": "",
+        "image": "logo.png",
+        "images": ["1.png","2.png","3.png"],
+        "links": [
+            {"label": "Open", "url": "https://jatszoterdoki.hu"}
+        ],
+        "badges": [
+            {"label": "ShadCN"},
+            {"label": "SvelteKit"},
+            {"label": "Javascript"}
+        ]
+    },
+    {
         "title": "screenie",
         "url": "screenie",
         "description": "share your screenshots and videos easily (originally hypixel.lol)",

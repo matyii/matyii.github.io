@@ -117,20 +117,7 @@
       <Card.Content class="flex-1 flex flex-col gap-4 justify-between">
         <ScrollArea class="flex flex-col w-full max-h-56 p-1">
           <div class="flex gap-3 flex-col">
-            <a
-            href="https://selfhostguides.diy"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-4 p-4 rounded-xl shadow cursor-pointer w-full transition-all border border-white/30 bg-white/10 backdrop-blur-xl hover:shadow-lg hover:bg-white/20"
-            aria-label="selfhostguides.diy"
-          >
-            <img src="https://selfhostguides.diy/shg.png" alt="selfhostguides.diy" class="h-10 object-cover rounded-md" />
-            <div class="flex flex-col items-start">
-              <span class="font-semibold text-lg">selfhostguides.diy</span>
-              <span class="text-neutral-700 dark:text-neutral-300 text-sm">guides and resources from the selfhosting community</span>
-            </div>
-            </a>
-            <a
+          <a
             href="https://matyas.services"
             target="_blank"
             rel="noopener noreferrer"
@@ -141,6 +128,18 @@
             <div class="flex flex-col items-start">
               <span class="font-semibold text-lg">matyas.services</span>
               <span class="text-neutral-700 dark:text-neutral-300 text-sm">offering server management, web development, IT services</span>
+            </div>
+          </a>
+          <a
+            href="https://selfhostguides.diy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-4 p-4 rounded-xl shadow cursor-pointer w-full transition-all border border-white/30 bg-white/10 backdrop-blur-xl hover:shadow-lg hover:bg-white/20"
+            aria-label="selfhostguides.diy">
+            <img src="https://selfhostguides.diy/shg.png" alt="selfhostguides.diy" class="h-10 object-cover rounded-md" />
+            <div class="flex flex-col items-start">
+              <span class="font-semibold text-lg">selfhostguides.diy</span>
+              <span class="text-neutral-700 dark:text-neutral-300 text-sm">guides and resources from the selfhosting community</span>
             </div>
           </a>
             <!-- <a

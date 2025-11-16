@@ -155,16 +155,21 @@
         </Card.Content>
         <Card.Content class="w-full mt-1">
           {#if projectData.links && projectData.links.length > 0}
-            <Button
-              variant="outline"
-              class="w-full text-md py-4"
-              href={projectData.links[0].url}
-              target="_blank"
-            > 
-            <Github />
-            Open Repository
-              
-            </Button>
+            <div class="flex flex-col gap-2 w-full">
+              {#each projectData.links as link}
+                <Button
+                  variant="outline"
+                  class="w-full text-md py-4 flex items-center justify-center gap-2"
+                  href={link.url}
+                  target="_blank"
+                >
+                  {#if link.label?.toLowerCase().includes('github')}
+                    <Github />
+                  {/if}
+                  {link.label || 'Open'}
+                </Button>
+              {/each}
+            </div>
           {/if}
         </Card.Content>
       </Card.Root>
