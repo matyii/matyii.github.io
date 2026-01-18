@@ -1,15 +1,12 @@
 <script lang="ts">
     import * as Avatar from "$lib/components/ui/avatar/index.js";
     import * as Card from "$lib/components/ui/card/index.js";
-    
     import Button from "$lib/components/ui/button/button.svelte";
     import { Progress } from "$lib/components/ui/progress/index.js";
-    import { Separator } from "$lib/components/ui/separator/index.js";
     import * as Tooltip from "$lib/components/ui/tooltip/index.js";
     import { pageTitle } from "$lib/stores/title";
     pageTitle.set("")
     import { LaptopIcon, SmartphoneIcon, SpeakerIcon, Gamepad2Icon, Github, Mail, Music, CloudAlert, Linkedin } from "@lucide/svelte";
-    import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
     import { spotify } from "$lib/stores/spotify";
     const { nowPlaying, activeDevice, progress, progressMs } = spotify;
     type DeviceType = 'Computer' | 'Smartphone' | 'Speaker' | 'GameConsole';
@@ -20,8 +17,6 @@
         GameConsole: Gamepad2Icon
     };
 </script>
-
-
 
 <div class="relative flex flex-col items-center justify-center min-h-screen gap-4 w-full px-2 my-5">
   <div class="w-full flex flex-col lg:flex-row gap-4 justify-center items-center lg:items-stretch">
@@ -86,9 +81,6 @@
               <span>My Linkedin</span>
             </Tooltip.Content>
           </Tooltip.Root>
-
-          <Separator orientation="vertical" class="mx-1" />
-
           <Tooltip.Root>
             <Tooltip.Trigger>
               <Button
@@ -106,57 +98,6 @@
             </Tooltip.Content>
           </Tooltip.Root>
         </Tooltip.Provider>
-      </Card.Content>
-    </Card.Root>
-
-    <Card.Root class="w-full max-w-sm shadow-md flex flex-col h-full bg-white/10 backdrop-blur-2xl border border-white/30 rounded-xl text-white">
-      <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center">
-        <Card.Title>itsmatyii network</Card.Title>
-        <Card.Description class="text-neutral-700 dark:text-neutral-300">services, tools, and websites i manage</Card.Description>
-      </Card.Header>
-      <Card.Content class="flex-1 flex flex-col gap-4 justify-between">
-        <ScrollArea class="flex flex-col w-full max-h-56 p-1">
-          <div class="flex gap-3 flex-col">
-          <a
-            href="https://matyas.services"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-4 p-4 rounded-xl shadow cursor-pointer w-full transition-all border border-white/30 bg-white/10 backdrop-blur-xl hover:shadow-lg hover:bg-white/20"
-            aria-label="Network Status"
-          >
-            <img src="https://matyas.services/mascots/main.png" alt="matyas.services" class="w-12 h-12 object-cover rounded-md" />
-            <div class="flex flex-col items-start">
-              <span class="font-semibold text-lg">matyas.services</span>
-              <span class="text-neutral-700 dark:text-neutral-300 text-sm">offering server management, web development, IT services</span>
-            </div>
-          </a>
-          <a
-            href="https://selfhostguides.diy"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-4 p-4 rounded-xl shadow cursor-pointer w-full transition-all border border-white/30 bg-white/10 backdrop-blur-xl hover:shadow-lg hover:bg-white/20"
-            aria-label="selfhostguides.diy">
-            <img src="https://selfhostguides.diy/shg.png" alt="selfhostguides.diy" class="h-10 object-cover rounded-md" />
-            <div class="flex flex-col items-start">
-              <span class="font-semibold text-lg">selfhostguides.diy</span>
-              <span class="text-neutral-700 dark:text-neutral-300 text-sm">guides and resources from the selfhosting community</span>
-            </div>
-          </a>
-            <!-- <a
-            href="https://screenie.host"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-4 p-4 rounded-xl shadow cursor-pointer w-full transition-all border border-white/30 bg-white/10 backdrop-blur-xl hover:shadow-lg hover:bg-white/20"
-            aria-label="screenie.host"
-          >
-            <img src="screenie.png" alt="Services" class="h-10 object-cover rounded-md" />
-            <div class="flex flex-col items-start">
-              <span class="font-semibold text-lg">screenie.host</span>
-              <span class="text-neutral-700 dark:text-neutral-300 text-sm">screenshot and file uploading service (wip)</span>
-            </div>
-          </a> -->
-          </div>
-        </ScrollArea>
       </Card.Content>
     </Card.Root>
   </div>

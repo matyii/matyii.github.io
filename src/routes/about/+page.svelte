@@ -1,11 +1,10 @@
 <script lang="ts">
-    import * as Avatar from "$lib/components/ui/avatar/index.js";
     import * as Card from "$lib/components/ui/card/index.js";
     import Button from "$lib/components/ui/button/button.svelte";
-    import * as Accordion from "$lib/components/ui/accordion/index.js";
     import * as Tabs from "$lib/components/ui/tabs/index.js";
     import { pageTitle } from "$lib/stores/title";
     import { onMount } from "svelte";
+    import * as Table from "$lib/components/ui/table/index.js";
     pageTitle.set("About me");
 
     let setupData: Array<{ type: string; device: string; specs: string }> = [];
@@ -55,24 +54,25 @@
                 {:else if error}
                   <div class="text-center text-red-400">{error}</div>
                 {:else}
-                  <table class="w-full border border-white/20 rounded-lg overflow-hidden">
-                    <thead>
-                      <tr class="bg-white/5">
-                        <th class="border border-white/20 px-4 py-2 text-left font-bold">Type</th>
-                        <th class="border border-white/20 px-4 py-2 text-left font-bold">Device</th>
-                        <th class="border border-white/20 px-4 py-2 text-left font-bold">Specs / Details</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {#each setupData as item, i}
-                        <tr class="{i % 2 === 1 ? 'bg-white/5' : ''}">
-                          <td class="border border-white/20 px-4 py-2 text-left">{item.type}</td>
-                          <td class="border border-white/20 px-4 py-2 text-left">{item.device}</td>
-                          <td class="border border-white/20 px-4 py-2 text-left">{item.specs}</td>
-                        </tr>
+                  <Table.Root>
+                    <Table.Caption>My coding setup details.</Table.Caption>
+                    <Table.Header>
+                      <Table.Row>
+                        <Table.Head class="w-[100px]">Type</Table.Head>
+                        <Table.Head>Device</Table.Head>
+                        <Table.Head>Specs / Details</Table.Head>
+                      </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                      {#each setupData as item, i (item.type + item.device + item.specs)}
+                        <Table.Row class={i < setupData.length - 1 ? 'border-b border-white/20' : ''}>
+                          <Table.Cell class="font-medium">{item.type}</Table.Cell>
+                          <Table.Cell>{item.device}</Table.Cell>
+                          <Table.Cell>{item.specs}</Table.Cell>
+                        </Table.Row>
                       {/each}
-                    </tbody>
-                  </table>
+                    </Table.Body>
+                  </Table.Root>
                 {/if}
               </div>
             </div>

@@ -53,7 +53,7 @@
   {:else}
     
     {#each projects as project}
-      <a href={`/projects/${project.url}`} class="shadow-lg rounded-xl flex flex-col h-full transition-transform duration-200 hover:scale-[1.03] w-[340px] bg-white/10 backdrop-blur-2xl border border-white/20 text-white mx-2 my-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" tabindex="0">
+      <a href={`/projects/${project.url}`} class="shadow-lg rounded-xl flex flex-col h-full min-h-[420px] transition-transform duration-200 hover:scale-[1.03] w-[340px] bg-white/10 backdrop-blur-2xl border border-white/20 text-white mx-2 my-2 focus:outline-none focus:ring-2 focus:ring-indigo-400" tabindex="0">
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4 pb-2">
           <div class="w-full aspect-video rounded-lg overflow-hidden bg-neutral-900 flex items-center justify-center mb-1">
             <img
@@ -69,7 +69,7 @@
           </Card.Description>
         </Card.Header>
 
-        <Card.Content class="px-4 pb-4">
+        <Card.Content class="px-4 pb-4 mt-auto">
           <div class="flex flex-wrap gap-2 justify-center">
             {#each project.badges as badge}
               <Badge>{badge.label}</Badge>

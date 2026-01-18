@@ -1,8 +1,8 @@
 [
   {
     "type": "Laptop",
-    "device": "MacBook M1 Air",
-    "specs": "256GB, 8GB RAM"
+    "device": "MacBook Air M1",
+    "specs": "512GB, 8GB RAM"
   },
   {
     "type": "CPU",
@@ -11,12 +11,12 @@
   },
   {
     "type": "GPU",
-    "device": "NVIDIA GeForce GTX 1050 Ti",
-    "specs": "4GB GDDR5"
+    "device": "NVIDIA GeForce RTX 2070",
+    "specs": "8GB GDDR6"
   },
   {
     "type": "RAM",
-    "device": "G.SKILL 16GB",
+    "device": "G.SKILL 32GB",
     "specs": "DDR4 3200MHz CL16"
   },
   {
@@ -30,14 +30,19 @@
     "specs": "27', 100Hz, 1080p"
   },
   {
-    "type": "Main OS",
-    "device": "Windows 11",
-    "specs": "Build 24H2 (26100)"
+    "type": "Monitor",
+    "device": "GIGABYTE GS27QCA",
+    "specs": "27', 165Hz, 1440p, Curved"
   },
   {
-    "type": "Secondary OS",
-    "device": "Arch Linux",
-    "specs": "KDE Plasma DE"
+    "type": "Monitor",
+    "device": "AOC 27B31H",
+    "specs": "27', 75Hz, 1080p"
+  },
+  {
+    "type": "Main OS",
+    "device": "Windows 11",
+    "specs": "Build 25H2"
   },
   {
     "type": "IDE",
