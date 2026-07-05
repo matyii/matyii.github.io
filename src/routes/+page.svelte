@@ -432,7 +432,16 @@
                   </a>{i < $nowPlaying.item.artists.length - 1 ? ", " : ""}
                 {/each}
               </p>
-              <p class="truncate text-xs text-muted-foreground">{$nowPlaying.item.album.name}</p>
+              <p class="truncate text-xs text-muted-foreground">
+                <a
+                  href={$nowPlaying.item.album.external_urls.spotify}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-foreground"
+                >
+                  {$nowPlaying.item.album.name}
+                </a>
+              </p>
             </div>
           </div>
 
