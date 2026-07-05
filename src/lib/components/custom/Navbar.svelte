@@ -8,7 +8,6 @@
     FileText,
     Home,
     Menu,
-    Monitor,
     Moon,
     Sun,
     X
@@ -24,7 +23,6 @@
   const navItems: NavItem[] = [
     { href: "/", label: "Home", shortLabel: "Home", icon: Home },
     { href: "/projects", label: "Projects", shortLabel: "Work", icon: Briefcase },
-    { href: "/about", label: "Setup", shortLabel: "Setup", icon: Monitor },
     { href: "/cv", label: "CV", shortLabel: "CV", icon: FileText }
   ];
 
