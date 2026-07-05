@@ -1,199 +1,86 @@
 <script lang="ts">
-    import "../app.css";
-    import { ModeWatcher } from "mode-watcher";
-    import { pageTitle } from "$lib/stores/title";
-    import { onMount, onDestroy } from 'svelte';
-    import { spotify } from "$lib/stores/spotify";
-    import { crossfade } from 'svelte/transition';
-    import Navbar from "$lib/components/custom/Navbar.svelte";
+  import "../app.css";
+  import { ModeWatcher } from "mode-watcher";
+  import { pageTitle } from "$lib/stores/title";
+  import { onDestroy, onMount } from "svelte";
+  import { spotify } from "$lib/stores/spotify";
+  import Navbar from "$lib/components/custom/Navbar.svelte";
 
-    const { nowPlaying } = spotify;
-    import { writable } from 'svelte/store';
+  const { nowPlaying } = spotify;
 
-    let currentImage: string | null = null;
-    let previousImage: string | null = null;
-    let showPrev = writable(false);
-    let prevImgEl: HTMLDivElement | null = null;
-    let fadingToGradient = writable(false);
+  const staticTitle = "itsmatyii | Kristof Matyas";
+  $: fullTitle = $pageTitle ? `${$pageTitle} - ${staticTitle}` : staticTitle;
+  $: albumArt = $nowPlaying?.item?.album?.images?.[0]?.url ?? null;
 
-    let parallaxEl: HTMLDivElement | null = null;
-    let parallaxActive = false;
-    let parallaxX = 0;
-    let parallaxY = 0;
-    const maxOffsetX = 32; // px
-    const maxOffsetY = 16; // px
+  const maxOffsetX = 110;
+  const maxOffsetY = 70;
+  const smoothing = 0.08;
 
-    import { tick } from 'svelte';
-    function handleParallax(e: MouseEvent) {
-        if (typeof window === 'undefined') return;
-        if (!parallaxActive) return;
-        const { innerWidth, innerHeight } = window;
-        const x = (e.clientX / innerWidth - 0.5) * 2;
-        const y = (e.clientY / innerHeight - 0.5) * 2;
-        parallaxX = -x * maxOffsetX;
-        parallaxY = -y * maxOffsetY;
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let rafId: number | null = null;
+  let prefersReducedMotion = false;
+
+  function handleMouseMove(event: MouseEvent) {
+    if (prefersReducedMotion || typeof window === "undefined") return;
+
+    const normalizedX = event.clientX / window.innerWidth - 0.5;
+    const normalizedY = event.clientY / window.innerHeight - 0.5;
+
+    targetX = -normalizedX * maxOffsetX;
+    targetY = -normalizedY * maxOffsetY;
+  }
+
+  function resetParallax() {
+    targetX = 0;
+    targetY = 0;
+  }
+
+  function animateParallax() {
+    currentX += (targetX - currentX) * smoothing;
+    currentY += (targetY - currentY) * smoothing;
+    rafId = requestAnimationFrame(animateParallax);
+  }
+
+  onMount(() => {
+    prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReducedMotion) {
+      rafId = requestAnimationFrame(animateParallax);
     }
+    spotify.start();
+  });
 
-    function enableParallax() {
-        if (typeof window === 'undefined') return;
-        if (!parallaxActive) {
-            parallaxActive = true;
-            window.addEventListener('mousemove', handleParallax);
-        }
+  onDestroy(() => {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
     }
-    function disableParallax() {
-        if (typeof window === 'undefined') return;
-        parallaxActive = false;
-        parallaxX = 0;
-        parallaxY = 0;
-        window.removeEventListener('mousemove', handleParallax);
-    }
-
-    const [send, receive] = crossfade({
-    duration: 1800,
-    fallback(node, params) {
-        return {
-        duration: 1800,
-        css: t => `opacity: ${t}`
-        };
-    }
-    });
-
-    $: {
-        const img = $nowPlaying?.item?.album?.images?.[0]?.url ?? null;
-        if (img !== currentImage) {
-            if (currentImage && !img) {
-                previousImage = currentImage;
-                showPrev.set(true);
-                fadingToGradient.set(true);
-                tick().then(() => {
-                    if (prevImgEl) {
-                        prevImgEl.classList.add('fade-out');
-                    }
-                });
-                setTimeout(() => {
-                    showPrev.set(false);
-                    fadingToGradient.set(false);
-                    if (prevImgEl) prevImgEl.classList.remove('fade-out');
-                    previousImage = null;
-                }, 1800);
-            } else if (currentImage && img) {
-                previousImage = currentImage;
-                showPrev.set(true);
-                fadingToGradient.set(false);
-                tick().then(() => {
-                    if (prevImgEl) {
-                        prevImgEl.classList.add('fade-out');
-                    }
-                });
-                setTimeout(() => {
-                    showPrev.set(false);
-                    if (prevImgEl) prevImgEl.classList.remove('fade-out');
-                    previousImage = null;
-                }, 1800);
-            }
-            currentImage = img;
-        }
-        enableParallax();
-    }
-
-    const staticTitle = "itsmatyii | Kristóf Mátyás";
-    $: fullTitle = $pageTitle ? `${$pageTitle} - ${staticTitle}` : staticTitle;
-
-    
-    onMount(() => {
-        spotify.start();
-    });
-    onDestroy(() => {
-        spotify.stop();
-    });
+    spotify.stop();
+  });
 </script>
 
 <svelte:head>
     <title>{fullTitle}</title>
 </svelte:head>
 
+<svelte:window on:mousemove={handleMouseMove} on:mouseleave={resetParallax} />
 
 <ModeWatcher defaultMode="dark" />
 <Navbar />
 
+<div class="pointer-events-none fixed inset-0 -z-20 overflow-hidden" aria-hidden="true">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(77,148,255,0.12),transparent_28%),radial-gradient(circle_at_80%_8%,rgba(83,193,255,0.1),transparent_32%),radial-gradient(circle_at_55%_110%,rgba(96,83,255,0.1),transparent_28%)]"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,hsl(var(--background))_74%)]"></div>
 
-<style>
-  .background-transition-wrapper {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: -10;
-  }
-  .background-transition-img, .background-transition-gradient {
-    position: fixed;
-    inset: 0;
-    width: 120vw;
-    height: 120vh;
-    left: -10vw;
-    top: -10vh;
-    pointer-events: none;
-    will-change: opacity;
-  }
-  .bg-previous {
-    opacity: 0.85;
-    transition: opacity 1800ms cubic-bezier(0.4,0,0.2,1);
-    z-index: -11;
-  }
-  .bg-current {
-    opacity: 0.85;
-    z-index: -12;
-  }
-</style>
-<div class="background-transition-wrapper">
-  
-  {#if previousImage && $showPrev}
+  {#if albumArt}
     <div
-      class="background-transition-img bg-previous"
-      bind:this={prevImgEl}
-      style="
-        background: url('{previousImage}') center center / cover no-repeat;
-        filter: blur(80px) brightness(0.6);
-        opacity: 0.85;
-        z-index: -11;
-      "
-      aria-hidden="true"
-      out:receive={{ key: previousImage }}
-    ></div>
-    {#if $fadingToGradient}
-      <div
-        class="background-transition-gradient bg-gradient-to-br from-gray-950 via-gray-900 to-indigo-950 bg-current"
-        style="
-          filter: blur(80px) brightness(0.7);
-          opacity: 0.85;
-          z-index: -12;
-        "
-        aria-hidden="true"
-      ></div>
-    {/if}
-  {/if}
-    {#if currentImage}
-    <div
-      class="background-transition-img bg-current"
-      bind:this={parallaxEl}
-      style={`background: url(${currentImage}) center center / cover no-repeat; filter: blur(80px) brightness(0.6); opacity: 0.85; z-index: -12; will-change: transform, opacity; outline: 2px solid #f00; transform: translate3d(${parallaxX}px, ${parallaxY}px, 0);`}
-      aria-hidden="true"
-      in:send={{ key: currentImage }}
-    ></div>
-  {/if}
-  {#if !currentImage && !$showPrev}
-    <div
-      class="background-transition-gradient bg-gradient-to-br from-gray-950 via-gray-900 to-indigo-950 bg-current"
-      style="
-        filter: blur(80px) brightness(0.7);
-        opacity: 0.85;
-        z-index: -12;
-      "
-      aria-hidden="true"
+      class="absolute inset-[-16%] bg-cover bg-center opacity-20 blur-3xl transition-opacity duration-700"
+      style={`background-image: url(${albumArt}); transform: translate3d(${currentX}px, ${currentY}px, 0); will-change: transform;`}
     ></div>
   {/if}
 </div>
 
-<slot />
+<main class="relative z-10 mx-auto w-full max-w-7xl px-3 pb-16 pt-24 md:px-6 md:pt-28">
+  <slot />
+</main>

@@ -1,254 +1,388 @@
 <script lang="ts">
-  import { page } from '$app/stores';
-  import { onMount } from 'svelte';
-  import { get } from 'svelte/store';
+  import { page } from "$app/stores";
+  import { onMount } from "svelte";
+  import { get } from "svelte/store";
   import * as Card from "$lib/components/ui/card/index.js";
   import Button from "$lib/components/ui/button/button.svelte";
-  
-  import * as Carousel from "$lib/components/ui/carousel/index.js";
-  import { Separator } from "$lib/components/ui/separator/index.js";
   import { Badge } from "$lib/components/ui/badge/index.js";
-  import Github from "@lucide/svelte/icons/github";
   import { pageTitle } from "$lib/stores/title";
-  import Maximize2 from '@lucide/svelte/icons/maximize-2';
-  import ArrowLeft from '@lucide/svelte/icons/arrow-left';
-  import ArrowRight from '@lucide/svelte/icons/arrow-right';
-  import { fade } from 'svelte/transition';
-
-  type Project = {
-    url: string;
-    title: string;
-    description: string;
-    extended_description?: string;
-    images: string[];
-    badges: { label: string }[];
-    links?: { url: string; label?: string }[];
-    [key: string]: any;
-  };
+  import { normalizeProject, projectHeroImagePath, projectImagePath } from "$lib/utils/projects";
+  import type { Project, RawProject } from "$lib/types/project";
+  import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe, Maximize2 } from "@lucide/svelte";
 
   let projectData: Project | null = null;
   let isLoading = true;
   let modalOpen = false;
-  let modalImg: string | null = null;
-  let modalDiv: HTMLDivElement | null = null;
-  $: if (modalOpen && modalDiv) {
-    modalDiv.focus();
+  let activeImageIndex = 0;
+
+  $: gallery = projectData ? projectData.gallery : [];
+  $: activeImage = projectData && gallery.length > 0 ? gallery[activeImageIndex] : null;
+  $: if (projectData) {
+    pageTitle.set(projectData.title);
+  }
+
+  function setActiveImage(index: number) {
+    if (!projectData || gallery.length === 0) return;
+    const safeIndex = Math.max(0, Math.min(index, gallery.length - 1));
+    activeImageIndex = safeIndex;
   }
 
   function showNextImage() {
-    if (!projectData || !modalImg) return;
-    const idx = projectData && projectData.images
-      ? projectData.images.findIndex(img => `/img/projects/${projectData.url}/${img}` === modalImg)
-      : -1;
-    if (idx < projectData.images.length - 1) {
-      modalImg = `/img/projects/${projectData.url}/${projectData.images[idx + 1]}`;
-    }
+    if (!projectData || gallery.length === 0) return;
+    activeImageIndex = (activeImageIndex + 1) % gallery.length;
   }
+
   function showPrevImage() {
-    if (!projectData || !modalImg) return;
-    const idx = projectData.images.findIndex(img => `/img/projects/${projectData.url}/${img}` === modalImg);
-    if (idx > 0) {
-      modalImg = `/img/projects/${projectData.url}/${projectData.images[idx - 1]}`;
+    if (!projectData || gallery.length === 0) return;
+    activeImageIndex = (activeImageIndex - 1 + gallery.length) % gallery.length;
+  }
+
+  function openImageModal(index: number) {
+    setActiveImage(index);
+    modalOpen = true;
+  }
+
+  function closeImageModal() {
+    modalOpen = false;
+  }
+
+  function handleGlobalKeydown(event: KeyboardEvent) {
+    if (!modalOpen) return;
+
+    if (event.key === "Escape") {
+      closeImageModal();
+    } else if (event.key === "ArrowRight") {
+      showNextImage();
+    } else if (event.key === "ArrowLeft") {
+      showPrevImage();
     }
   }
 
-  onMount(() => {
-    let isMounted = true;
+  function linkIcon(label: string) {
+    const normalized = label.toLowerCase();
+    if (normalized.includes("github")) return Github;
+    if (normalized.includes("live") || normalized.includes("demo") || normalized.includes("open")) return Globe;
+    return ExternalLink;
+  }
 
-    (async () => {
-      const { project } = get(page).params;
-      const res = await fetch('/data/projects.json');
-      const projects: Project[] = await res.json();
-      if (isMounted) {
-        projectData = projects.find((p: Project) => p.url === project) || null;
-        isLoading = false;
-        if (projectData) {
-          pageTitle.set(projectData.title);
-        }
+  onMount(async () => {
+    const slug = get(page).params.project;
+
+    try {
+      const response = await fetch("/data/projects.json");
+      const rawProjects: RawProject[] = await response.json();
+      const normalizedProjects = rawProjects.map(normalizeProject);
+      const selectedProject = normalizedProjects.find((project) => project.url === slug) ?? null;
+      projectData = selectedProject;
+
+      if (selectedProject) {
+        const initialIndex = Math.max(0, selectedProject.gallery.findIndex((img) => img === selectedProject.heroImage));
+        activeImageIndex = initialIndex;
       }
-    })();
-
-    // Arrow key navigation for carousel (when modal not open)
-    const handleKeydown = (e: KeyboardEvent) => {
-      if (modalOpen) return;
-      const key = e.key || e.code;
-      if (key === 'ArrowRight') {
-        const nextBtn = document.querySelector('.carousel-next-btn');
-        if (nextBtn) (nextBtn as HTMLElement).click();
-      } else if (key === 'ArrowLeft') {
-        const prevBtn = document.querySelector('.carousel-prev-btn');
-        if (prevBtn) (prevBtn as HTMLElement).click();
-      }
-    };
-    window.addEventListener('keydown', handleKeydown);
-
-    return () => {
-      isMounted = false;
-      window.removeEventListener('keydown', handleKeydown);
-    };
+    } finally {
+      isLoading = false;
+    }
   });
 </script>
 
-
+<svelte:window on:keydown={handleGlobalKeydown} />
 
 {#if isLoading}
-  <div class="flex justify-center items-center min-h-[40vh] animate-pulse">
-    <span>Loading...</span>
+  <div class="surface-panel border-black/10 px-6 py-12 text-center text-sm text-muted-foreground dark:border-white/10">
+    Loading project...
   </div>
-{:else if projectData}
-  <div class="flex flex-col justify-center items-center min-h-[60vh] mt-6 p-4">
-    
-  <div class="w-full max-w-3xl flex-1" role="group">
-    <Carousel.Root>
-      <Carousel.Content>
-        {#each projectData.images as img, idx}
-          <Carousel.Item>
-            <div class="aspect-w-16 aspect-h-9 w-full h-[420px] rounded-2xl overflow-hidden bg-muted relative flex flex-col items-center justify-center">
-              <img
-                src={`/img/projects/${projectData.url}/${img}`}
-                alt={projectData.title}
-                class="w-full h-full object-cover rounded-xl shadow-2xl"
-              />
-              <button
-                type="button"
-                class="absolute bottom-3 right-3 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 shadow-lg transition-all"
-                aria-label="Open full screen"
-                on:click={() => {
-                  if (projectData) {
-                    modalOpen = true;
-                    modalImg = `/img/projects/${projectData.url}/${img}`;
-                  }
-                }}
-              >
-                <Maximize2 size={22} />
-              </button>
-              <div class="mt-2 flex items-center justify-center gap-2 text-md font-bold text-white bg-black/40 rounded-full px-3 py-1 absolute left-1/2 -translate-x-1/2 bottom-3">
-                <span>{idx + 1} / {projectData.images.length}</span>
-              </div>
-            </div>
-          </Carousel.Item>
-        {/each}
-      </Carousel.Content>
-      <div class="flex justify-between mt-4">
-        <Carousel.Previous class="btn btn-outline carousel-prev-btn" />
-        <Carousel.Next class="btn btn-outline carousel-next-btn" />
-      </div>
-    </Carousel.Root>
+{:else if !projectData}
+  <div class="surface-panel border-black/10 px-6 py-12 text-center dark:border-white/10">
+    <h1 class="text-xl font-semibold">Project not found</h1>
+    <p class="mt-2 text-sm text-muted-foreground">This project may have been renamed or removed.</p>
+    <Button href="/projects" class="mt-4">Back to projects</Button>
   </div>
-    <Separator orientation="vertical" class='mx-3'/>
-    
-    <div class="flex-1 flex flex-col justify-center items-start w-full max-w-md text-center">
-      <Card.Root class="w-full bg-white/10 backdrop-blur-2xl border border-white/30 rounded-lg text-white shadow-md">
-        <Card.Header class="space-y-4">
-          <Card.Title class="text-4xl text-neutral-100">{projectData.title}</Card.Title>
-          <Card.Description class="text-lg text-neutral-200">
-            {projectData.description}
-          </Card.Description>
-          <div class="flex flex-wrap gap-2 justify-center">
+{:else}
+  <article class="space-y-6">
+    <header class="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+      <Card.Root class="surface-panel border-black/10 overflow-hidden dark:border-white/10">
+        <div class="group relative aspect-[16/10] overflow-hidden bg-black/30">
+          <img
+            src={projectHeroImagePath(projectData)}
+            alt={projectData.title}
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <button
+            type="button"
+            class="absolute bottom-4 right-4 inline-flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white transition-colors hover:bg-black/65"
+            aria-label="Open full-screen gallery"
+            on:click={() => openImageModal(activeImageIndex)}
+          >
+            <Maximize2 class="size-4" />
+          </button>
+        </div>
+
+        <Card.Content class="space-y-4 p-5">
+          <div class="space-y-2">
+            <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">{projectData.title}</h1>
+            <p class="text-sm text-muted-foreground sm:text-base">{projectData.description}</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
             {#each projectData.badges as badge}
-              <Badge>{badge.label}</Badge>
+              <Badge variant="outline" class="rounded-full text-[11px]">{badge.label}</Badge>
             {/each}
           </div>
-        </Card.Header>
-        <Card.Content class="text-neutral-100">
-          {projectData.extended_description}
         </Card.Content>
-        <Card.Content class="w-full mt-1">
-          {#if projectData.links && projectData.links.length > 0}
-            <div class="flex flex-col gap-2 w-full">
+      </Card.Root>
+
+      <div class="space-y-4">
+        <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+          <Card.Header class="space-y-1">
+            <Card.Title class="text-lg">Project details</Card.Title>
+            <Card.Description>Context and quick metadata.</Card.Description>
+          </Card.Header>
+          <Card.Content class="space-y-3 text-sm">
+            <div class="flex items-center justify-between rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">
+              <span class="text-muted-foreground">Role</span>
+              <span>{projectData.role}</span>
+            </div>
+            <div class="flex items-center justify-between rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">
+              <span class="text-muted-foreground">Status</span>
+              <span>{projectData.status}</span>
+            </div>
+            <div class="flex items-center justify-between rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">
+              <span class="text-muted-foreground">Year</span>
+              <span>{projectData.year}</span>
+            </div>
+          </Card.Content>
+        </Card.Root>
+
+        {#if projectData.links.length > 0}
+          <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+            <Card.Header class="space-y-1">
+              <Card.Title class="text-lg">Links</Card.Title>
+              <Card.Description>Repository and live resources.</Card.Description>
+            </Card.Header>
+            <Card.Content class="space-y-2">
               {#each projectData.links as link}
                 <Button
-                  variant="outline"
-                  class="w-full text-md py-4 flex items-center justify-center gap-2"
+                  variant="secondary"
+                  class="w-full justify-between"
                   href={link.url}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {#if link.label?.toLowerCase().includes('github')}
-                    <Github />
-                  {/if}
-                  {link.label || 'Open'}
+                  <span class="inline-flex items-center gap-2">
+                    <svelte:component this={linkIcon(link.label)} class="size-4" />
+                    {link.label}
+                  </span>
+                  <ExternalLink class="size-4" />
                 </Button>
               {/each}
-            </div>
+            </Card.Content>
+          </Card.Root>
+        {/if}
+      </div>
+    </header>
+
+    {#if gallery.length > 0}
+      <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+        <Card.Header class="flex flex-row items-center justify-between space-y-0">
+          <div>
+            <Card.Title class="text-lg">Gallery</Card.Title>
+            <Card.Description>{gallery.length} screenshots</Card.Description>
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              class="inline-flex size-9 items-center justify-center rounded-lg border border-black/15 bg-black/[0.03] transition-colors hover:bg-black/[0.07] dark:border-white/15 dark:bg-white/[0.03] dark:hover:bg-white/[0.07]"
+              on:click={showPrevImage}
+              aria-label="Previous image"
+            >
+              <ArrowLeft class="size-4" />
+            </button>
+            <button
+              type="button"
+              class="inline-flex size-9 items-center justify-center rounded-lg border border-black/15 bg-black/[0.03] transition-colors hover:bg-black/[0.07] dark:border-white/15 dark:bg-white/[0.03] dark:hover:bg-white/[0.07]"
+              on:click={showNextImage}
+              aria-label="Next image"
+            >
+              <ArrowRight class="size-4" />
+            </button>
+          </div>
+        </Card.Header>
+        <Card.Content class="space-y-4">
+          {#if activeImage}
+            <button
+              type="button"
+              class="block w-full overflow-hidden rounded-xl border border-black/10 bg-black/10 dark:border-white/10 dark:bg-black/30"
+              on:click={() => openImageModal(activeImageIndex)}
+            >
+              <img
+                src={projectImagePath(projectData, activeImage)}
+                alt={`${projectData.title} screenshot ${activeImageIndex + 1}`}
+                class="max-h-[560px] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+            </button>
           {/if}
+
+          <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {#each gallery as image, index}
+              <button
+                type="button"
+                class={`overflow-hidden rounded-lg border ${index === activeImageIndex ? "border-primary" : "border-black/10 dark:border-white/10"}`}
+                on:click={() => setActiveImage(index)}
+                aria-label={`Open image ${index + 1}`}
+              >
+                <img
+                  src={projectImagePath(projectData, image)}
+                  alt={`${projectData.title} thumbnail ${index + 1}`}
+                  class="h-20 w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                />
+              </button>
+            {/each}
+          </div>
+        </Card.Content>
+      </Card.Root>
+    {/if}
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+        <Card.Header>
+          <Card.Title class="text-lg">Overview</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <p class="text-sm leading-relaxed text-muted-foreground">{projectData.extendedDescription}</p>
+        </Card.Content>
+      </Card.Root>
+
+      <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+        <Card.Header>
+          <Card.Title class="text-lg">Architecture</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            {#each projectData.architecture as item}
+              <li class="rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">{item}</li>
+            {/each}
+          </ul>
         </Card.Content>
       </Card.Root>
     </div>
-    {#if modalOpen && modalImg}
-      <div
-        class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 focus:outline-none"
-        role="dialog"
-        tabindex="0"
-        aria-modal="true"
-        on:click={() => { modalOpen = false; modalImg = null; }}
-        bind:this={modalDiv}
-        on:keydown={(e) => {
-          const key = e.key || e.code;
-          if (key === 'Escape' || key === 'Esc') {
-            modalOpen = false;
-            modalImg = null;
-          } else if (key === 'ArrowRight') {
-            showNextImage();
-          } else if (key === 'ArrowLeft') {
-            showPrevImage();
-          }
-        }}
-      >
-        <div class="relative flex items-center justify-center w-full" role="presentation" aria-label="Modal image container">
-          <button
-            type="button"
-            class="focus:outline-none p-0 m-0 bg-transparent border-none"
-            aria-label="Close modal"
-            tabindex="0"
-            on:click|stopPropagation
-            on:keydown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            }}
-            style="display: flex;"
-          >
-            <img src={modalImg} alt="Full size" class="w-[75vw] h-[75vh] object-contain shadow-2xl" in:fade={{ duration: 120 }} out:fade={{ duration: 120 }} />
-          </button>
-        </div>
-        {#if projectData}
-          <div class="mt-4 flex items-center gap-4 text-lg font-bold text-white justify-center">
-            {#if projectData.images.findIndex(img => `/img/projects/${projectData.url}/${img}` === modalImg) > 0}
-              <button
-                type="button"
-                aria-label="Previous image"
-                class="size-8 touch-manipulation rounded-full bg-white/10 border border-white/30 text-white shadow-lg flex items-center justify-center hover:bg-white/20"
-                on:click={(e) => { e.stopPropagation(); showPrevImage(); }}
-              >
-                <ArrowLeft class="size-4" />
-                <span class="sr-only">Previous slide</span>
-              </button>
-            {/if}
-            <span>
-              {(() => {
-                const idx = projectData.images.findIndex(img => `/img/projects/${projectData.url}/${img}` === modalImg);
-                return `${idx + 1} / ${projectData.images.length}`;
-              })()}
-            </span>
-            {#if projectData.images.findIndex(img => `/img/projects/${projectData.url}/${img}` === modalImg) < projectData.images.length - 1}
-              <button
-                type="button"
-                aria-label="Next image"
-                class="size-8 touch-manipulation rounded-full bg-white/10 border border-white/30 text-white shadow-lg flex items-center justify-center hover:bg-white/20"
-                on:click={(e) => { e.stopPropagation(); showNextImage(); }}
-              >
-                <ArrowRight class="size-4" />
-                <span class="sr-only">Next slide</span>
-              </button>
-            {/if}
-          </div>
-        {/if}
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+        <Card.Header>
+          <Card.Title class="text-lg">Features</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            {#each projectData.features as item}
+              <li class="rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">{item}</li>
+            {/each}
+          </ul>
+        </Card.Content>
+      </Card.Root>
+
+      <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+        <Card.Header>
+          <Card.Title class="text-lg">Timeline</Card.Title>
+        </Card.Header>
+        <Card.Content class="space-y-3">
+          {#each projectData.timeline as item}
+            <div class="rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 text-sm dark:border-white/10 dark:bg-white/[0.03]">
+              <div class="flex items-center justify-between gap-3">
+                <span class="font-medium">{item.phase}</span>
+                <span class="text-xs text-muted-foreground">{item.period}</span>
+              </div>
+              {#if item.details}
+                <p class="mt-1 text-muted-foreground">{item.details}</p>
+              {/if}
+            </div>
+          {/each}
+        </Card.Content>
+      </Card.Root>
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+        <Card.Header>
+          <Card.Title class="text-lg">Challenges</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            {#each projectData.challenges as item}
+              <li class="rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">{item}</li>
+            {/each}
+          </ul>
+        </Card.Content>
+      </Card.Root>
+
+      <Card.Root class="surface-panel border-black/10 dark:border-white/10">
+        <Card.Header>
+          <Card.Title class="text-lg">Lessons learned</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            {#each projectData.lessonsLearned as item}
+              <li class="rounded-lg border border-black/10 bg-black/[0.03] px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">{item}</li>
+            {/each}
+          </ul>
+        </Card.Content>
+      </Card.Root>
+    </div>
+  </article>
+
+  {#if modalOpen && activeImage}
+    <div
+      class="fixed inset-0 z-[80] bg-black/85 p-3 backdrop-blur-sm"
+      role="dialog"
+      tabindex="0"
+      aria-modal="true"
+      aria-label="Project image viewer"
+      on:click={closeImageModal}
+      on:keydown={(event) => {
+        if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          closeImageModal();
+        }
+      }}
+    >
+      <div class="mx-auto flex h-full max-w-7xl items-center justify-center" role="presentation" on:click|stopPropagation>
+        <img
+          src={projectImagePath(projectData, activeImage)}
+          alt={`${projectData.title} full-size screenshot ${activeImageIndex + 1}`}
+          class="max-h-[90vh] w-auto max-w-full rounded-xl border border-white/10 object-contain"
+          decoding="async"
+        />
       </div>
-    {/if}
-  </div>
-{:else}
-  <div class="flex justify-center items-center min-h-[40vh]">
-    <span>Project not found.</span>
-  </div>
+
+      <button
+        type="button"
+        class="absolute left-4 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white hover:bg-black/65"
+        aria-label="Previous image"
+        on:click|stopPropagation={showPrevImage}
+      >
+        <ArrowLeft class="size-4" />
+      </button>
+
+      <button
+        type="button"
+        class="absolute right-4 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white hover:bg-black/65"
+        aria-label="Next image"
+        on:click|stopPropagation={showNextImage}
+      >
+        <ArrowRight class="size-4" />
+      </button>
+
+      <div class="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-white/20 bg-black/45 px-3 py-1 text-xs text-white">
+        {activeImageIndex + 1} / {gallery.length}
+      </div>
+    </div>
+  {/if}
 {/if}

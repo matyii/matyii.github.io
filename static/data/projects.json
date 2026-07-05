@@ -1,160 +1,465 @@
 [
     {
+        "id": "jatszoterdoki",
         "title": "játszótérdoki.hu",
         "url": "jatszoterdoki",
         "description": "Portfolio page for a hungarian company specified in renovating, repairing children's playground.",
-        "extended_description": "",
+        "extended_description": "Corporate website focused on trust, services, and contact conversion for a specialized Hungarian playground renovation company.",
         "image": "logo.png",
-        "images": ["1.png","2.png","3.png"],
+        "images": ["1.png", "2.png", "3.png"],
+        "featured": true,
+        "role": "Frontend developer",
+        "status": "Live",
+        "year": "2025",
+        "architecture": [
+            "SvelteKit-based frontend with reusable UI primitives.",
+            "Structured content sections tuned for local business conversion.",
+            "Responsive image-first layout optimized for trust and credibility."
+        ],
+        "features": [
+            "Service overview and portfolio-style content sections.",
+            "Strong mobile readability and contact-focused information hierarchy.",
+            "Clean visual tone aligned with service-company branding."
+        ],
+        "timeline": [
+            {
+                "phase": "Discovery and structure",
+                "period": "Week 1",
+                "details": "Defined page architecture and content order based on business goals."
+            },
+            {
+                "phase": "Implementation and polish",
+                "period": "Week 2",
+                "details": "Completed responsive implementation and visual finishing."
+            }
+        ],
+        "challenges": [
+            "Balancing a professional tone with engaging visuals.",
+            "Presenting service offerings clearly without overwhelming users."
+        ],
+        "lessonsLearned": [
+            "Simple content hierarchy often outperforms heavy visual complexity.",
+            "Local business sites benefit from fast trust signaling above the fold."
+        ],
+        "metrics": [
+            { "label": "Primary platform", "value": "Web" },
+            { "label": "Type", "value": "Client project" }
+        ],
         "links": [
-            {"label": "Open", "url": "https://jatszoterdoki.hu"}
+            { "label": "Live Demo", "url": "https://jatszoterdoki.hu" }
         ],
         "badges": [
-            {"label": "ShadCN"},
-            {"label": "SvelteKit"},
-            {"label": "Javascript"}
+            { "label": "ShadCN" },
+            { "label": "SvelteKit" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "screenie",
         "title": "screenie",
         "url": "screenie",
         "description": "share your screenshots and videos easily (originally hypixel.lol)",
-        "extended_description": "A ShareX screenshot uploader, with support for domain management, user management, Spotify now playing, public profiles and so much more! It is based on Sveltekit and AppWrite.",
+        "extended_description": "A ShareX screenshot uploader with domain management, user management, Spotify now playing integration, and public profile customization.",
         "image": "screenie.png",
-        "images": ["screenie.png","admindashboard.png","archivemanagement.png","profilecustomization.png","publicprofile.png", "userdashboard.png", "usermanagement.png"],
+        "images": ["screenie.png", "admindashboard.png", "archivemanagement.png", "profilecustomization.png", "publicprofile.png", "userdashboard.png", "usermanagement.png"],
+        "featured": true,
+        "role": "Full-stack developer",
+        "status": "Active",
+        "year": "2025",
+        "architecture": [
+            "SvelteKit frontend layered over Appwrite-backed data and auth.",
+            "Role-aware dashboards with admin and user-specific capabilities.",
+            "Media and metadata workflow designed for quick share and retrieval."
+        ],
+        "features": [
+            "ShareX upload compatibility and customizable user spaces.",
+            "Admin management tools for users, archives, and domains.",
+            "Public profile support with integrated dynamic content."
+        ],
+        "timeline": [
+            {
+                "phase": "Core migration",
+                "period": "Q1 2025",
+                "details": "Rebuilt legacy service into a modern SvelteKit/Appwrite stack."
+            },
+            {
+                "phase": "Dashboard expansion",
+                "period": "Q2 2025",
+                "details": "Introduced richer admin tooling and profile customization."
+            }
+        ],
+        "challenges": [
+            "Keeping upload flows fast while adding richer account features.",
+            "Ensuring stable permissions across user and admin capabilities."
+        ],
+        "lessonsLearned": [
+            "Good information architecture is critical for dashboard products.",
+            "Incremental migration from legacy systems reduces product risk."
+        ],
+        "metrics": [
+            { "label": "Screens", "value": "7+" },
+            { "label": "Stack", "value": "SvelteKit + Appwrite" }
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/screeniehost"}
+            { "label": "GitHub", "url": "https://github.com/screeniehost" }
         ],
         "badges": [
-            {"label": "NodeJS"},
-            {"label": "DaisyUI"},
-            {"label": "Javascript"}
+            { "label": "NodeJS" },
+            { "label": "DaisyUI" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "hypixel",
         "title": "hypixel.lol",
         "url": "hypixel",
         "description": "ShareX image uploader service, with Discord user integration!",
-        "extended_description": "This is the 'legacy' version of screenie. It it based on NodeJS, Bootstrap.",
+        "extended_description": "Legacy version of screenie, built with NodeJS and Bootstrap, focused on fast image-sharing utility workflows.",
         "image": "hypixel.png",
         "images": ["hypixel.png", "domains.png", "user.png", "webhook.png"],
+        "featured": false,
+        "role": "Full-stack developer",
+        "status": "Archived",
+        "year": "2023",
+        "architecture": [
+            "NodeJS backend handling upload and account operations.",
+            "Bootstrap-driven frontend for utility-first workflows.",
+            "Discord-aware user integration for account linking."
+        ],
+        "features": [
+            "Fast image uploads for ShareX users.",
+            "Domain and webhook settings management.",
+            "User-oriented controls for personalization and linking."
+        ],
+        "timeline": [
+            {
+                "phase": "Initial build",
+                "period": "2023",
+                "details": "Shipped as a practical ShareX hosting utility."
+            },
+            {
+                "phase": "Successor transition",
+                "period": "2024",
+                "details": "Served as foundation for the screenie rewrite."
+            }
+        ],
+        "challenges": [
+            "Maintaining old architecture while expanding feature requests.",
+            "Balancing UX improvements with legacy constraints."
+        ],
+        "lessonsLearned": [
+            "Early architecture decisions strongly shape long-term maintainability.",
+            "Product rewrites are easier with clear migration boundaries."
+        ],
+        "metrics": [
+            { "label": "Generation", "value": "Legacy" }
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/hypixel.lol"}
+            { "label": "GitHub", "url": "https://github.com/matyii/hypixel.lol" }
         ],
         "badges": [
-            {"label": "NodeJS"},
-            {"label": "Bootstrap"},
-            {"label": "Javascript"}
+            { "label": "NodeJS" },
+            { "label": "Bootstrap" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "cleangoogle",
         "title": "cleangoogle.lol",
         "url": "cleangoogle",
         "description": "A minimalistic version of Google.",
-        "extended_description": "This is just a webpage, which 'redirects' you to google using the search query generated from your search. It features light/dark mode, current time, quotes on each load, and weather API.",
+        "extended_description": "A lightweight search launcher with dark/light mode, weather, quotes, and utility widgets wrapped in a minimalist UI.",
         "image": "cleangoogle.png",
         "images": ["cleangoogle.png", "settings.png", "widgets.png"],
+        "featured": false,
+        "role": "Frontend developer",
+        "status": "Completed",
+        "year": "2023",
+        "architecture": [
+            "Static frontend focused on speed and simplicity.",
+            "Search query forwarding pipeline with utility widgets.",
+            "Theme-aware layout supporting user personalization."
+        ],
+        "features": [
+            "Instant Google query redirection.",
+            "Theme toggle and lightweight personalization settings.",
+            "Weather and quote widgets on initial load."
+        ],
+        "timeline": [
+            {
+                "phase": "Prototype",
+                "period": "2023",
+                "details": "Built as a minimal launcher concept."
+            }
+        ],
+        "challenges": [
+            "Keeping utility features useful without cluttering the interface."
+        ],
+        "lessonsLearned": [
+            "Minimal products still require deliberate visual hierarchy."
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/cleangoogle.lol"}
+            { "label": "GitHub", "url": "https://github.com/matyii/cleangoogle.lol" }
         ],
         "badges": [
-            {"label": "HTML & CSS"},
-            {"label": "Javascript"}
+            { "label": "HTML & CSS" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "shortify",
         "title": "shortify!",
         "url": "shortify",
         "description": "An easy-to-use URL shortener service.",
-        "extended_description": "A simple NodeJS app which generates a random hash, and assigns it to the original URL.",
+        "extended_description": "A compact NodeJS URL shortener that maps generated hashes to destination URLs with quick redirect handling.",
         "image": "shortify.png",
         "images": ["shortify.png"],
+        "featured": false,
+        "role": "Backend developer",
+        "status": "Completed",
+        "year": "2022",
+        "architecture": [
+            "NodeJS service generating and resolving short URL hashes.",
+            "Simple Bootstrap interface for create-and-copy workflow."
+        ],
+        "features": [
+            "Hash generation for shortened URLs.",
+            "Fast redirect flow for destination links.",
+            "Simple interaction model for quick usage."
+        ],
+        "timeline": [
+            {
+                "phase": "MVP",
+                "period": "2022",
+                "details": "Implemented core short-link generation and redirect logic."
+            }
+        ],
+        "challenges": [
+            "Ensuring URL validation remains robust in a minimal codebase."
+        ],
+        "lessonsLearned": [
+            "Simple utilities are great opportunities to refine backend fundamentals."
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/shortify"}
+            { "label": "GitHub", "url": "https://github.com/matyii/shortify" }
         ],
         "badges": [
-            {"label": "NodeJS"},
-            {"label": "Bootstrap"},
-            {"label": "Javascript"}
+            { "label": "NodeJS" },
+            { "label": "Bootstrap" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "spotnow",
         "title": "spotnow",
         "url": "spotnow",
         "description": "User profile page with Spotify integration.",
-        "extended_description": "A simple NodeJS app, which gets the currently playing song from the Spotify API, and renders it in a express view.",
+        "extended_description": "NodeJS-based profile page that pulls current playback state from Spotify and renders it in real time.",
         "image": "spotnow.png",
         "images": ["spotnow.png", "np.png"],
+        "featured": true,
+        "role": "Full-stack developer",
+        "status": "Completed",
+        "year": "2024",
+        "architecture": [
+            "NodeJS backend handling Spotify API access and refresh flow.",
+            "Server-rendered views for low-overhead status display.",
+            "Focused integration design around now-playing updates."
+        ],
+        "features": [
+            "Live Spotify now-playing information.",
+            "Profile-style presentation for personal status display.",
+            "Simple deployment footprint."
+        ],
+        "timeline": [
+            {
+                "phase": "API integration",
+                "period": "2024",
+                "details": "Implemented OAuth flow and playback endpoint handling."
+            }
+        ],
+        "challenges": [
+            "Managing token refresh and playback state consistency."
+        ],
+        "lessonsLearned": [
+            "External API reliability depends heavily on robust fallback states."
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/spotnow"}
+            { "label": "GitHub", "url": "https://github.com/matyii/spotnow" }
         ],
         "badges": [
-            {"label": "NodeJS"},
-            {"label": "HTML & CSS"},
-            {"label": "Javascript"}
+            { "label": "NodeJS" },
+            { "label": "HTML & CSS" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "snapscrape",
         "title": "SnapScrape",
         "url": "snapscrape",
         "description": "Get your saved chat from Snapchat.",
-        "extended_description": "A simple NodeJS app, which convert the JSON export from Snapchat to a chat like view.",
+        "extended_description": "NodeJS utility that transforms Snapchat JSON exports into a readable conversation-style interface.",
         "image": "snapscrape.png",
         "images": ["snapscrape.png"],
+        "featured": false,
+        "role": "Backend developer",
+        "status": "Completed",
+        "year": "2023",
+        "architecture": [
+            "Parser layer transforming exported JSON into structured chat messages.",
+            "Bootstrap frontend with emphasis on readability."
+        ],
+        "features": [
+            "Snapshot export transformation into readable chat timeline.",
+            "Simple UI for quick review of large conversation history."
+        ],
+        "timeline": [
+            {
+                "phase": "Conversion engine",
+                "period": "2023",
+                "details": "Implemented JSON parsing and chat layout generation."
+            }
+        ],
+        "challenges": [
+            "Normalizing inconsistent exported data shape from third-party source."
+        ],
+        "lessonsLearned": [
+            "Data normalization should be explicit before rendering layers are built."
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/snapscrape"}
+            { "label": "GitHub", "url": "https://github.com/matyii/snapscrape" }
         ],
         "badges": [
-            {"label": "NodeJS"},
-            {"label": "Bootstrap"},
-            {"label": "Javascript"}
+            { "label": "NodeJS" },
+            { "label": "Bootstrap" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "molnarcukraszda",
         "title": "Molnár Cukrászda",
         "url": "molnarcukraszda",
         "description": "Molnár Cukrászda is a fictitious online bakery, a culmination project showcasing pastries and cakes in a digital space.",
-        "extended_description": "This is one my 'school' a long time ago, based on Bootstrap, front-end only.",
+        "extended_description": "School project focused on frontend implementation and ecommerce-like content presentation.",
         "image": "molnarcukraszdav1.png",
         "images": ["molnarcukraszdav1.png"],
+        "featured": false,
+        "role": "Frontend developer",
+        "status": "Completed",
+        "year": "2021",
+        "architecture": [
+            "Bootstrap-based frontend-only implementation.",
+            "Catalog-style layout structure for bakery products."
+        ],
+        "features": [
+            "Branded landing sections and product presentation.",
+            "Responsive foundation for school project requirements."
+        ],
+        "timeline": [
+            {
+                "phase": "School delivery",
+                "period": "2021",
+                "details": "Completed as culmination frontend assignment."
+            }
+        ],
+        "challenges": [
+            "Balancing branding visuals with simple maintainable markup."
+        ],
+        "lessonsLearned": [
+            "Strong layout fundamentals improve even early-stage projects."
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu/"}
+            { "label": "GitHub", "url": "https://github.com/matyii/molnarcukraszda.hu/" }
         ],
         "badges": [
-            {"label": "Bootstrap"},
-            {"label": "Javascript"}
+            { "label": "Bootstrap" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "molnarcukraszdav2",
         "title": "Molnár Cukrászda v2",
         "url": "molnarcukraszdav2",
         "description": "This is a rewritten version of Molnár Cukrászda, including complete PHP and SQL.",
-        "extended_description": "This version of the 'project' has DB annd PHP implementation",
+        "extended_description": "Second iteration introducing server-side rendering, SQL persistence, and a more complete dynamic application flow.",
         "image": "molnarcukraszdav2.png",
         "images": ["molnarcukraszdav2.png"],
+        "featured": false,
+        "role": "Full-stack developer",
+        "status": "Completed",
+        "year": "2022",
+        "architecture": [
+            "PHP backend with SQL-backed persistence.",
+            "Bootstrap frontend connected to dynamic data model.",
+            "CRUD-like flows for content-driven pages."
+        ],
+        "features": [
+            "Dynamic server-rendered pages.",
+            "Database-backed content management capabilities.",
+            "Expanded full-stack project scope over v1."
+        ],
+        "timeline": [
+            {
+                "phase": "Rewrite",
+                "period": "2022",
+                "details": "Rebuilt previous concept with backend and relational data storage."
+            }
+        ],
+        "challenges": [
+            "Introducing data modeling and backend concerns into an existing concept."
+        ],
+        "lessonsLearned": [
+            "Schema design choices have direct UX impact in CRUD-style products."
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/molnarcukraszda.hu-v2"}
+            { "label": "GitHub", "url": "https://github.com/matyii/molnarcukraszda.hu-v2" }
         ],
         "badges": [
-            {"label": "Bootstrap"},
-            {"label": "PHP"},
-            {"label": "SQL"},
-            {"label": "Javascript"}
+            { "label": "Bootstrap" },
+            { "label": "PHP" },
+            { "label": "SQL" },
+            { "label": "Javascript" }
         ]
     },
     {
+        "id": "emojis",
         "title": "emojis.gg",
         "url": "emojis",
         "description": "Effortless Emoji Copying Made Simple.",
-        "extended_description": "A simple webpage displaying all the emojis existing, and option to copy it with one click/touch.",
+        "extended_description": "Simple emoji directory allowing one-click copy interaction for fast sharing and communication workflows.",
         "image": "emojisgg.png",
         "images": ["emojisgg.png"],
+        "featured": false,
+        "role": "Frontend developer",
+        "status": "Completed",
+        "year": "2021",
+        "architecture": [
+            "Client-side emoji listing and clipboard interaction.",
+            "Bootstrap UI shell with direct interaction affordances."
+        ],
+        "features": [
+            "One-click emoji copy for desktop and mobile.",
+            "Fast lookup and scrolling-friendly list presentation."
+        ],
+        "timeline": [
+            {
+                "phase": "Build",
+                "period": "2021",
+                "details": "Implemented lightweight utility with instant copy actions."
+            }
+        ],
+        "challenges": [
+            "Maintaining responsiveness with large emoji datasets."
+        ],
+        "lessonsLearned": [
+            "Micro-utility products need exceptionally clear interaction feedback."
+        ],
         "links": [
-            {"label": "Open", "url": "https://github.com/matyii/emojis.gg"}
+            { "label": "GitHub", "url": "https://github.com/matyii/emojis.gg" }
         ],
         "badges": [
-            {"label": "Bootstrap"},
-            {"label": "Javascript"}
+            { "label": "Bootstrap" },
+            { "label": "Javascript" }
         ]
     }
 ]
