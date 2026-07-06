@@ -12,6 +12,10 @@
     Sun,
     X
   } from "@lucide/svelte";
+  import { cubicOut } from "svelte/easing";
+  import { fade, fly } from "svelte/transition";
+  import { motionPreference } from "$lib/stores/motion";
+  import { MOTION, motionDuration, motionOffset } from "$lib/utils/animation";
 
   type NavItem = {
     href: string;
@@ -30,6 +34,7 @@
   let scrolled = false;
 
   $: currentPath = $page.url.pathname;
+  $: reducedMotion = $motionPreference === "reduced";
 
   function isActivePath(path: string): boolean {
     if (path === "/") return currentPath === "/";
@@ -49,7 +54,14 @@
 
 <svelte:window on:keydown={handleGlobalKeydown} on:scroll={handleScroll} />
 
-<header class="fixed inset-x-0 top-4 z-50 px-3 md:px-6">
+<header
+  class="fixed inset-x-0 top-4 z-50 px-3 md:px-6"
+  in:fly={{
+    y: motionOffset(-8, reducedMotion),
+    duration: motionDuration(MOTION.duration.slow, reducedMotion),
+    easing: cubicOut
+  }}
+>
   <div
     class={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2 md:px-4 md:py-3 ${
       scrolled
@@ -58,7 +70,7 @@
     }`}
   >
     <a href="/" class="group flex items-center gap-3 rounded-xl px-1 py-1" aria-label="Go to home">
-      <Avatar.Root class="size-9 rounded-full border border-black/20 shadow-soft transition-transform duration-300 group-hover:scale-[1.04] dark:border-white/20">
+      <Avatar.Root class="size-9 rounded-full border border-black/20 shadow-soft transition-transform duration-base ease-standard group-hover:scale-[1.03] dark:border-white/20 motion-reduce:transition-none">
         <Avatar.Image src="/img/pfps/pfp.png" alt="Profile image" class="rounded-full" />
         <Avatar.Fallback class="text-xs font-semibold">KM</Avatar.Fallback>
       </Avatar.Root>
@@ -72,7 +84,7 @@
       {#each navItems as item}
         <a
           href={item.href}
-          class={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
+          class={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-base ease-standard motion-reduce:transition-none ${
             isActivePath(item.href)
               ? "bg-primary/20 text-foreground shadow-soft"
               : "text-muted-foreground hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5"
@@ -87,7 +99,7 @@
 
     <div class="flex items-center gap-2">
       <button
-        class="inline-flex size-9 items-center justify-center rounded-lg border border-black/10 transition-colors hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5"
+        class="inline-flex size-9 items-center justify-center rounded-lg border border-black/10 transition-colors duration-base ease-standard hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5 motion-reduce:transition-none"
         type="button"
         on:click={toggleMode}
         aria-label="Toggle theme"
@@ -100,7 +112,7 @@
       </button>
 
       <button
-        class="inline-flex size-9 items-center justify-center rounded-lg border border-black/10 transition-colors hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5 md:hidden"
+        class="inline-flex size-9 items-center justify-center rounded-lg border border-black/10 transition-colors duration-base ease-standard hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5 md:hidden motion-reduce:transition-none"
         type="button"
         on:click={() => (mobileMenuOpen = !mobileMenuOpen)}
         aria-label="Toggle navigation menu"
@@ -116,12 +128,25 @@
 </header>
 
 {#if mobileMenuOpen}
-  <div class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden" role="presentation" on:click={() => (mobileMenuOpen = false)}></div>
-  <nav class="fixed inset-x-3 top-20 z-50 rounded-2xl border border-black/15 bg-background/90 p-3 shadow-panel backdrop-blur-xl dark:border-white/15 md:hidden" aria-label="Mobile navigation">
+  <div
+    class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+    role="presentation"
+    transition:fade={{ duration: motionDuration(MOTION.duration.base, reducedMotion) }}
+    on:click={() => (mobileMenuOpen = false)}
+  ></div>
+  <nav
+    class="fixed inset-x-3 top-20 z-50 rounded-2xl border border-black/15 bg-background/90 p-3 shadow-panel backdrop-blur-xl dark:border-white/15 md:hidden"
+    aria-label="Mobile navigation"
+    transition:fly={{
+      y: motionOffset(-10, reducedMotion),
+      duration: motionDuration(MOTION.duration.medium, reducedMotion),
+      easing: cubicOut
+    }}
+  >
     {#each navItems as item}
       <a
         href={item.href}
-        class={`mb-1 flex items-center justify-between rounded-xl px-3 py-3 text-sm transition-all ${
+        class={`mb-1 flex items-center justify-between rounded-xl px-3 py-3 text-sm transition-all duration-base ease-standard motion-reduce:transition-none ${
           isActivePath(item.href)
             ? "bg-primary/20 text-foreground"
             : "text-muted-foreground hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5"

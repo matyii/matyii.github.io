@@ -4,7 +4,11 @@
   import Button from "$lib/components/ui/button/button.svelte";
   import { Skeleton } from "$lib/components/ui/skeleton/index.js";
   import { onMount } from "svelte";
+  import { cubicOut } from "svelte/easing";
+  import { fly } from "svelte/transition";
   import { Search } from "@lucide/svelte";
+  import { motionPreference } from "$lib/stores/motion";
+  import { MOTION, motionDelay, motionDuration, motionOffset } from "$lib/utils/animation";
   import { normalizeProject } from "$lib/utils/projects";
   import type { Project, RawProject } from "$lib/types/project";
 
@@ -15,6 +19,8 @@
   let isLoading = true;
   let searchTerm = "";
   let activeTag = "All";
+
+  $: reducedMotion = $motionPreference === "reduced";
 
   onMount(async () => {
     const response = await fetch("/data/projects.json");
@@ -42,15 +48,15 @@
   });
 </script>
 
-<section class="space-y-6">
-  <header class="space-y-3">
+<section class="motion-enter space-y-6">
+  <header class="motion-enter motion-enter-delay-1 space-y-3">
     <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Projects</h1>
     <p class="max-w-2xl text-sm text-muted-foreground sm:text-base">
       A curated list of products and experiments with strong engineering focus and polished execution.
     </p>
   </header>
 
-  <div class="surface-panel border-white/10 p-4">
+  <div class="motion-enter motion-enter-delay-1 surface-panel border-white/10 p-4">
     <div class="mb-4 flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3">
       <Search class="size-4 text-muted-foreground" />
       <input
@@ -74,7 +80,7 @@
     </div>
   </div>
 
-  <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+  <div class="motion-enter motion-enter-delay-2 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
   {#if isLoading}
     {#each Array(6) as _}
       <Card.Root class="surface-panel border-white/10">
@@ -110,14 +116,25 @@
         </Button>
       </div>
     {:else}
-      {#each filteredProjects as project}
-      <a href={`/projects/${project.url}`} class="group surface-panel flex h-full min-h-[420px] flex-col overflow-hidden border-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift focus:outline-none focus:ring-2 focus:ring-primary/60" tabindex="0">
+      {#key `${activeTag}:${searchTerm.trim().toLowerCase()}`}
+      {#each filteredProjects as project, index}
+      <a
+        href={`/projects/${project.url}`}
+        class="group surface-panel flex h-full min-h-[420px] flex-col overflow-hidden border-white/10 transition-all duration-base ease-standard hover:-translate-y-1 hover:shadow-lift focus:outline-none focus:ring-2 focus:ring-primary/60 motion-reduce:transition-none"
+        tabindex="0"
+        in:fly={{
+          y: motionOffset(MOTION.distance.cardY, reducedMotion),
+          duration: motionDuration(MOTION.duration.base, reducedMotion),
+          delay: motionDelay(index, MOTION.stagger.tight, reducedMotion),
+          easing: cubicOut
+        }}
+      >
         <Card.Header class="flex flex-col items-center justify-center space-y-2 text-center p-4 pb-2">
           <div class="w-full aspect-video rounded-lg overflow-hidden bg-neutral-900 flex items-center justify-center mb-1">
             <img
               src={`/img/projects/${project.url}/${project.heroImage}`}
               alt={project.title}
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              class="w-full h-full object-cover transition-transform duration-medium ease-standard group-hover:scale-[1.04] motion-reduce:transition-none"
               loading="lazy"
               decoding="async"
               fetchpriority="low"
@@ -138,6 +155,7 @@
         </Card.Content>
       </a>
       {/each}
+      {/key}
     {/if}
   {/if}
 </div>

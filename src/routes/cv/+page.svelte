@@ -6,6 +6,7 @@
   import { onMount } from "svelte";
   import { Download } from "@lucide/svelte";
   import { pageTitle } from "$lib/stores/title";
+  import { motionPreference } from "$lib/stores/motion";
 
   pageTitle.set("CV");
 
@@ -39,6 +40,13 @@
   let loading = true;
   let downloading = false;
   let error: Error | null = null;
+  let animateLanguageBars = false;
+  let languageCardEl: HTMLElement | null = null;
+
+  $: reducedMotion = $motionPreference === "reduced";
+  $: if (reducedMotion) {
+    animateLanguageBars = true;
+  }
 
   function isLabelValueItem(item: CVItem): item is CVItemLabelValue {
     return typeof item === "object" && item !== null && "label" in item && "value" in item;
@@ -108,27 +116,58 @@
     }
   }
 
-  onMount(async () => {
-    try {
-      const res = await fetch("/data/cv-data.json");
-      if (!res.ok) throw new Error("Failed to fetch CV data");
-      cvData = await res.json() as CVData;
-    } catch (e) {
-      error = e as Error;
-    } finally {
-      loading = false;
+  onMount(() => {
+    const loadCVData = async () => {
+      try {
+        const res = await fetch("/data/cv-data.json");
+        if (!res.ok) throw new Error("Failed to fetch CV data");
+        cvData = await res.json() as CVData;
+      } catch (e) {
+        error = e as Error;
+      } finally {
+        loading = false;
+      }
+    };
+
+    void loadCVData();
+
+    if (reducedMotion) {
+      animateLanguageBars = true;
+      return;
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry?.isIntersecting) {
+          animateLanguageBars = true;
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.35,
+        rootMargin: "0px 0px -8% 0px"
+      }
+    );
+
+    if (languageCardEl) {
+      observer.observe(languageCardEl);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   });
 </script>
 
-<section class="space-y-6">
+<section class="motion-enter space-y-6">
   {#if loading}
     <div class="surface-panel border-black/10 px-6 py-10 text-center text-sm text-muted-foreground dark:border-white/10">Loading CV...</div>
   {:else if error}
     <div class="surface-panel border-destructive/40 px-6 py-10 text-center text-sm text-destructive">{error.message}</div>
   {:else if cvData}
-    <div class="grid gap-6 xl:grid-cols-[0.88fr_1.12fr]">
-      <aside class="space-y-4 xl:sticky xl:top-24 xl:self-start">
+    <div class="motion-enter motion-enter-delay-1 grid gap-6 xl:grid-cols-[0.88fr_1.12fr]">
+      <aside class="motion-enter motion-enter-delay-1 space-y-4 xl:sticky xl:top-24 xl:self-start">
         <Card.Root class="surface-panel border-black/10 p-5 dark:border-white/10">
           <Card.Content class="space-y-5 p-0">
             <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
@@ -190,8 +229,9 @@
         </Card.Root>
       </aside>
 
-      <div class="space-y-5">
+      <div class="motion-enter motion-enter-delay-2 space-y-5">
         {#if languagesCategory}
+          <div bind:this={languageCardEl}>
           <Card.Root class="surface-panel border-black/10 p-5 dark:border-white/10">
             <Card.Header class="px-0 pt-0">
               <Card.Title class="text-lg">Language Proficiency</Card.Title>
@@ -206,17 +246,21 @@
                       <span class="text-xs text-muted-foreground">{item.level}</span>
                     </div>
                     <div class="h-1.5 rounded-full bg-black/10 dark:bg-white/10">
-                      <div class="h-full rounded-full bg-primary" style={`width: ${levelToPercent(item.level)}%;`}></div>
+                      <div
+                        class="h-full rounded-full bg-primary transition-[width] duration-slow ease-emphasis motion-reduce:transition-none"
+                        style={`width: ${animateLanguageBars ? levelToPercent(item.level) : 0}%;`}
+                      ></div>
                     </div>
                   </div>
                 {/if}
               {/each}
             </Card.Content>
           </Card.Root>
+          </div>
         {/if}
 
         {#each categoriesWithoutLanguages as category, i}
-            <section class="relative rounded-2xl border border-black/10 bg-black/[0.02] p-5 dark:border-white/10 dark:bg-white/[0.02]">
+          <section class="motion-enter relative rounded-2xl border border-black/10 bg-black/[0.02] p-5 dark:border-white/10 dark:bg-white/[0.02]" style={`animation-delay: ${120 + i * 50}ms;`}>
               <div class="mb-4 flex items-center justify-between">
                 <h2 class="text-lg font-semibold tracking-tight">{category.title}</h2>
                 <Badge variant="secondary" class="rounded-full">{category.items.length}</Badge>
@@ -237,7 +281,10 @@
                         <span class="text-xs">{item.level}</span>
                       </div>
                       <div class="h-1.5 rounded-full bg-black/10 dark:bg-white/10">
-                        <div class="h-full rounded-full bg-primary" style={`width: ${levelToPercent(item.level)}%;`}></div>
+                        <div
+                          class="h-full rounded-full bg-primary transition-[width] duration-slow ease-emphasis motion-reduce:transition-none"
+                          style={`width: ${animateLanguageBars ? levelToPercent(item.level) : 0}%;`}
+                        ></div>
                       </div>
                     </div>
                   {:else if isJobItem(item)}

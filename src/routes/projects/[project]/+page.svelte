@@ -2,10 +2,14 @@
   import { page } from "$app/stores";
   import { onMount } from "svelte";
   import { get } from "svelte/store";
+  import { cubicOut } from "svelte/easing";
+  import { fade, scale } from "svelte/transition";
   import * as Card from "$lib/components/ui/card/index.js";
   import Button from "$lib/components/ui/button/button.svelte";
   import { Badge } from "$lib/components/ui/badge/index.js";
   import { pageTitle } from "$lib/stores/title";
+  import { motionPreference } from "$lib/stores/motion";
+  import { MOTION, motionDuration } from "$lib/utils/animation";
   import { normalizeProject, projectHeroImagePath, projectImagePath } from "$lib/utils/projects";
   import type { Project, RawProject } from "$lib/types/project";
   import { ArrowLeft, ArrowRight, ExternalLink, Github, Globe, Maximize2 } from "@lucide/svelte";
@@ -14,6 +18,8 @@
   let isLoading = true;
   let modalOpen = false;
   let activeImageIndex = 0;
+
+  $: reducedMotion = $motionPreference === "reduced";
 
   $: gallery = projectData ? projectData.gallery : [];
   $: activeImage = projectData && gallery.length > 0 ? gallery[activeImageIndex] : null;
@@ -98,8 +104,8 @@
     <Button href="/projects" class="mt-4">Back to projects</Button>
   </div>
 {:else}
-  <article class="space-y-6">
-    <header class="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+  <article class="motion-enter space-y-6">
+    <header class="motion-enter motion-enter-delay-1 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
       <Card.Root class="surface-panel border-black/10 overflow-hidden dark:border-white/10">
         <div class="group relative aspect-[16/10] overflow-hidden bg-black/30">
           <img
@@ -134,7 +140,7 @@
         </Card.Content>
       </Card.Root>
 
-      <div class="space-y-4">
+      <div class="motion-enter motion-enter-delay-2 space-y-4">
         <Card.Root class="surface-panel border-black/10 dark:border-white/10">
           <Card.Header class="space-y-1">
             <Card.Title class="text-lg">Project details</Card.Title>
@@ -185,6 +191,7 @@
     </header>
 
     {#if gallery.length > 0}
+      <div class="motion-enter motion-enter-delay-2">
       <Card.Root class="surface-panel border-black/10 dark:border-white/10">
         <Card.Header class="flex flex-row items-center justify-between space-y-0">
           <div>
@@ -249,9 +256,10 @@
           </div>
         </Card.Content>
       </Card.Root>
+      </div>
     {/if}
 
-    <div class="grid gap-4 lg:grid-cols-2">
+    <div class="motion-enter motion-enter-delay-2 grid gap-4 lg:grid-cols-2">
       <Card.Root class="surface-panel border-black/10 dark:border-white/10">
         <Card.Header>
           <Card.Title class="text-lg">Overview</Card.Title>
@@ -275,7 +283,7 @@
       </Card.Root>
     </div>
 
-    <div class="grid gap-4 lg:grid-cols-2">
+    <div class="motion-enter motion-enter-delay-3 grid gap-4 lg:grid-cols-2">
       <Card.Root class="surface-panel border-black/10 dark:border-white/10">
         <Card.Header>
           <Card.Title class="text-lg">Features</Card.Title>
@@ -309,7 +317,7 @@
       </Card.Root>
     </div>
 
-    <div class="grid gap-4 lg:grid-cols-2">
+    <div class="motion-enter motion-enter-delay-3 grid gap-4 lg:grid-cols-2">
       <Card.Root class="surface-panel border-black/10 dark:border-white/10">
         <Card.Header>
           <Card.Title class="text-lg">Challenges</Card.Title>
@@ -345,6 +353,7 @@
       tabindex="0"
       aria-modal="true"
       aria-label="Project image viewer"
+      transition:fade={{ duration: motionDuration(MOTION.duration.base, reducedMotion) }}
       on:click={closeImageModal}
       on:keydown={(event) => {
         if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
@@ -353,7 +362,12 @@
         }
       }}
     >
-      <div class="mx-auto flex h-full max-w-7xl items-center justify-center" role="presentation" on:click|stopPropagation>
+      <div
+        class="mx-auto flex h-full max-w-7xl items-center justify-center"
+        role="presentation"
+        transition:scale={{ duration: motionDuration(MOTION.duration.medium, reducedMotion), start: 0.985, easing: cubicOut }}
+        on:click|stopPropagation
+      >
         <img
           src={projectImagePath(projectData, activeImage)}
           alt={`${projectData.title} full-size screenshot ${activeImageIndex + 1}`}

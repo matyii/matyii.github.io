@@ -76,6 +76,16 @@ const config: Config = {
 				panel: "0 18px 46px -24px hsl(var(--shadow-color) / 0.75), inset 0 1px 0 hsl(0 0% 100% / 0.06)",
 				lift: "0 24px 60px -30px hsl(var(--shadow-color) / 0.85)"
 			},
+			transitionDuration: {
+				fast: "160ms",
+				base: "240ms",
+				medium: "360ms",
+				slow: "520ms"
+			},
+			transitionTimingFunction: {
+				standard: "cubic-bezier(0.2, 0.65, 0.2, 1)",
+				emphasis: "cubic-bezier(0.16, 1, 0.3, 1)"
+			},
 			keyframes: {
 				"accordion-down": {
 					from: { height: "0" },

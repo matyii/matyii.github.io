@@ -334,8 +334,8 @@
 </script>
 
 <section class="grid items-start gap-6 lg:grid-cols-[1.3fr_0.9fr]">
-  <div class="space-y-4">
-    <Card.Root class="surface-panel border-white/10 p-6 md:p-8 lg:p-10">
+  <div class="motion-enter space-y-4">
+    <Card.Root class="surface-panel border-white/10 p-6 md:p-8 lg:p-10 motion-enter">
       <Card.Content class="space-y-7 p-0">
         <div class="flex flex-wrap items-center gap-2">
           <Badge class="rounded-full border border-emerald-400/40 bg-emerald-100/80 px-3 py-1 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-400/10 dark:text-emerald-200" variant="outline">
@@ -391,6 +391,7 @@
     </Card.Root>
 
     {#if $nowPlaying && $nowPlaying.item}
+      <div class="motion-enter motion-enter-delay-1">
       <Card.Root class={`surface-panel p-5 md:p-6 ${$nowPlaying.is_stale ? "border-amber-400/45 bg-amber-50/65 dark:border-amber-300/35 dark:bg-amber-500/10" : "border-black/10 dark:border-white/10"}`}>
         <Card.Header class="mb-4 flex flex-row items-center justify-between p-0">
           <div>
@@ -463,17 +464,20 @@
           </div>
         </Card.Content>
       </Card.Root>
+      </div>
     {:else}
+      <div class="motion-enter motion-enter-delay-1">
       <Card.Root class="surface-panel border-black/10 p-5 md:p-6 dark:border-white/10">
         <Card.Header class="p-0">
           <Card.Title class="text-lg">Nothing is playing</Card.Title>
           <Card.Description class="text-sm">Spotify is currently inactive.</Card.Description>
         </Card.Header>
       </Card.Root>
+      </div>
     {/if}
   </div>
 
-  <div class="space-y-4">
+  <div class="motion-enter motion-enter-delay-1 space-y-4">
     {#if discordPresence.available}
     <Card.Root class="surface-panel overflow-hidden border-black/10 p-0 dark:border-white/10">
       <div class="relative h-32 w-full">
@@ -481,7 +485,7 @@
           <img
             src={discordBannerUrl}
             alt="Discord banner"
-            class="h-full w-full object-cover transition-opacity duration-700"
+            class="h-full w-full object-cover transition-opacity duration-slow ease-standard motion-reduce:transition-none"
             loading="lazy"
           />
         {:else}
@@ -610,6 +614,7 @@
     </Card.Root>
     {/if}
 
+    <div class="motion-enter motion-enter-delay-2">
     <Card.Root class="surface-panel border-black/10 p-3 sm:p-4 dark:border-white/10">
       <Card.Content class="space-y-2 p-0">
         <p class="px-1 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">Connect</p>
@@ -621,9 +626,9 @@
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
               aria-label={link.ariaLabel}
-              class="group h-12 justify-start rounded-xl border border-black/15 bg-black/[0.03] px-3 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:bg-black/[0.06] hover:text-foreground focus-visible:ring-primary/60 dark:border-white/10 dark:bg-white/[0.03] dark:hover:bg-white/[0.08]"
+              class="group h-12 justify-start rounded-xl border border-black/15 bg-black/[0.03] px-3 text-muted-foreground transition-all duration-base ease-standard hover:-translate-y-0.5 hover:border-primary/35 hover:bg-black/[0.06] hover:text-foreground focus-visible:ring-primary/60 dark:border-white/10 dark:bg-white/[0.03] dark:hover:bg-white/[0.08] motion-reduce:transition-none"
             >
-              <span class="inline-flex size-7 items-center justify-center rounded-full bg-black/[0.06] transition-colors duration-300 group-hover:bg-primary/15 dark:bg-white/[0.06]">
+              <span class="inline-flex size-7 items-center justify-center rounded-full bg-black/[0.06] transition-colors duration-base ease-standard group-hover:bg-primary/15 dark:bg-white/[0.06] motion-reduce:transition-none">
                 <svelte:component this={link.icon} class="size-3.5" />
               </span>
               <span class="text-xs font-medium">{link.label}</span>
@@ -632,10 +637,39 @@
         </div>
       </Card.Content>
     </Card.Root>
+    </div>
+
+    <div class="motion-enter motion-enter-delay-3">
+      <div class="surface-panel overflow-hidden border-black/10 dark:border-white/10">
+        <div class="border-b border-black/10 bg-black/[0.025] px-5 py-2.5 dark:border-white/10 dark:bg-white/[0.025]">
+          <p class="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">Looking for matyas.services?</p>
+        </div>
+        <div class="space-y-3 p-5">
+          <h3 class="text-base font-bold tracking-tight">matyas.services</h3>
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            A small consultancy I run with <a href="https://mzx.sk" target="_blank" rel="noopener noreferrer" class="font-semibold text-foreground underline-offset-2 hover:underline">my father</a> — we handle network engineering, server infrastructure, and website builds for clients.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {#each ["Networking", "Servers", "Web dev"] as tag}
+              <Badge variant="outline" class="rounded-full border-primary/30 bg-primary/5 text-[11px] text-primary dark:border-primary/20 dark:bg-primary/10">{tag}</Badge>
+            {/each}
+          </div>
+          <a
+            href="https://matyas.services"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all duration-base ease-standard hover:gap-2.5 motion-reduce:transition-none"
+          >
+            Visit matyas.services
+            <ArrowRight class="size-4 transition-transform duration-base ease-standard group-hover:translate-x-0.5 motion-reduce:transition-none" />
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="mt-10 space-y-4">
+<section class="motion-enter motion-enter-delay-2 mt-10 space-y-4">
   <div class="flex items-end justify-between">
     <div>
       <h2 class="text-2xl font-semibold tracking-tight">Featured projects</h2>
@@ -645,14 +679,18 @@
   </div>
 
   <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-    {#each featuredProjects as project}
-      <a href={`/projects/${project.url}`} class="group surface-panel border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+    {#each featuredProjects as project, index}
+      <a
+        href={`/projects/${project.url}`}
+        class="motion-enter group surface-panel border-white/10 overflow-hidden transition-all duration-base ease-standard hover:-translate-y-1 hover:shadow-lift motion-reduce:transition-none"
+        style={`animation-delay: ${index * 50}ms;`}
+      >
         <div class="aspect-[16/10] overflow-hidden bg-black/30">
           <img
             src={`/img/projects/${project.url}/${project.heroImage}`}
             alt={project.title}
             loading="lazy"
-            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            class="h-full w-full object-cover transition-transform duration-medium ease-standard group-hover:scale-[1.04] motion-reduce:transition-none"
           />
         </div>
         <div class="space-y-3 p-4">
