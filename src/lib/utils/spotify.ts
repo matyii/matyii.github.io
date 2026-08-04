@@ -26,7 +26,9 @@ async function refreshAccessToken() {
     const data = await response.json();
 
     if (data.error) {
-        throw new Error(`Failed to refresh access token: ${data.error}`);
+        throw new Error(
+            `Failed to refresh access token: ${data.error}${data.error_description ? ` (${data.error_description})` : ''}`
+        );
     }
 
     accessToken = data.access_token;
