@@ -301,7 +301,7 @@
               </div>
 
               {#if i < categoriesWithoutLanguages.length - 1}
-                <div class="pointer-events-none absolute -bottom-3 left-6 h-3 w-px bg-black/20 dark:bg-white/20"></div>
+                <div class="pointer-events-none absolute -bottom-5 left-6 h-5 w-px bg-black/20 dark:bg-white/20"></div>
               {/if}
             </section>
         {/each}

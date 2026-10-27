@@ -59,10 +59,6 @@ function extractActivity(data: LanyardData | undefined): string | null {
     return parts.length > 0 ? parts.join(' - ') : null;
   }
 
-  if (data.spotify?.song && data.spotify.artist) {
-    return `Listening to ${data.spotify.artist} - ${data.spotify.song}`;
-  }
-
   return null;
 }
 

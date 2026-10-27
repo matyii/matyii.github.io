@@ -551,21 +551,10 @@
           </div>
         {/if}
 
-        {#if discordPresence.data?.spotify}
-          <div class="rounded-xl border border-black/10 bg-black/[0.03] p-3 dark:border-white/10 dark:bg-white/[0.03]">
-            <p class="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Discord Spotify</p>
-            <div class="mt-2 space-y-1 text-xs text-muted-foreground">
-              <p class="font-medium text-foreground">{discordPresence.data.spotify.song || "Unknown track"}</p>
-              <p>{discordPresence.data.spotify.artist || "Unknown artist"}</p>
-              <p>{discordPresence.data.spotify.album || "Unknown album"}</p>
-            </div>
-          </div>
-        {/if}
-
         <div class="space-y-2">
-          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Activities ({discordActivities.length})</p>
-          {#if discordActivities.length > 0}
-            {#each discordActivities as activity}
+          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Activities ({discordActivities.filter((activity) => activity.name !== "Spotify" && activity.type !== 2).length})</p>
+          {#if discordActivities.filter((activity) => activity.name !== "Spotify" && activity.type !== 2).length > 0}
+            {#each discordActivities.filter((activity) => activity.name !== "Spotify" && activity.type !== 2) as activity}
               <div class="rounded-2xl border border-black/10 bg-black/[0.03] p-3 dark:border-white/10 dark:bg-white/[0.03]">
                 <p class="mb-2 text-xs font-medium text-muted-foreground">{formatActivityType(activity.type)}</p>
 
