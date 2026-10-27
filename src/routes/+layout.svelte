@@ -7,6 +7,8 @@
   import { motionPreference } from "$lib/stores/motion";
   import { MOTION, PARALLAX, motionDuration } from "$lib/utils/animation";
   import Navbar from "$lib/components/custom/Navbar.svelte";
+  import WinterSnowfall from "$lib/components/custom/WinterSnowfall.svelte";
+  import { winterEnabled } from "$lib/stores/winter";
 
   const { nowPlaying } = spotify;
 
@@ -98,6 +100,10 @@
 
 <ModeWatcher defaultMode="dark" />
 <Navbar />
+
+{#if $winterEnabled}
+  <WinterSnowfall />
+{/if}
 
 <div class="pointer-events-none fixed inset-0 -z-20 overflow-hidden" aria-hidden="true">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(77,148,255,0.12),transparent_28%),radial-gradient(circle_at_80%_8%,rgba(83,193,255,0.1),transparent_32%),radial-gradient(circle_at_55%_110%,rgba(96,83,255,0.1),transparent_28%)]"></div>

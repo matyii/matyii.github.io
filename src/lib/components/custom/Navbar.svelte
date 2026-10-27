@@ -9,6 +9,7 @@
     Home,
     Menu,
     Moon,
+    Snowflake,
     Sun,
     X
   } from "@lucide/svelte";
@@ -16,6 +17,7 @@
   import { fade, fly } from "svelte/transition";
   import { motionPreference } from "$lib/stores/motion";
   import { MOTION, motionDuration, motionOffset } from "$lib/utils/animation";
+  import { winterEnabled, winterOverride, cycleWinterOverride } from "$lib/stores/winter";
 
   type NavItem = {
     href: string;
@@ -98,6 +100,20 @@
     </nav>
 
     <div class="flex items-center gap-2">
+      {#if (new Date().getMonth() === 11) || (new Date().getMonth() === 0 && new Date().getDate() <= 10)}
+        <button
+          class={`inline-flex size-9 items-center justify-center rounded-lg border border-black/10 transition-colors duration-base ease-standard hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5 motion-reduce:transition-none ${
+            $winterEnabled ? "text-sky-400" : ""
+          }`}
+          type="button"
+          on:click={cycleWinterOverride}
+          aria-label="Toggle winter snowfall"
+          title={`Winter: ${$winterOverride === "auto" ? "Auto" : $winterOverride === "on" ? "On" : "Off"}`}
+        >
+          <Snowflake class="size-4" />
+        </button>
+      {/if}
+
       <button
         class="inline-flex size-9 items-center justify-center rounded-lg border border-black/10 transition-colors duration-base ease-standard hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5 motion-reduce:transition-none"
         type="button"
